@@ -25,8 +25,8 @@ async def main():
     
     context = await Context.create_client_context()
     
-    payload = input("What is the paylod?")
-    payload.encode()
+    userInput = input("What is the paylod?")
+    payload = userInput.encode()
     request = Message(code=PUT, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
