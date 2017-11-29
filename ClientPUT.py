@@ -15,11 +15,11 @@ async def main():
 
     await asyncio.sleep(2)
 
-    payload = b"Hello.\n" * 30
+    payload = b"Hello.\n"
     request = Message(code=PUT, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
-    request.opt.uri_host = '10.0.0.100'
+    request.opt.uri_host = '10.0.0.101'
     request.opt.uri_path = ("other", "block")
 
     response = await context.request(request).response
