@@ -3,6 +3,9 @@ import logging
 import asyncio
 from aiocoap import *
 
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("coap-server").setLevel(logging.DEBUG)
+
 async def main():
   
   selection = input("1. GET\n2. PUT \n\n")
