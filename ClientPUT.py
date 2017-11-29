@@ -20,7 +20,7 @@ async def main():
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
     request.opt.uri_host = '10.0.0.101'
-    request.opt.uri_path = ("other", "block")
+    request.opt.uri_path = ("test")
 
     response = await context.request(request).response
 
