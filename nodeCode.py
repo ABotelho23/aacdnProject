@@ -24,13 +24,46 @@ class TestResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
+        turnOnLight(payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 # logging setup
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
+#1 = off, 0 = on
+def turnOnLight(onOrOff):
+    
+    if (onOrOff == '1'):
+        GPIO.output(RED,1)
+        GPIO.output(GREEN,1)
+        GPIO.output(BLUE,1)
+    
+    else:
+        GPIO.output(RED,0)
+        GPIO.output(GREEN,0)
+        GPIO.output(BLUE,0)
+
+        
+def initializeGPIO ():
+    import RPi.GPIO as GPIO
+
+    GPIO.setmode(GPIO.BCM)
+
+    RED = 17
+    GREEN = 18
+    BLUE = 27
+
+    GPIO.setup(RED,GPIO.OUT)
+    GPIO.output(RED,0)
+    GPIO.setup(GREEN,GPIO.OUT)
+    GPIO.output(GREEN,0)
+    GPIO.setup(BLUE,GPIO.OUT)
+    GPIO.output(BLUE,0)
+
 def main():
+    initializeGPIO()
+    
     # Resource tree creation
     root = resource.Site()
 
