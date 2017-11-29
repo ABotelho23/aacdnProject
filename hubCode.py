@@ -1,7 +1,7 @@
 import datetime
 import logging
 import asyncio
-import aiocoap
+from aiocoap import *
 
 async def main():
   

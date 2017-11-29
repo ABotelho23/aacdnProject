@@ -11,7 +11,7 @@ class TestResource(resource.Resource):
 
     def __init__(self):
         super().__init__()
-        self.set_content("This is the default TEST content.")
+        self.set_content(b"This is the default TEST content.")
 
     def set_content(self, content):
         self.content = content
