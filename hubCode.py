@@ -27,11 +27,11 @@ async def main():
     
     userInput = input("What is the paylod?")
     payload = userInput.encode()
-    request = Message(code=PUT, payload=payload)
+    request = Message(code=PUT, uri='coap://10.0.0.101/test', payload=payload)
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
-    request.opt.uri_host = '10.0.0.101'
-    request.opt.uri_path = 'test'
+    #request.opt.uri_host = '10.0.0.101'
+    #request.opt.uri_path = 'test'
 
     response = await context.request(request).response
 
