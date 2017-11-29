@@ -36,15 +36,15 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 #1 = off, 0 = on
 def turnOnLight(onOrOff):
     
-    if (onOrOff == '0'):
-        GPIO.output(RED,1)
-        GPIO.output(GREEN,1)
-        GPIO.output(BLUE,1)
-    
-    else:
+    if (onOrOff == '1'):
         GPIO.output(RED,0)
         GPIO.output(GREEN,0)
         GPIO.output(BLUE,0)
+    
+    else:
+        GPIO.output(RED,1)
+        GPIO.output(GREEN,1)
+        GPIO.output(BLUE,1)
 
         
 def initializeGPIO ():
