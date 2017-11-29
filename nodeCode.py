@@ -55,15 +55,12 @@ def initializeGPIO ():
     BLUE = 27
 
     GPIO.setup(RED,GPIO.OUT)
-    GPIO.output(RED,0)
     GPIO.setup(GREEN,GPIO.OUT)
-    GPIO.output(GREEN,0)
     GPIO.setup(BLUE,GPIO.OUT)
-    GPIO.output(BLUE,0)
 
 def main():
     
-    #try:
+    try:
         initializeGPIO()
 
         # Resource tree creation
@@ -77,8 +74,8 @@ def main():
 
         asyncio.get_event_loop().run_forever()
     
-    #except KeyboardInterrupt:
-        #GPIO.cleanup()
+    except KeyboardInterrupt:
+        RPi.GPIO.cleanup()
 
 if __name__ == "__main__":
     main()
