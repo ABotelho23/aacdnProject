@@ -9,7 +9,7 @@ import aiocoap
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
-        def __init__(self):
+    def __init__(self):
         super().__init__()
         self.set_content("This is the default TEST content.")
 
