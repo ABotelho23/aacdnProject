@@ -63,7 +63,7 @@ def initializeGPIO ():
 
 def main():
     
-    try:
+    #try:
         initializeGPIO()
 
         # Resource tree creation
@@ -77,8 +77,8 @@ def main():
 
         asyncio.get_event_loop().run_forever()
     
-    except KeyboardInterrupt:
-        GPIO.cleanup()
+    #except KeyboardInterrupt:
+        #GPIO.cleanup()
 
 if __name__ == "__main__":
     main()
