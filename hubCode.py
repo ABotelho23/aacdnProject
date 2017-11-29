@@ -8,6 +8,9 @@ async def main():
   selection = raw_input("1. GET\n 2. PUT \n\n")
   
   if (selection == 1):
+    
+    protocol = await Context.create_client_context()
+    
     request = Message(code=GET, uri='coap://10.0.0.101/test')
   
     try:
@@ -19,6 +22,9 @@ async def main():
       print('Result: %s\n%r'%(response.code, response.payload))
   
   else:
+    
+    context = await Context.create_client_context()
+    
     payload = raw_input("What is the paylod?")
     request = Message(code=PUT, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
