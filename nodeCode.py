@@ -6,6 +6,8 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
+import RPi.GPIO as GPIO
+
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
@@ -46,10 +48,13 @@ def turnOnLight(onOrOff):
 
         
 def initializeGPIO ():
-    import RPi.GPIO as GPIO
 
     GPIO.setmode(GPIO.BCM)
-
+    
+    global RED
+    global GREEN
+    global BLUE
+    
     RED = 17
     GREEN = 18
     BLUE = 27
@@ -59,7 +64,6 @@ def initializeGPIO ():
     GPIO.setup(BLUE,GPIO.OUT)
 
 def main():
-    
 
         initializeGPIO()
 
