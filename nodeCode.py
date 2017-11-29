@@ -13,11 +13,9 @@ class TestResource(resource.Resource):
         super().__init__()
         self.set_content("This is the default TEST content.")
 
-    """def set_content(self, content):
+    def set_content(self, content):
         self.content = content
-        while len(self.content) <= 1024:
-            self.content = self.content + b"0123456789\n"
-            """
+           
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
