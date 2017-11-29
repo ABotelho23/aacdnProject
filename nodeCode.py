@@ -62,18 +62,23 @@ def initializeGPIO ():
     GPIO.output(BLUE,0)
 
 def main():
-    initializeGPIO()
     
-    # Resource tree creation
-    root = resource.Site()
+    try:
+        initializeGPIO()
 
-    root.add_resource(('.well-known', 'core'),
-            resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
+        # Resource tree creation
+        root = resource.Site()
 
-    asyncio.Task(aiocoap.Context.create_server_context(root))
+        root.add_resource(('.well-known', 'core'),
+                resource.WKCResource(root.get_resources_as_linkheader))
+        root.add_resource(('test',), TestResource())
 
-    asyncio.get_event_loop().run_forever()
+        asyncio.Task(aiocoap.Context.create_server_context(root))
+
+        asyncio.get_event_loop().run_forever()
+    
+    except KeyboardInterrupt:
+        GPIO.cleanup()
 
 if __name__ == "__main__":
     main()
