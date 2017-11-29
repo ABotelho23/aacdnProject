@@ -5,7 +5,7 @@ from aiocoap import *
 
 async def main():
   
-  selection = input("1. GET\n 2. PUT \n\n")
+  selection = input("1. GET\n2. PUT \n\n")
   
   if (selection == '1'):
     
@@ -26,6 +26,7 @@ async def main():
     context = await Context.create_client_context()
     
     payload = input("What is the paylod?")
+    payload.encode()
     request = Message(code=PUT, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
