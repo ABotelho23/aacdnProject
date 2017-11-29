@@ -7,13 +7,10 @@ logging.basicConfig(level=logging.INFO)
 
 async def main():
     """Perform a single PUT request to localhost on the default port, URI
-    "/other/block". The request is sent 2 seconds after initialization.
-
+    "/other/block".
     The payload is bigger than 1kB, and thus sent as several blocks."""
 
     context = await Context.create_client_context()
-
-    await asyncio.sleep(2)
 
     payload = b"Hello.\n"
     request = Message(code=PUT, payload=payload)
