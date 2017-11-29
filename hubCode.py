@@ -7,7 +7,7 @@ async def main():
   
   selection = input("1. GET\n 2. PUT \n\n")
   
-  if (selection == 1):
+  if (selection == '1'):
     
     protocol = await Context.create_client_context()
     
