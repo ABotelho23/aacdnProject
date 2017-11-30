@@ -35,7 +35,7 @@ async def main():
     # the GET example:
     #request.opt.uri_host = '10.0.0.101'
     #request.opt.uri_path = 'test'
-
+    print(payload)
     response = await context.request(request).response
 
     print('Result: %s\n%r'%(response.code, response.payload))
