@@ -41,7 +41,18 @@ async def main():
     print('Result: %s\n%r'%(response.code, response.payload))
   
   elif (selection == '3'):
-    print('Not available yet. Work in progress!')
+    print('Starting server, creating resource tree...')
+    
+    # Resource tree creation
+    root = resource.Site()
+
+    root.add_resource(('.well-known', 'core'),
+            resource.WKCResource(root.get_resources_as_linkheader))
+    root.add_resource(('node3', 'temperature'), Temperature())
+
+    asyncio.Task(aiocoap.Context.create_server_context(root))
+
+    asyncio.get_event_loop().run_forever()
   
   else:
     print('Invalid selection. Re-run program to try again.')
