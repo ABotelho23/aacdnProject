@@ -8,7 +8,7 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
   
-  selection = input("1. GET\n2. PUT \n 3. SERVER (not yet available)\n")
+  selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
   
   if (selection == '1'):
     
