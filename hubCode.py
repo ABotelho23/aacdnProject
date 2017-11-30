@@ -8,7 +8,7 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
   
-  selection = input("1. GET\n2. PUT \n\n")
+  selection = input("1. GET\n2. PUT \n 3. SERVER (not yet available)\n")
   
   if (selection == '1'):
     
@@ -24,7 +24,7 @@ async def main():
     else:
       print('Result: %s\n%r'%(response.code, response.payload))
   
-  else:
+  elif (selection == '2'):
     
     context = await Context.create_client_context()
     
@@ -39,7 +39,12 @@ async def main():
     response = await context.request(request).response
 
     print('Result: %s\n%r'%(response.code, response.payload))
-
+  
+  elif (selection == '3'):
+    print('Not available yet. Work in progress!')
+  
+  else:
+    print('Invalid selection. Re-run program to try again.')
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
   
