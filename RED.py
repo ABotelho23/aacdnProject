@@ -18,7 +18,9 @@ GPIO.setup(BLUE,GPIO.OUT)
                         GPIO.output(GREEN,int(request[1]))
                         GPIO.output(BLUE,int(request[2]))"""
 try:
-  GPIO.output(RED, 0)
+        while(True)
+                flub = input("Will turn RED on any input")
+                GPIO.output(RED,0)
 
 except KeyboardInterrupt:
         GPIO.cleanup()
