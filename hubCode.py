@@ -8,13 +8,17 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
   
+  targetIPAdd = input("What is the IP address of the target?")
+  targetResource = input("What is the resource of the target? Include initial slash, and no ending slash")
+  targetURI = 'coap://' + targetIPAdd + targetResource
+  
   selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
   
   if (selection == '1'):
     
     protocol = await Context.create_client_context()
     
-    request = Message(code=GET, uri='coap://10.0.0.101/test')
+    request = Message(code=GET, uri=targetURI)
   
     try:
       response = await protocol.request(request).response
@@ -30,7 +34,7 @@ async def main():
     
     userInput = input("What is the paylod?")
     payload = userInput.encode()
-    request = Message(code=PUT, uri='coap://10.0.0.101/test', payload=payload)
+    request = Message(code=PUT, uri=targetURI, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
     #request.opt.uri_host = '10.0.0.101'
