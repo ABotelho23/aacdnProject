@@ -3,6 +3,86 @@ import logging
 import asyncio
 from aiocoap import *
 
+class BulbSchedule(resource.Resource): #/node1/bulb/schedule
+    """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
+
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"This is the default content for this resource.")
+
+    def set_content(self, content):
+        self.content = content
+           
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+    
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+
+class CameraCapture(resource.Resource): #/node2/camera/capture
+    """This could be for notifying hub that the camera detected motion and took a picture?"""
+
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"This is the default content for this resource.")
+
+    def set_content(self, content):
+        self.content = content
+           
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+    
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+      
+class ThermoTemperature(resource.Resource): #/node3/thermometer/temperature
+    """This could be for notifying hub of new temperature change every X mins?"""
+
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"This is the default content for this resource.")
+
+    def set_content(self, content):
+        self.content = content
+           
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+    
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+      
+class BlindsSchedule(resource.Resource): #/node4/blinds/schedule
+    """This could be for notifying hub that a scheduled raising or lowering has occured?"""
+
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"This is the default content for this resource.")
+
+    def set_content(self, content):
+        self.content = content
+           
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+    
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
@@ -51,8 +131,12 @@ async def main():
         
       root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
-      root.add_resource(('node3', 'temperature'), Temperature())
- 
+      
+      root.add_resource(('node1', 'bulb', 'schedule'), BulbSchedule())
+      root.add_resource(('node2', 'camera', 'capture'), CameraCapture())
+      root.add_resource(('node3', 'thermometer', 'temperature'), ThermoTemperature())
+      root.add_resource(('node4', 'blinds', 'schedule'), BlindsSchedule())
+      
       asyncio.Task(aiocoap.Context.create_server_context(root))
  
       asyncio.get_event_loop().run_forever()
