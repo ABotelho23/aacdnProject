@@ -27,3 +27,13 @@ def BackwardStart():
   print ("Now stop")
   GPIO.output(Motor1E,GPIO.LOW)
   GPIO.cleanup()
+  
+  #Update Status File
+  print ("Writting status to file")
+  writePath = '/home/pi/BlindStatus.txt'
+  statusFile = open(writePath, 'w')
+  statusFile.write("OPEN")
+  statusFile.close()
+
+if __name__ == "__main__":
+    BackwardStart()
