@@ -35,4 +35,6 @@ def ForwardStart():
   statusFile.write("CLOSED")
   statusFile.close()
   
+if __name__ == "__main__":
+    ForwardStart()
   
