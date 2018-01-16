@@ -27,3 +27,11 @@ def ForwardStart():
   print ("Stopping motor")
   GPIO.output(Motor1E,GPIO.LOW)
   GPIO.cleanup()
+  
+  #Update Status File
+  print ("Writting status to file")
+  writepath = '/home/pi/BlindStatus.txt'
+  print("CLOSED", file=open(writepath, "w"))
+  close(writepath, "w")
+  
+  
