@@ -6,6 +6,9 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
+import Forward
+import Backward
+
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
@@ -24,11 +27,27 @@ class TestResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
+        activateMotor(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 # logging setup
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
+
+#Activate Motor
+def activateMotor(testRequest):
+    
+    print(testRequest)
+    testRequeststr = testRequest.decode()
+    
+    if (testRequeststr == 'forward'):
+        Forward.ForwardStart()
+    elif (testReuqeststr == 'backward'):
+        Backward.BackwardStart()
+    else:
+        print("nothing")
+        
+
 
 def main():
     # Resource tree creation
