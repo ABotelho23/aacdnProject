@@ -20,7 +20,7 @@ GPIO.output(Motor1E,GPIO.HIGH)
 
 pwmtest.start(2.5)
 
-sleep(10)
+sleep(3)
 
 print "Now stop"
 GPIO.output(Motor1E,GPIO.LOW)
