@@ -13,7 +13,7 @@ GPIO.setup(Motor1E,GPIO.OUT)
 
 pwmtest = GPIO.PWM(Motor1E,100)
 
-print "Going Forwards"
+print ("Going Forwards")
 GPIO.output(Motor1A,GPIO.HIGH)
 GPIO.output(Motor1B,GPIO.LOW)
 GPIO.output(Motor1E,GPIO.HIGH)
@@ -22,6 +22,6 @@ pwmtest.start(2.5)
 
 sleep(3)
 
-print "Stopping motor"
+print ("Stopping motor")
 GPIO.output(Motor1E,GPIO.LOW)
 GPIO.cleanup()
