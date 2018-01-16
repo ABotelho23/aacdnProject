@@ -30,8 +30,9 @@ def ForwardStart():
   
   #Update Status File
   print ("Writting status to file")
-  writepath = '/home/pi/BlindStatus.txt'
-  print("CLOSED", file=open(writepath, "w"))
-  close(writepath, "w")
+  writePath = '/home/pi/BlindStatus.txt'
+  statusFile = open(writePath, 'w')
+  statusFile.write("CLOSED")
+  statusFile.close()
   
   
