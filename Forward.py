@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-def Forward():
+def ForwardStart():
   
   GPIO.setmode(GPIO.BOARD)
 
