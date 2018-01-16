@@ -42,7 +42,7 @@ def activateMotor(testRequest):
     
     if (testRequeststr == 'forward'):
         Forward.ForwardStart()
-    elif (testReuqeststr == 'backward'):
+    elif (testRequeststr == 'backward'):
         Backward.BackwardStart()
     else:
         print("nothing")
