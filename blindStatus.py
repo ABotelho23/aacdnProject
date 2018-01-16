@@ -7,6 +7,8 @@ def checkStatus():
   currentStatus = statusFile.readline()
   print("Current Status: ")
   print(currentStatus)
+  
+  statusFile.close()
 
 if __name__ == "__main__":
     checkStatus()
