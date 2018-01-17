@@ -17,7 +17,7 @@ class TestResource(resource.Resource):
         super().__init__()
         initializeMotor.initialize()
         currentStatus = blindStatus.checkStatus()
-        bcurrentstatus = currentStatus.encode('utf-8')
+        bcurrentstatus = str.encode(currentStatus)
         self.set_content(bcurrentStatus)
         print(bcurrentStatus)
 
