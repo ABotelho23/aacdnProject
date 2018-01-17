@@ -22,6 +22,7 @@ class Temperature(resource.Resource):
         statusFile = open(readPath, 'r')
         payload = statusFile.readlines()
         statusFile.close()
+        self.set_content(request.payload)
         return aiocoap.Message(payload=self.content)
     
     #this is the render for a PUT. This sets what the resource value is.
