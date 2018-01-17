@@ -5,9 +5,11 @@ def checkStatus():
   statusFile = open(readPath, 'r')
   
   currentStatus = statusFile.readline()
-  print(currentStatus)
+  #print(currentStatus)
   
   statusFile.close()
+  
+  return currentStatus
 
 if __name__ == "__main__":
     checkStatus()
