@@ -6,15 +6,19 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
-import openBlinds
-import closeBlinds
+import opencloseBlinds
+import initializeMotor
+import blindStatus
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default TEST content.")
+        initializeMotor.initialize()
+        currentStatus = blindStatus.checkStatus() 
+        self.set_content(currentStatus)
+        print(currentStatus)
 
     def set_content(self, content):
         self.content = content
@@ -40,13 +44,7 @@ def activateMotor(testRequest):
     print(testRequest)
     testRequeststr = testRequest.decode()
     
-    if (testRequeststr == 'open'):
-        openBlinds.openStart()
-    elif (testRequeststr == 'close'):
-        closeBlinds.closeStart()
-    else:
-        print("nothing")
-        
+    opencloseBlinds.main(testRequest)
 
 
 def main():
