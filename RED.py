@@ -4,9 +4,6 @@ def redOn():
 
  GPIO.setmode(GPIO.BCM)
 
- global RED
- global GREEN
- global BLUE
  
  RED = 17
  GREEN = 18
@@ -15,9 +12,9 @@ def redOn():
  GPIO.setup(RED,GPIO.OUT)
  GPIO.setup(GREEN,GPIO.OUT)
  GPIO.setup(BLUE,GPIO.OUT)
- GPIO.output(RED,1)
- GPIO.output(GREEN,1)
- GPIO.output(BLUE,1)
+ GPIO.output(RED,0)
+ GPIO.output(GREEN,0)
+ GPIO.output(BLUE,0)
 
    
  
