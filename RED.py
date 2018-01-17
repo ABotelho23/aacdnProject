@@ -30,8 +30,8 @@ def redOn():
    #             flub = input("Will turn RED on any input")
     #            GPIO.output(RED,0)
 
- except KeyboardInterrupt:
-        GPIO.cleanup()
+ #except KeyboardInterrupt:
+  #      GPIO.cleanup()
 
  if __name__ == "__main__":
     redOn()
