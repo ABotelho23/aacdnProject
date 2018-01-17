@@ -44,7 +44,7 @@ def activateMotor(testRequest):
     print(testRequest)
     testRequeststr = testRequest.decode()
     
-    opencloseBlinds.main(testRequest)
+    opencloseBlinds.main(testRequeststr)
 
 
 def main():
