@@ -1,5 +1,22 @@
 import RPi.GPIO as GPIO
 
+def greenOn():
+        
+ GPIO.setmode(GPIO.BCM)
+    
+    global RED
+    global GREEN
+    global BLUE
+    
+    RED = 17
+    GREEN = 18
+    BLUE = 27
+
+    GPIO.setup(RED,GPIO.OUT)
+    GPIO.setup(GREEN,GPIO.OUT)
+    GPIO.setup(BLUE,GPIO.OUT)
+
+
 GPIO.setmode(GPIO.BCM)
 
 RED = 17
@@ -26,3 +43,6 @@ try:
 
 except KeyboardInterrupt:
         GPIO.cleanup()
+
+ if __name__ == "__main__":
+    greenOn()
