@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-def redOn():
+#def redOn():
 
  GPIO.setmode(GPIO.BCM)
 
@@ -33,5 +33,5 @@ def redOn():
  except KeyboardInterrupt:
         GPIO.cleanup()
 
- if __name__ == "__main__":
-    redOn()
+ #if __name__ == "__main__":
+  #  redOn()
