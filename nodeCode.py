@@ -39,15 +39,6 @@ def turnOnLight(onOrOff):
     print(onOrOff)
     onOrOffstr = onOrOff.decode()
   
-  #  if (onOrOffstr == '1'):
-   #     GPIO.output(RED,1)
-    #    GPIO.output(GREEN,1)
-     #   GPIO.output(BLUE,1)
-    
-    #else:
-     #   GPIO.output(RED,0)
-      #  GPIO.output(GREEN,0)
-       # GPIO.output(BLUE,0)
     if (onOrOff == 'on'):
         turnOn.lightOn()
     elif (onOrOff == 'off'):
@@ -58,26 +49,26 @@ def turnOnLight(onOrOff):
         GREEN.greenOn()
     elif (onOrOff == 'blue'):
         BLUE.blueOn()
+    elif (onOrOff == 'yellow'):
+        YELLOW.yellowOn()
+    elif (onOrOff == 'cyan'):
+        CYAN.cyanOn()
+    elif (onOrOff == 'magenta'):
+        MAGENTA.magentaOn()
+    else:
+        print("nothing")
         
-#def initializeGPIO ():
-
- #   GPIO.setmode(GPIO.BCM)
+  #  if (onOrOffstr == '1'):
+   #     GPIO.output(RED,1)
+    #    GPIO.output(GREEN,1)
+     #   GPIO.output(BLUE,1)
     
-  #  global RED
-   # global GREEN
-    #global BLUE
-    
-   # RED = 17
-   # GREEN = 18
-   # BLUE = 27
-
-   # GPIO.setup(RED,GPIO.OUT)
-   # GPIO.setup(GREEN,GPIO.OUT)
-   # GPIO.setup(BLUE,GPIO.OUT)
+    #else:
+     #   GPIO.output(RED,0)
+      #  GPIO.output(GREEN,0)
+       # GPIO.output(BLUE,0)
 
 def main():
-
-      #  initializeGPIO()
 
         # Resource tree creation
         root = resource.Site()
