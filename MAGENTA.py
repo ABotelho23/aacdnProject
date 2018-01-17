@@ -11,8 +11,8 @@ def magentaOn():
   GPIO.setup(GREEN,GPIO.OUT)
   GPIO.setup(BLUE,GPIO.OUT)
   GPIO.output(RED,GPIO.LOW)
-  GPIO.output(GREEN,GPIO.LOW)
-  GPIO.output(BLUE,GPIO.HIGH)
+  GPIO.output(GREEN,GPIO.HIGH)
+  GPIO.output(BLUE,GPIO.LOW)
   
 if __name__ == "__main__":
   magentaOn()
