@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 
 def redOn():
+  
   GPIO.setmode(GPIO.BCM)
   
   RED = 17
