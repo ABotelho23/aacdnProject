@@ -17,8 +17,8 @@ class ThermoTemperature(resource.Resource): #/node3/thermometer/temperature
     async def render_get(self, request):
         readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave.txt
         statusFile = open(readPath, 'r')
-        payloadtemp = statusFile.readline()
-        return aiocoap.Message(payload=payloadtemp)
+        payload = statusFile.readline()
+        return aiocoap.Message(payload=self.content)
     
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
