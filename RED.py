@@ -34,5 +34,5 @@ def redOn():
  except KeyboardInterrupt:
         GPIO.cleanup()
 
-#if __name__ == "__main__":
- #   redOn()
+ if __name__ == "__main__":
+    redOn()
