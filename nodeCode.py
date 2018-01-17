@@ -20,7 +20,7 @@ class Temperature(resource.Resource):
     async def render_get(self, request):
         readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave'
         statusFile = open(readPath, 'r')
-        payload = statusFile.readline()
+        payload = statusFile.readlines()
         statusFile.close()
         return aiocoap.Message(payload=self.content)
     
