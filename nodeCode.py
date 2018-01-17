@@ -48,21 +48,21 @@ def turnOnLight(onOrOff):
     print(onOrOff)
     onOrOffstr = onOrOff.decode()
   
-    if (onOrOff == 'on'):
+    if (onOrOffstr == 'on'):
         turnOn.lightOn()
-    elif (onOrOff == 'off'):
+    elif (onOrOffstr == 'off'):
         turnOff.lightOff()
-    elif (onOrOff == 'red'):
+    elif (onOrOffstr == 'red'):
         RED.redOn()
-    elif (onOrOff == 'green'):
+    elif (onOrOffstr == 'green'):
         GREEN.greenOn()
-    elif (onOrOff == 'blue'):
+    elif (onOrOffstr == 'blue'):
         BLUE.blueOn()
-    elif (onOrOff == 'yellow'):
+    elif (onOrOffstr == 'yellow'):
         YELLOW.yellowOn()
-    elif (onOrOff == 'cyan'):
+    elif (onOrOffstr == 'cyan'):
         CYAN.cyanOn()
-    elif (onOrOff == 'magenta'):
+    elif (onOrOffstr == 'magenta'):
         MAGENTA.magentaOn()
     else:
         print("nothing")
