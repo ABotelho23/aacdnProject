@@ -13,5 +13,3 @@ GPIO.output(GREEN,GPIO.HIGH)
 GPIO.setup(BLUE,GPIO.OUT)
 GPIO.output(BLUE,GPIO.HIGH)
 
-except KeyboardInterrupt:
-        GPIO.cleanup()
