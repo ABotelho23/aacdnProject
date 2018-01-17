@@ -6,8 +6,8 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
-import Forward
-import Backward
+import openBlinds
+import closeBlinds
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -40,10 +40,10 @@ def activateMotor(testRequest):
     print(testRequest)
     testRequeststr = testRequest.decode()
     
-    if (testRequeststr == 'forward'):
-        Forward.ForwardStart()
-    elif (testRequeststr == 'backward'):
-        Backward.BackwardStart()
+    if (testRequeststr == 'open'):
+        openBlinds.openStart()
+    elif (testRequeststr == 'close'):
+        closeBlinds.closeStart()
     else:
         print("nothing")
         
