@@ -8,6 +8,15 @@ import aiocoap
 
 import RPi.GPIO as GPIO
 
+import turnOn
+import turnOff
+import RED
+import BLUE
+import GREEN
+import YELLOW
+import CYAN
+import MAGENTA
+
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
