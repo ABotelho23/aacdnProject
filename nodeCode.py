@@ -33,42 +33,51 @@ class TestResource(resource.Resource):
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
-#1 = off, 0 = on
+# 1 = off, 0 = on
 def turnOnLight(onOrOff):
     
     print(onOrOff)
     onOrOffstr = onOrOff.decode()
   
-    if (onOrOffstr == '1'):
-        GPIO.output(RED,1)
-        GPIO.output(GREEN,1)
-        GPIO.output(BLUE,1)
+  #  if (onOrOffstr == '1'):
+   #     GPIO.output(RED,1)
+    #    GPIO.output(GREEN,1)
+     #   GPIO.output(BLUE,1)
     
-    else:
-        GPIO.output(RED,0)
-        GPIO.output(GREEN,0)
-        GPIO.output(BLUE,0)
-
+    #else:
+     #   GPIO.output(RED,0)
+      #  GPIO.output(GREEN,0)
+       # GPIO.output(BLUE,0)
+    if (onOrOff == 'on'):
+        turnOn.lightOn()
+    elif (onOrOff == 'off'):
+        turnOff.lightOff()
+    elif (onOrOff == 'red'):
+        RED.redOn()
+    elif (onOrOff == 'green'):
+        GREEN.greenOn()
+    elif (onOrOff == 'blue'):
+        BLUE.blueOn()
         
-def initializeGPIO ():
+#def initializeGPIO ():
 
-    GPIO.setmode(GPIO.BCM)
+ #   GPIO.setmode(GPIO.BCM)
     
-    global RED
-    global GREEN
-    global BLUE
+  #  global RED
+   # global GREEN
+    #global BLUE
     
-    RED = 17
-    GREEN = 18
-    BLUE = 27
+   # RED = 17
+   # GREEN = 18
+   # BLUE = 27
 
-    GPIO.setup(RED,GPIO.OUT)
-    GPIO.setup(GREEN,GPIO.OUT)
-    GPIO.setup(BLUE,GPIO.OUT)
+   # GPIO.setup(RED,GPIO.OUT)
+   # GPIO.setup(GREEN,GPIO.OUT)
+   # GPIO.setup(BLUE,GPIO.OUT)
 
 def main():
 
-        initializeGPIO()
+      #  initializeGPIO()
 
         # Resource tree creation
         root = resource.Site()
