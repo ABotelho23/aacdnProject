@@ -18,7 +18,7 @@ class TestResource(resource.Resource):
         initializeMotor.initialize()
         currentStatus = blindStatus.checkStatus()
         print(currentStatus)
-        bcurrentStatus = str.encode(currentStatus)
+        bcurrentStatus = currentStatus.encode()
         self.set_content(bcurrentStatus)
         print(bcurrentStatus)
 
