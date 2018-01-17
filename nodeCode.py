@@ -6,18 +6,19 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
-class TestResource(resource.Resource):
-    """This is our first resource defined from scratch to test functionality."""
+class Temperature(resource.Resource):
+    """This URI is the value of the temperature"""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default TEST content.")
+        self.set_content(b"0")
 
     def set_content(self, content):
         self.content = content
            
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
+        
         return aiocoap.Message(payload=self.content)
     
     #this is the render for a PUT. This sets what the resource value is.
@@ -36,7 +37,7 @@ def main():
 
     root.add_resource(('.well-known', 'core'),
             resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
+    root.add_resource(('node3','thermometer','temperature'), Temperature())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
