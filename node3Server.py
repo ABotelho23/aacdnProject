@@ -15,7 +15,7 @@ class ThermoTemperature(resource.Resource): #/node3/thermometer/temperature
            
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
-        readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave.txt
+        readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave
         statusFile = open(readPath, 'r')
         payload = statusFile.readline()
         return aiocoap.Message(payload=self.content)
