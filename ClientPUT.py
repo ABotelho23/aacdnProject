@@ -7,20 +7,17 @@ logging.basicConfig(level=logging.INFO)
 
 async def main():
     """Perform a single PUT request to localhost on the default port, URI
-    "/other/block". The request is sent 2 seconds after initialization.
-
+    "/other/block".
     The payload is bigger than 1kB, and thus sent as several blocks."""
 
     context = await Context.create_client_context()
 
-    await asyncio.sleep(2)
-
-    payload = b"Hello.\n" * 30
+    payload = b"Hello.\n"
     request = Message(code=PUT, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
     # the GET example:
-    request.opt.uri_host = '10.0.0.100'
-    request.opt.uri_path = ("other", "block")
+    request.opt.uri_host = '10.0.0.101'
+    request.opt.uri_path = ("other","block")
 
     response = await context.request(request).response
 
