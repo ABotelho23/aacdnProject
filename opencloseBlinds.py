@@ -4,9 +4,15 @@ import sys
 from time import sleep
 
 #Motor Variables for easier management
+GPIO.setmode(GPIO.BOARD)
+
 Motor1A = 16
 Motor1B = 18
 Motor1E = 22
+
+GPIO.setup(Motor1A,GPIO.OUT)
+GPIO.setup(Motor1B,GPIO.OUT)
+GPIO.setup(Motor1E,GPIO.OUT)
 
 #Amount of time to fully open/close
 fullTime = 5
@@ -16,8 +22,6 @@ stepCounter = 10
 movement = sys.argv[1]
 #Adjust time accordinly
 finalTime = 0
-
-GPIO.setmode(GPIO.BOARD)
 
 pwmtest = GPIO.PWM(Motor1E,100)
 
