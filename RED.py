@@ -19,7 +19,7 @@ def redOn():
    
  
  
-try:
+ try:
         while(True):
                 request = input("RGB ->")
                 if (len(request) == 3):
@@ -31,7 +31,7 @@ try:
    #             flub = input("Will turn RED on any input")
     #            GPIO.output(RED,0)
 
-except KeyboardInterrupt:
+ except KeyboardInterrupt:
         GPIO.cleanup()
 
 #if __name__ == "__main__":
