@@ -5,7 +5,6 @@ def checkStatus():
   statusFile = open(readPath, 'r')
   
   currentStatus = statusFile.readline()
-  print("Current Status: ")
   print(currentStatus)
   
   statusFile.close()
