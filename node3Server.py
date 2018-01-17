@@ -18,6 +18,7 @@ class ThermoTemperature(resource.Resource): #/node3/thermometer/temperature
         readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave
         statusFile = open(readPath, 'r')
         payload = statusFile.readline()
+        statusFile.close()
         return aiocoap.Message(payload=self.content)
     
     #this is the render for a PUT. This sets what the resource value is.
