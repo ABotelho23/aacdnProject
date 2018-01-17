@@ -17,6 +17,8 @@ movement = sys.argv[1]
 #Adjust time accordinly
 finalTime = 0
 
+GPIO.setmode(GPIO.BOARD)
+
 pwmtest = GPIO.PWM(Motor1E,100)
 
 def openStart(time):
