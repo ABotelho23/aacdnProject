@@ -9,17 +9,28 @@ BLUE = 27
 GPIO.setup(RED,GPIO.OUT)
 GPIO.setup(GREEN,GPIO.OUT)
 GPIO.setup(BLUE,GPIO.OUT)
-GPIO.output(RED,0)
-GPIO.output(GREEN,0)
-GPIO.output(BLUE,0)
+GPIO.output(RED,False)
+GPIO.output(GREEN,False)
+GPIO.output(BLUE,False)
 
-try:
-        while(True):
-                request = raw_input("RGB ->")
-                if (len(request) == 3):
-                        GPIO.output(RED,int(request[0]))
-                        GPIO.output(GREEN,int(request[1]))
-                        GPIO.output(BLUE,int(request[2]))
+try:         
+    while True:
+        UserInput = raw_input()
+	UserInput = str(UserInput)
+        if UserInput == "red":
+            GPIO.output(RED, True)
+            GPIO.output(GREEN, False)
+            GPIO.output(BLUE, False)
+        elif UserInput == "green":
+            GPIO.output(RED, False)
+            GPIO.output(GREEN, True)
+            GPIO.output(BLUE, False)
+        elif UserInput == "blue":
+            GPIO.output(RED, False)
+            GPIO.output(GREEN, False)
+            GPIO.output(BLUE, True)
+	else:
+		print("Only red, green, and blue are valid colors.")
 
 except KeyboardInterrupt:
         GPIO.cleanup()
