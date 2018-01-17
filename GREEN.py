@@ -1,47 +1,32 @@
 import RPi.GPIO as GPIO
 
 def greenOn():
-        
+       
  GPIO.setmode(GPIO.BCM)
-    
-    global RED
-    global GREEN
-    global BLUE
-    
-    RED = 17
-    GREEN = 18
-    BLUE = 27
 
-    GPIO.setup(RED,GPIO.OUT)
-    GPIO.setup(GREEN,GPIO.OUT)
-    GPIO.setup(BLUE,GPIO.OUT)
+ RED = 17
+ GREEN = 18
+ BLUE = 27
 
-
-GPIO.setmode(GPIO.BCM)
-
-RED = 17
-GREEN = 18
-BLUE = 27
-
-GPIO.setup(RED,GPIO.OUT)
-GPIO.setup(GREEN,GPIO.OUT)
-GPIO.setup(BLUE,GPIO.OUT)
-GPIO.output(RED,1)
-GPIO.output(GREEN,1)
-GPIO.output(BLUE,1)
-"""try:
+ GPIO.setup(RED,GPIO.OUT)
+ GPIO.setup(GREEN,GPIO.OUT)
+ GPIO.setup(BLUE,GPIO.OUT)
+ GPIO.output(RED,1)
+ GPIO.output(GREEN,1)
+ GPIO.output(BLUE,1)
+ """try:
         while(True):
                 request = input("RGB ->")
                 if (len(request) == 3):
                         GPIO.output(RED,int(request[0]))
                         GPIO.output(GREEN,int(request[1]))
                         GPIO.output(BLUE,int(request[2]))"""
-try:
+ try:
         while(True):
                 flub = input("Will turn GREEN on any input")
                 GPIO.output(GREEN,0)
 
-except KeyboardInterrupt:
+ except KeyboardInterrupt:
         GPIO.cleanup()
 
  if __name__ == "__main__":
