@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import sys
 
 from time import sleep
 
@@ -18,8 +17,6 @@ GPIO.setup(Motor1E,GPIO.OUT)
 fullTime = 5
 #Step incrememter 
 stepCounter = 10
-#What user sent
-movement = sys.argv[1]
 #Adjust time accordinly
 finalTime = 0
 
@@ -64,16 +61,16 @@ def writeStatus(num):
   statusFile.write(num)
   statusFile.close()
   
-def main():
+def main(fromServer):
 
   #Check what is the argument
-  print(movement)
-  if (movement == '0'):
+  print(fromServer)
+  if (fromServer == '0'):
     openStart(fullTime)
-    writeStatus(movement)
-  elif (movement == '10'):
+    writeStatus(fromServer)
+  elif (fromServer == '10'):
     closeStart(fullTime)
-    writeStatus(movement)
+    writeStatus(fromServer)
 
 
 if __name__ == "__main__":
