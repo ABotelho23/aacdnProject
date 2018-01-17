@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from time imnport sleep
+from time import sleep
 
 def openStart():
 
