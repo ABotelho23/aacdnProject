@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
-from time import sleep
+from time imnport sleep
 
-def BackwardStart():
+def openStart():
 
   GPIO.setmode(GPIO.BOARD)
 
@@ -15,7 +15,7 @@ def BackwardStart():
 
   pwmtest = GPIO.PWM(Motor1E,100)
 
-  print ("Going Backwards")
+  print ("Opening Blinds...")
   GPIO.output(Motor1A,GPIO.LOW)
   GPIO.output(Motor1B,GPIO.HIGH)
   GPIO.output(Motor1E,GPIO.HIGH)
@@ -24,7 +24,7 @@ def BackwardStart():
 
   sleep(3)
 
-  print ("Now stop")
+  print ("Stopping...")
   GPIO.output(Motor1E,GPIO.LOW)
   GPIO.cleanup()
   
@@ -36,4 +36,4 @@ def BackwardStart():
   statusFile.close()
 
 if __name__ == "__main__":
-    BackwardStart()
+    openStart()
