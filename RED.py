@@ -8,10 +8,10 @@ def redOn():
  GREEN = 18
  BLUE = 27
 
- GPIO.setup(RED,GPIO.OUT)
+ GPIO.setup(17,GPIO.OUT)
  GPIO.setup(GREEN,GPIO.OUT)
  GPIO.setup(BLUE,GPIO.OUT)
- GPIO.output(RED,GPIO.HIGH)
+ GPIO.output(17,GPIO.HIGH)
  GPIO.output(GREEN,GPIO.LOW)
  GPIO.output(BLUE,GPIO.LOW)
 
