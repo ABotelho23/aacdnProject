@@ -4,6 +4,10 @@ def redOn():
 
  GPIO.setmode(GPIO.BCM)
 
+ global RED
+ global GREEN
+ global BLUE
+ 
  RED = 17
  GREEN = 18
  BLUE = 27
