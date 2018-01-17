@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-def ForwardStart():
+def closeStart():
   
   GPIO.setmode(GPIO.BOARD)
 
@@ -15,7 +15,7 @@ def ForwardStart():
 
   pwmtest = GPIO.PWM(Motor1E,100)
 
-  print ("Going Forwards")
+  print ("Closing Blinds...")
   GPIO.output(Motor1A,GPIO.HIGH)
   GPIO.output(Motor1B,GPIO.LOW)
   GPIO.output(Motor1E,GPIO.HIGH)
@@ -24,7 +24,7 @@ def ForwardStart():
 
   sleep(3)
 
-  print ("Stopping motor")
+  print ("Stopping...")
   GPIO.output(Motor1E,GPIO.LOW)
   GPIO.cleanup()
   
@@ -36,5 +36,5 @@ def ForwardStart():
   statusFile.close()
   
 if __name__ == "__main__":
-    ForwardStart()
+    closeStart()
   
