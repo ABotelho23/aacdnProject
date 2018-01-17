@@ -16,9 +16,10 @@ class TestResource(resource.Resource):
     def __init__(self):
         super().__init__()
         initializeMotor.initialize()
-        currentStatus = blindStatus.checkStatus() 
-        self.set_content(currentStatus)
-        print(currentStatus)
+        currentStatus = blindStatus.checkStatus()
+        bcurrentstatus = currentStatus.encode()
+        self.set_content(bcurrentStatus)
+        print(bcurrentStatus)
 
     def set_content(self, content):
         self.content = content
