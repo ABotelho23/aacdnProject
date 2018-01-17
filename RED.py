@@ -11,16 +11,20 @@ def redOn():
  GPIO.setup(RED,GPIO.OUT)
  GPIO.setup(GREEN,GPIO.OUT)
  GPIO.setup(BLUE,GPIO.OUT)
- GPIO.output(RED,1)
- GPIO.output(GREEN,1)
- GPIO.output(BLUE,1)
- try:
-        while(True):
-                request = input("RGB ->")
-                if (len(request) == 3):
-                        GPIO.output(RED,int(request[0]))
-                        GPIO.output(GREEN,int(request[1]))
-                        GPIO.output(BLUE,int(request[2]))
+ GPIO.output(RED,True)
+ GPIO.output(GREEN,False)
+ GPIO.output(BLUE,False)
+
+   
+ 
+ 
+ # try:
+ #       while(True):
+  #              request = input("RGB ->")
+   #             if (len(request) == 3):
+    #                    GPIO.output(RED,int(request[0]))
+     #                   GPIO.output(GREEN,int(request[1]))
+      #                  GPIO.output(BLUE,int(request[2]))
  #try:
   #      while(True):
    #             flub = input("Will turn RED on any input")
