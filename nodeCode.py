@@ -21,9 +21,10 @@ class Temperature(resource.Resource):
         readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave'
         statusFile = open(readPath, 'r')
         payloadtemp = statusFile.readline()
+        payloadtemp = statusFile.readline()
         statusFile.close()
-        tempvalue = bytes(payloadtemp)
-        #tempvalue = payloadtemp.encode()
+        #tempvalue = bytes(payloadtemp)
+        tempvalue = payloadtemp.encode()
         self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
     
