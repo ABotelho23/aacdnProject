@@ -23,8 +23,12 @@ class Temperature(resource.Resource):
         payloadtemp = statusFile.readline()
         payloadtemp = statusFile.readline()
         statusFile.close()
+        x = payloadtemp.partition('t=')
+        y = x[2]
         #tempvalue = bytes(payloadtemp)
-        tempvalue = payloadtemp.encode()
+        tempvalue = y.encode()
+        print(y)
+        print(tempvalue)
         self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
     
