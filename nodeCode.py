@@ -27,7 +27,7 @@ class TakePicture(resource.Resource):
         """print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)"""
         capturePicture.main()
-        return aiocoap.Message(code=aiocoap.CHANGED, payload="Picture captured.")
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Picture captured.')
 # logging setup
 
 logging.basicConfig(level=logging.INFO)
