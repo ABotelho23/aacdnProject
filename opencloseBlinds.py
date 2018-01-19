@@ -91,7 +91,7 @@ def main(fromServer):
     closeStart(fullTime)
     writeStatus(fromServer)
     
-  GPIO.cleanup()
+  #GPIO.cleanup()
 
 
 if __name__ == "__main__":
