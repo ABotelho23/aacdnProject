@@ -6,7 +6,7 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
-import camera1
+import capturePicture
 
 class TakePicture(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -26,7 +26,7 @@ class TakePicture(resource.Resource):
     async def render_put(self, request):
         """print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)"""
-        camera1.main()
+        capturePicture.main()
         return aiocoap.Message(code=aiocoap.CHANGED, payload="Picture captured.")
 # logging setup
 
