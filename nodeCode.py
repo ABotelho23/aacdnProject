@@ -37,8 +37,8 @@ class TestResource(resource.Resource):
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 # logging setup
 
-#logging.basicConfig(level=logging.INFO)
-#logging.getLogger("coap-server").setLevel(logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 #Activate Motor
 def activateMotor(testRequest):
