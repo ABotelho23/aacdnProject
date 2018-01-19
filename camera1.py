@@ -4,7 +4,7 @@ from datetime import datetime
 from time import sleep
 
 
-def main()
+def main():
 # File path
   filePath = "/mnt/captures/"
   picTotal = 3
