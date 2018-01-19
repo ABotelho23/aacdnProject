@@ -12,28 +12,28 @@ def main():
 
   while picCount < picTotal:
     # Grab the current time
-      cTime = datetime.now()
+    cTime = datetime.now()
    
-      picT = cTime.strftime("%Y.%m.%d-%H%M%S")
-      picName = picT + '.jpg'
-      FilePathPic = filePath + picName
+    picT = cTime.strftime("%Y.%m.%d-%H%M%S")
+    picName = picT + '.jpg'
+    FilePathPic = filePath + picName
 
     # Take picture
-      with picamera.PiCamera() as camera:
-          camera.resolution = (1280,720)
-          camera.capture(FilePathPic)
+    with picamera.PiCamera() as camera:
+      camera.resolution = (1280,720)
+      camera.capture(FilePathPic)
           print("picture taken.")
 
     #currenttime variable
-      timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
+    timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
 
     #time stamp command 
-     timestampCommand = "/mnt/captures/convert/ " + FilePathPic + " -pointsize 36 \
+    timestampCommand = "/mnt/captures/convert/ " + FilePathPic + " -pointsize 36 \
       -fill blue -annotate +700+650 '" + timestampMessage + "' " + FilePathPic
     
-      call([timestampCommand], shell=True)
-     print("  picture captured")
+    call([timestampCommand], shell=True)
+    print("  picture captured")
 
 
-     picCount += 1
-     sleep(3)
+    picCount += 1
+    sleep(3)
