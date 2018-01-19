@@ -63,7 +63,7 @@ def writeStatus(num):
   
 def main(fromServer):
   
-   GPIO.setmode(GPIO.BOARD)
+  GPIO.setmode(GPIO.BOARD)
 
   Motor1A = 16
   Motor1B = 18
