@@ -17,10 +17,10 @@ class TestResource(resource.Resource):
         super().__init__()
         initializeMotor.initialize()
         currentStatus = blindStatus.checkStatus()
-        print(currentStatus)
+        #print(currentStatus)
         bcurrentStatus = currentStatus.encode()
         self.set_content(bcurrentStatus)
-        print(bcurrentStatus)
+        #print(bcurrentStatus)
 
     def set_content(self, content):
         self.content = content
@@ -37,8 +37,8 @@ class TestResource(resource.Resource):
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 # logging setup
 
-logging.basicConfig(level=logging.INFO)
-logging.getLogger("coap-server").setLevel(logging.DEBUG)
+#logging.basicConfig(level=logging.INFO)
+#logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 #Activate Motor
 def activateMotor(testRequest):
