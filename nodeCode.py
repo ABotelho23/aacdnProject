@@ -6,12 +6,14 @@ import asyncio
 import aiocoap.resource as resource
 import aiocoap
 
-class TestResource(resource.Resource):
+import camera1
+
+class TakePicture(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default TEST content.")
+        self.set_content(b"If you perform a PUT on this URI, camera will take a picture.")
 
     def set_content(self, content):
         self.content = content
@@ -22,9 +24,10 @@ class TestResource(resource.Resource):
     
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
-        print('PUT payload: %s' % request.payload)
-        self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        """print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)"""
+        camera1.main()
+        return aiocoap.Message(code=aiocoap.CHANGED, payload="Picture captured.")
 # logging setup
 
 logging.basicConfig(level=logging.INFO)
@@ -36,7 +39,7 @@ def main():
 
     root.add_resource(('.well-known', 'core'),
             resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
+    root.add_resource(('node2','camera','capture'), TakePicture())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
