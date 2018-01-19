@@ -84,7 +84,7 @@ def main():
 
         root.add_resource(('.well-known', 'core'),
                 resource.WKCResource(root.get_resources_as_linkheader))
-        root.add_resource(('node1','bulb','colours'), TestResource())
+        root.add_resource(('node1'), TestResource())
 
         asyncio.Task(aiocoap.Context.create_server_context(root))
 
