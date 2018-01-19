@@ -22,14 +22,14 @@ def main():
     with picamera.PiCamera() as camera:
       camera.resolution = (1280,720)
       camera.capture(FilePathPic)
-          print("picture taken.")
+      print("picture taken.")
 
-    #currenttime variable
+      #currenttime variable
     timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
 
-    #time stamp command 
+      #time stamp command 
     timestampCommand = "/mnt/captures/convert/ " + FilePathPic + " -pointsize 36 \
-      -fill blue -annotate +700+650 '" + timestampMessage + "' " + FilePathPic
+    -fill blue -annotate +700+650 '" + timestampMessage + "' " + FilePathPic
     
     call([timestampCommand], shell=True)
     print("  picture captured")
