@@ -1,6 +1,8 @@
+#Library Imports
 import RPi.GPIO as GPIO
-
 from time import sleep
+#Script Imports
+import blindStatus
 
 #Motor Variables for easier management
 GPIO.setmode(GPIO.BOARD)
@@ -90,9 +92,6 @@ def main(fromServer):
   elif (fromServer == '10'):
     closeStart(fullTime)
     writeStatus(fromServer)
-    
-  #GPIO.cleanup()
-
 
 if __name__ == "__main__":
     main()
