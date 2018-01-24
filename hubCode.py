@@ -3,7 +3,27 @@ import logging
 import asyncio
 import dbus
 import avahi
+import threading
 from aiocoap import *
+
+class ServerThread(threading.Thread):
+    def run(self):
+      print('Starting server, creating resource tree...')  
+      # Resource tree creation
+      root = resource.Site()
+        
+      root.add_resource(('.well-known', 'core'),
+        resource.WKCResource(root.get_resources_as_linkheader))
+      
+      root.add_resource(('hub', 'bulbs', 'schedule'), BulbSchedule())
+      root.add_resource(('hub', 'cameras', 'capture'), CameraCapture())
+      root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
+      root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
+      
+      asyncio.Task(aiocoap.Context.create_server_context(root))
+ 
+      asyncio.get_event_loop().run_forever()
+        
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
     """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
@@ -97,14 +117,12 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
   
-  targetIPAdd = input("What is the IP address of the target?")
-  targetResource = input("What is the resource of the target? Include initial slash, and no ending slash")
-  targetURI = 'coap://' + targetIPAdd + targetResource
-  
   selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
   
   if (selection == '1'):
-    
+    targetIPAdd = input("What is the IP address of the target?")
+    targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
+    targetURI = 'coap://' + targetIPAdd + targetResource
     protocol = await Context.create_client_context()
     
     request = Message(code=GET, uri=targetURI)
@@ -118,7 +136,9 @@ async def main():
       print('Result: %s\n%r'%(response.code, response.payload))
   
   elif (selection == '2'):
-    
+    targetIPAdd = input("What is the IP address of the target?")
+    targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
+    targetURI = 'coap://' + targetIPAdd + targetResource
     context = await Context.create_client_context()
     
     userInput = input("What is the payload?")
@@ -134,24 +154,14 @@ async def main():
     print('Result: %s\n%r'%(response.code, response.payload))
   
   elif (selection == '3'):
-    print('Starting server, creating resource tree...')  
-      # Resource tree creation
-      root = resource.Site()
-        
-      root.add_resource(('.well-known', 'core'),
-        resource.WKCResource(root.get_resources_as_linkheader))
-      
-      root.add_resource(('hub', 'bulbs', 'schedule'), BulbSchedule())
-      root.add_resource(('hub', 'cameras', 'capture'), CameraCapture())
-      root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
-      root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
-      
-      asyncio.Task(aiocoap.Context.create_server_context(root))
- 
-      asyncio.get_event_loop().run_forever()
-  
+    if (serverRunning == '0'):
+        serverRunning = 1
+        receiverThread = ServerThread()
+    else:
+        print('Server should already be running.)
+    
   else:
-    print('Invalid selection. Re-run program to try again.')
+    print('Invalid selection.')
 
     
   if __name__ == "__main__":
