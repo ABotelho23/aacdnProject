@@ -5,52 +5,56 @@ import dbus
 import avahi
 from aiocoap import *
 
-class BulbSchedule(resource.Resource): #/node1/bulb/schedule
+class BulbSchedule(resource.Resource): #/hub/bulb/schedule
     """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default content for this resource.")
+        self.set_content(b"No messages have been posted by any bulbs yet.")
 
     def set_content(self, content):
         self.content = content
            
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
+        print('Last message from a bulb being requested. Sending.')
         return aiocoap.Message(payload=self.content)
     
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
-        print('PUT payload: %s' % request.payload)
+        #print('PUT payload: %s' % request.payload)
+        print('Message from bulb: ' % request.payload) #to add avahi "name" to "bulb"?
         self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload='Notification received.')
 
-class CameraCapture(resource.Resource): #/node2/camera/capture
+class CameraCapture(resource.Resource): #/hub/camera/capture
     """This could be for notifying hub that the camera detected motion and took a picture?"""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default content for this resource.")
+        self.set_content(b"No images have been transmitted to the hub yet.")
 
     def set_content(self, content):
         self.content = content
-           
+        
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
+        print('Sending number of pictures taken from camera last time.')
     
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
-        print('PUT payload: %s' % request.payload)
+        #rint('PUT payload: %s' % request.payload)
+        print('Camera took automated picture. Placing in samba share. Placed number of pictures taken in URI.')
         self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload='Aknowledged') 
       
-class ThermoTemperature(resource.Resource): #/node3/thermometer/temperature
+class ThermoTemperature(resource.Resource): #/hub/thermometer/temperature
     """This could be for notifying hub of new temperature change every X mins?"""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default content for this resource.")
+        self.set_content(b"No temperature has been posted yet.")
 
     def set_content(self, content):
         self.content = content
@@ -58,14 +62,17 @@ class ThermoTemperature(resource.Resource): #/node3/thermometer/temperature
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
+        print('Sending last received temperature.')
     
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
-        print('PUT payload: %s' % request.payload)
+        #print('PUT payload: %s' % request.payload)
+        print('Updating temperature to ' % request.payload)
         self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        returnMessage = 'Temperature recorded as ' % self.content
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=returnMessage)
       
-class BlindsSchedule(resource.Resource): #/node4/blinds/schedule
+class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
     """This could be for notifying hub that a scheduled raising or lowering has occured?"""
 
     def __init__(self):
@@ -114,7 +121,7 @@ async def main():
     
     context = await Context.create_client_context()
     
-    userInput = input("What is the paylod?")
+    userInput = input("What is the payload?")
     payload = userInput.encode()
     request = Message(code=PUT, uri=targetURI, payload=payload)
     # These direct assignments are an alternative to setting the URI like in
@@ -134,10 +141,10 @@ async def main():
       root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
       
-      root.add_resource(('node1', 'bulb', 'schedule'), BulbSchedule())
-      root.add_resource(('node2', 'camera', 'capture'), CameraCapture())
-      root.add_resource(('node3', 'thermometer', 'temperature'), ThermoTemperature())
-      root.add_resource(('node4', 'blinds', 'schedule'), BlindsSchedule())
+      root.add_resource(('hub', 'bulbs', 'schedule'), BulbSchedule())
+      root.add_resource(('hub', 'cameras', 'capture'), CameraCapture())
+      root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
+      root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
       
       asyncio.Task(aiocoap.Context.create_server_context(root))
  
@@ -145,7 +152,9 @@ async def main():
   
   else:
     print('Invalid selection. Re-run program to try again.')
-if __name__ == "__main__":
+
+    
+  if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
   
   
