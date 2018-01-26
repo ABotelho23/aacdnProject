@@ -1,17 +1,47 @@
+#Library Imports
 import datetime
 import logging
-
 import asyncio
-
 import aiocoap.resource as resource
 import aiocoap
+#Script Imports
+import opencloseBlinds
+import blindStatus
 
-class TestResource(resource.Resource):
-    """This is our first resource defined from scratch to test functionality."""
+class StatusResource(resource.Resource):
+    """Resource used to check current blind status."""
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default TEST content.")
+        #Check current status and set upon initialization of Resource
+        currentStatus = blindStatus.checkStatus()
+        bcurrentStatus = currentStatus.encode()
+        self.set_content(bcurrentStatus)
+
+    def set_content(self, content):
+        self.content = content
+           
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+    
+    #this is the render for a PUT. This sets what the resource value is.
+    #Do I even need a PUT request for this??
+    #Maybe do nothing and return message stating to use other Resource URI?
+    async def render_put(self, request):
+        print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+
+class MovementResource(resource.Resource):
+    """Resource used to move blinds based on Hub reqeust."""
+
+    def __init__(self):
+        super().__init__()
+        #Check current status and set upon initialization of Resource
+        currentStatus = blindStatus.checkStatus()
+        bcurrentStatus = currentStatus.encode()
+        self.set_content(bcurrentStatus)
 
     def set_content(self, content):
         self.content = content
@@ -24,19 +54,27 @@ class TestResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
+        activateMotor(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
-# logging setup
 
+#logging setup
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
+
+#Activate Motor
+def activateMotor(hubRequest):
+    
+    print(hubRequest)
+    hubRequeststr = hubRequest.decode()
+    opencloseBlinds.main(hubRequeststr)
+
 
 def main():
     # Resource tree creation
     root = resource.Site()
-
-    root.add_resource(('.well-known', 'core'),
-            resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
+    root.add_resource(('.well-known', 'core'), resource.WKCResource(root.get_resources_as_linkheader))
+    root.add_resource(('node4','blinds','status'), StatusResource())
+    root.add_resource(('node4','blinds','move'), MovementResource())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
