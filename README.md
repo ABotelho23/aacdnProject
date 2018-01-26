@@ -1,5 +1,5 @@
 # aacdnProject
-This is the repository for our 4th year project for Bachelor of Information Technology in Network Technology at Carleton University.
+This is the repository of our 4th year project for Bachelor of Information Technology in Network Technology at Carleton University.
 
 Our team members are:
 Alexandre Botelho, 
@@ -13,4 +13,6 @@ Out of a set possible smart devices, we plan on creating light bulbs, a thermome
 We plan on using Raspberry Pis for each node’s computing aspect, along with different sensors, cameras, motors specific to each device.  Python will be our primary programming language due to its ease of use and the fact that it is the language used for the Google Assistant SDK.
 Our final demonstration of all the devices will be a scaled down house that will highlight each IoT devices key capabilities and the method used to achieve this functionality.
 
-We are using chrysn's fantastic CoAP Python 3 library as our CoAP implementation, called aiocoap. Please see his repository here: https://github.com/chrysn/aiocoap
+We are using chrysn's solid CoAP Python 3 library as our CoAP implementation, called aiocoap. Please see the repository here: https://github.com/chrysn/aiocoap
+
+We will also be implementing avahi for device discovery purposes. Please see the avahi repository here: https://github.com/lathiat/avahi
