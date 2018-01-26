@@ -8,7 +8,7 @@
   <service protocol="ipv4">
     <type>_coap._udp</type>
     <domain-name>local</domain-name>
-    <host-name>master.local</host-name>
+    <host-name>node1.local</host-name>
     <port>5683</port>
     <txt-record>this=is</txt-record>
     <txt-record>a=really</txt-record>
