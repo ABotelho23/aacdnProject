@@ -8,9 +8,10 @@ def main(fromServer):
 # File path
   filePath = "/mnt/captures/"
   picTotal = fromServer
+  intpicTotal = int(picTotal)
   picCount = 0
 
-  while picCount < picTotal:
+  while picCount < intpicTotal:
     #Current time
     cTime = datetime.now()
    
