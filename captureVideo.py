@@ -9,6 +9,7 @@ import subprocess
 #File path 
 filePath = "/mnt/captures/"
 fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S.'))
+fileWithExtension = fileName
 fileWithExtension += 'h264'
 
 #  camera Setup
