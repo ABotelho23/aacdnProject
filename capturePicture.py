@@ -28,8 +28,8 @@ def main():
     timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
 
       #time stamp command 
-    timestampCommand = "/mnt/captures/convert/ " + FilePathPic + " -pointsize 36 \
-    -fill blue -annotate +700+650 '" + timestampMessage + "' " + FilePathPic
+    timestampCommand = FilePathPic + " -pointsize 36 \
+    -fill blue -annotate +700+650 '" + timestampMessage + "' " #+ FilePathPic
     
     call([timestampCommand], shell=True)
     print("  picture captured")
