@@ -15,7 +15,7 @@ def main(fromServer):
     #Current time
     cTime = datetime.now()
    
-    picT = cTime.strftime("%Y.%m.%d-%H:%M:%S")
+    picT = cTime.strftime("%Y.%m.%d_%H:%M:%S")
     picName = picT + '.jpg'
     FilePathPic = filePath + picName
 
