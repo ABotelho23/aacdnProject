@@ -27,7 +27,8 @@ class TakePicture(resource.Resource):
     async def render_put(self, request):
         """print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)"""
-        capturePicture.main()
+        #Call Take picture function
+        takePicture(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Picture captured.')
     
 class TakeVideo(resource.Resource):
@@ -54,6 +55,12 @@ class TakeVideo(resource.Resource):
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
+
+def takePicture(hubRequest):
+    
+    print(hubRequest)
+    hubRequeststr = hubRequest.decode()
+    capturePicture.main(hubRequeststr)
 
 def main():
     # Resource tree creation
