@@ -16,7 +16,7 @@ with picamera.PiCamera() as camera:
 
 print("convert the video.")
 
-command = "MP4Box -add fileName convertedVideo.mp4"
+command = "MP4Box -add 'fileName' convertedVideo.mp4"
 call([command], shell=True)
 # Video converted.
 print("Video converted.")
