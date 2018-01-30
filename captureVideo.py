@@ -4,7 +4,7 @@ import datetime as dt
 import os
 import subprocess
 
-def main()
+def main():
     #File path 
     filePath = "/mnt/captures/"
     fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
