@@ -24,7 +24,7 @@ def main():
       camera.resolution = (1280,720)
       #Timestamp
       camera.start_preview()
-      camera.annotate_size = 120 
+      #camera.annotate_size = 120 
       camera.annotate_foreground = Color('black')
       camera.annotate_text = picT
       camera.capture(FilePathPic)
