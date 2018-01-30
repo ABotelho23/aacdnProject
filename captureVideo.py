@@ -18,6 +18,11 @@ with picamera.PiCamera() as camera:
 print("convert the video.")
 
 command = shlex.split("MP4Box -add {f}.h264 {f}.mp4".format(f=str(fileName)))
-call([command], shell=True)
+try:
+    output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+except subprocess.CalledProcessError as e:
+    print('FAIL:\ncmd:{}\noutput:{}'.format(e.cmd, e.output))
+
+#call([command], shell=True)
 # Video converted.
 print("Video converted.")
