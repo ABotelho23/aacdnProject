@@ -17,7 +17,7 @@ with picamera.PiCamera() as camera:
 
 print("convert the video.")
 
-command = shlex.split("MP4Box -add {f}.h264 {f}.mp4".format(f=fileName))
+command = shlex.split("MP4Box -add {f}.h264 {f}.mp4".format(f=str(fileName)))
 call([command], shell=True)
 # Video converted.
 print("Video converted.")
