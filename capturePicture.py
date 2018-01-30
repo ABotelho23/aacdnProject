@@ -11,7 +11,7 @@ def main():
   picCount = 0
 
   while picCount < picTotal:
-    # Grab the current time
+    #Current time
     cTime = datetime.now()
    
     picT = cTime.strftime("%Y.%m.%d-%H%M%S")
