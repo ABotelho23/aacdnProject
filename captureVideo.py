@@ -1,7 +1,9 @@
 import picamera
 from time import sleep
 from subprocess import call
-
+#File path 
+    filePath = "/mnt/videocaptures/"
+    
 #  camera Setup
 with picamera.PiCamera() as camera:
     camera.start_recording("pythonVideo.h264")
