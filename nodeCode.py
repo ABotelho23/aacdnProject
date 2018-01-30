@@ -7,6 +7,7 @@ import aiocoap.resource as resource
 import aiocoap
 
 import capturePicture
+import captureVideo
 
 class TakePicture(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -34,7 +35,7 @@ class TakeVideo(resource.Resource):
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"If you perform a PUT on this URI, camera will take a pvideo of the amount of seconds you send.")
+        self.set_content(b"If you perform a PUT on this URI, camera will take a video of the amount of seconds you send.")
 
     def set_content(self, content):
         self.content = content
@@ -47,7 +48,7 @@ class TakeVideo(resource.Resource):
     async def render_put(self, request):
         """print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)"""
-        '''capturePicture.main()'''
+        captureVideo.main()
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Video captured.')
 # logging setup
 
