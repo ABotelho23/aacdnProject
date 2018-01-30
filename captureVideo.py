@@ -9,10 +9,11 @@ import subprocess
 #File path 
 filePath = "/mnt/captures/"
 fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
+fileWithExtension = os.path.join(fileName,'.h264')
 
 #  camera Setup
 with picamera.PiCamera() as camera:
-    camera.start_recording(fileName)
+    camera.start_recording(fileWithExtension)
     sleep(5)
     camera.stop_recording()
 
