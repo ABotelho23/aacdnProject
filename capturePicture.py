@@ -28,7 +28,7 @@ def main():
       camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
-"""
+
       #currenttime variable
     timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
     
@@ -39,6 +39,6 @@ def main():
     call([timestampCommand], shell=True)
     print("  picture captured")
 
-"""
+
     picCount += 1
     sleep(3)
