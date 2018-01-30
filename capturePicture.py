@@ -2,7 +2,8 @@ import picamera
 from subprocess import call
 from datetime import datetime
 from time import sleep
-
+#New
+from picamera import Color
 
 def main():
 # File path
@@ -21,12 +22,16 @@ def main():
     # Take picture
     with picamera.PiCamera() as camera:
       camera.resolution = (1280,720)
+      #Timestamp
+      camera.annotate_size = 120 
+      camera.annotate_foreground = Color('black')
+      camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
-
+"""
       #currenttime variable
     timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
-
+    
       #time stamp command 
     timestampCommand = FilePathPic + " -pointsize 36 \
     -fill blue -annotate +700+650 '" + timestampMessage + "' " #+ FilePathPic
@@ -34,6 +39,6 @@ def main():
     call([timestampCommand], shell=True)
     print("  picture captured")
 
-
+"""
     picCount += 1
     sleep(3)
