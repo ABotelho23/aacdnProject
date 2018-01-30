@@ -22,13 +22,13 @@ def main():
     # Take picture
     with picamera.PiCamera() as camera:
       camera.resolution = (1280,720)
+     
       #Timestamp
-      #camera.start_preview()
-      camera.annotate_foreground = Color('red')
+      camera.annotate_foreground = Color('black')
+      camera.annotate_background = Color('white')
       camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
-      #camera.stop_preview()
 
       #currenttime variable
     timestampMessage = cTime.strftime("%Y.%m.%d - %H:%M:%S")
