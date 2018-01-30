@@ -2,7 +2,7 @@ import picamera
 from time import sleep
 from subprocess import call
 #File path 
-    filePath = "/mnt/videocaptures/"
+    filePath = "/mnt/captures/"
     
 #  camera Setup
 with picamera.PiCamera() as camera:
