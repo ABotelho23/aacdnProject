@@ -10,6 +10,8 @@ def main():
     fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
     fileWithExtension = fileName
     fileWithExtension += '.h264'
+    
+    
     # Motion detection 
     def captureTestImage(settings, width, height):
     command = "raspistill %s -w %s -h %s -t 200 -e bmp -n -o -" %  (settings, width, height)
