@@ -2,7 +2,7 @@ import datetime
 import logging
 import asyncio
 import dbus
-import avahi
+#import avahi
 import threading
 from aiocoap import *
 
