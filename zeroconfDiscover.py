@@ -25,8 +25,7 @@ def on_service_state_change(zeroconf, service_type, name, state_change):
             print("  No info")
         print('\n')
 
-
-if __name__ == '__main__':
+def main():
     logging.basicConfig(level=logging.DEBUG)
     if len(sys.argv) > 1:
         assert sys.argv[1:] == ['--debug']
@@ -39,3 +38,5 @@ if __name__ == '__main__':
     sleep(5)
     print("\nEnding services browse...\n")
     zeroconf.close()
+if __name__ == '__main__':
+    main()

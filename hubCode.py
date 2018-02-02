@@ -123,7 +123,7 @@ async def main():
 
   while True:
 
-      zeroconfDiscover()
+      zeroconfDiscover.main()
       selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available) \n4. MULTI-DEVICE\n==========\n")
 
       if (selection == '1'):
