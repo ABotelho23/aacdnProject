@@ -85,7 +85,7 @@ def main(fromServer):
     #If current status less than whats requested from hub, close appropraitely
     adjustBlinds = (((hubRequeststr - currentStatus)/stepCounter)* fullTime)
     #Debugging
-    print("Closing blinds for ",adjust, " seconds")
+    print("Closing blinds for " % adjustBlinds % " seconds")
     #Close Blinds
     closeStart(adjustBlinds)
     writeStatus(hubRequeststr)
@@ -94,7 +94,7 @@ def main(fromServer):
     #If current status greater than whats requested from hub, move appropraitely
     adjustBlinds = (((currentStatus - hubRequeststr)/stepCounter)* fullTime)
     #Debugging
-    print("Openning blinds for ",adjust, " seconds")
+    print("Openning blinds for " % adjustBlinds % " seconds")
     #Open Blinds
     openStart(adjustBlinds)
     writeStatus(hubRequeststr)
