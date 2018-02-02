@@ -14,8 +14,7 @@ def main():
     
     # Motion detection 
     def captureTestImage(settings, width, height):
-    command = "raspistill %s -w %s -h %s -t 200 -e bmp -n -o -" %  (settings, width, height)
-    #imageData = StringIO.StringIO()
+    command = "raspistill %s -w %s -h %s -t 200 -e bmp -n -o -" %  (settings, width, height):
     imageData = io.BytesIO()
     imageData.write(subprocess.check_output(command, shell=True))
     imageData.seek(0)
