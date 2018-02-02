@@ -7,6 +7,7 @@ import threading
 import aiocoap.resource as resource
 from aiocoap import *
 import aiocoap
+import zeroconfDiscovery
 
 class ServerThread(threading.Thread):
     def run(self):
@@ -122,6 +123,7 @@ async def main():
 
   while True:
 
+      zeroconfDiscovery()
       selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available) \n4. MULTI-DEVICE\n==========\n")
 
       if (selection == '1'):
