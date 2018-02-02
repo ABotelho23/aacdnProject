@@ -187,7 +187,7 @@ async def main():
 
             print('\nResponses received!')
 
-        if (multiSelection == 'good morning'):
+        elif (multiSelection == 'good morning'):
             targetURI1 = 'coap://node1/bulb/colours'
             targetURI4 = 'coap://node4/blinds/move'
 
