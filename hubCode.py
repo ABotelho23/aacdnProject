@@ -7,7 +7,7 @@ import threading
 from aiocoap import *
 import aiocoap.resource as resource
 
-class ServerThread(threading.Thread):
+"""class ServerThread(threading.Thread):
     def run(self):
       print('Starting server, creating resource tree...')
       # Resource tree creation
@@ -111,7 +111,7 @@ class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)"""
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
