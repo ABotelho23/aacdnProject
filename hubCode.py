@@ -8,22 +8,22 @@ from aiocoap import *
 
 class ServerThread(threading.Thread):
     def run(self):
-      print('Starting server, creating resource tree...')  
+      print('Starting server, creating resource tree...')
       # Resource tree creation
       root = resource.Site()
-        
+
       root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
-      
+
       root.add_resource(('hub', 'bulbs', 'schedule'), BulbSchedule())
       root.add_resource(('hub', 'cameras', 'capture'), CameraCapture())
       root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
       root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
-      
+
       asyncio.Task(aiocoap.Context.create_server_context(root))
- 
+
       asyncio.get_event_loop().run_forever()
-        
+
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
     """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
@@ -34,12 +34,12 @@ class BulbSchedule(resource.Resource): #/hub/bulb/schedule
 
     def set_content(self, content):
         self.content = content
-           
+
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         print('Last message from a bulb being requested. Sending.')
         return aiocoap.Message(payload=self.content)
-    
+
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         #print('PUT payload: %s' % request.payload)
@@ -56,19 +56,19 @@ class CameraCapture(resource.Resource): #/hub/camera/capture
 
     def set_content(self, content):
         self.content = content
-        
+
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
         print('Sending number of pictures taken from camera last time.')
-    
+
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         #rint('PUT payload: %s' % request.payload)
         print('Camera took automated picture. Placing in samba share. Placed number of pictures taken in URI.')
         self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload='Aknowledged') 
-      
+        return aiocoap.Message(code=aiocoap.CHANGED, payload='Aknowledged')
+
 class ThermoTemperature(resource.Resource): #/hub/thermometer/temperature
     """This could be for notifying hub of new temperature change every X mins?"""
 
@@ -78,12 +78,12 @@ class ThermoTemperature(resource.Resource): #/hub/thermometer/temperature
 
     def set_content(self, content):
         self.content = content
-           
+
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
         print('Sending last received temperature.')
-    
+
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         #print('PUT payload: %s' % request.payload)
@@ -91,7 +91,7 @@ class ThermoTemperature(resource.Resource): #/hub/thermometer/temperature
         self.set_content(request.payload)
         returnMessage = 'Temperature recorded as ' % self.content
         return aiocoap.Message(code=aiocoap.CHANGED, payload=returnMessage)
-      
+
 class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
     """This could be for notifying hub that a scheduled raising or lowering has occured?"""
 
@@ -101,11 +101,11 @@ class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
 
     def set_content(self, content):
         self.content = content
-           
+
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
-    
+
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
@@ -116,17 +116,17 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
-  
+
   selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
-  
+
   if (selection == '1'):
     targetIPAdd = input("What is the IP address of the target?")
     targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
     targetURI = 'coap://' + targetIPAdd + targetResource
     protocol = await Context.create_client_context()
-    
+
     request = Message(code=GET, uri=targetURI)
-  
+
     try:
       response = await protocol.request(request).response
     except Exception as e:
@@ -134,13 +134,13 @@ async def main():
       print(e)
     else:
       print('Result: %s\n%r'%(response.code, response.payload))
-  
+
   elif (selection == '2'):
     targetIPAdd = input("What is the IP address of the target?")
     targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
     targetURI = 'coap://' + targetIPAdd + targetResource
     context = await Context.create_client_context()
-    
+
     userInput = input("What is the payload?")
     payload = userInput.encode()
     request = Message(code=PUT, uri=targetURI, payload=payload)
@@ -152,24 +152,23 @@ async def main():
     response = await context.request(request).response
 
     print('Result: %s\n%r'%(response.code, response.payload))
-  
+
   elif (selection == '3'):
     if (serverRunning == '0'):
         serverRunning = 1
         receiverThread = ServerThread()
     else:
-        print('Server should already be running.)
-    
+        print('Server should already be running.')
+
   else:
     print('Invalid selection.')
 
-    
+
   if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
-  
-  
-  
+
+
+
 #contextClient = await Context.create_client_context() #context for sending PUTs and GETs
 
 #contextServer = await Context. create_server_context() #context for receiving PUTs and GETs
-
