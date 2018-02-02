@@ -91,7 +91,7 @@ def main(fromServer):
   hubRequeststr = int(hubRequeststr)
   
   #Convert request into intervals of 0.5
-  hubReqeustTime = (hubRequeststr * 0.5)
+  hubRequestTime = (hubRequeststr * 0.5)
   
   if (currentStatus == hubRequeststr):
     #If current status = whats requested form hub, no movement nessecary
