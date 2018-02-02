@@ -11,7 +11,7 @@ def main():
     fileWithExtension = fileName
     fileWithExtension += '.h264'
     # Motion detection 
-    def captureTestImage(settings, width, height)
+    def captureTestImage(settings, width, height):
     command = "raspistill %s -w %s -h %s -t 200 -e bmp -n -o -" %  (settings, width, height)
     #imageData = StringIO.StringIO()
     imageData = io.BytesIO()
