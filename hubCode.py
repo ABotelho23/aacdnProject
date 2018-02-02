@@ -117,7 +117,7 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
-  serverRunning = 0
+  serverRunning = '0'
   selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
 
   if (selection == '1'):
