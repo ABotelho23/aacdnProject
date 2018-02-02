@@ -27,7 +27,7 @@ import aiocoap.resource as resource
 
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
-    """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
+    This could be for notifying hub that a scheduled colour change or on/off has occurred?
 
     def __init__(self):
         super().__init__()
@@ -49,7 +49,7 @@ class BulbSchedule(resource.Resource): #/hub/bulb/schedule
         return aiocoap.Message(code=aiocoap.CHANGED, payload='Notification received.')
 
 class CameraCapture(resource.Resource): #/hub/camera/capture
-    """This could be for notifying hub that the camera detected motion and took a picture?"""
+    This could be for notifying hub that the camera detected motion and took a picture?
 
     def __init__(self):
         super().__init__()
@@ -71,7 +71,7 @@ class CameraCapture(resource.Resource): #/hub/camera/capture
         return aiocoap.Message(code=aiocoap.CHANGED, payload='Aknowledged')
 
 class ThermoTemperature(resource.Resource): #/hub/thermometer/temperature
-    """This could be for notifying hub of new temperature change every X mins?"""
+    This could be for notifying hub of new temperature change every X mins?
 
     def __init__(self):
         super().__init__()
@@ -94,7 +94,7 @@ class ThermoTemperature(resource.Resource): #/hub/thermometer/temperature
         return aiocoap.Message(code=aiocoap.CHANGED, payload=returnMessage)
 
 class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
-    """This could be for notifying hub that a scheduled raising or lowering has occured?"""
+    This could be for notifying hub that a scheduled raising or lowering has occured?
 
     def __init__(self):
         super().__init__()
