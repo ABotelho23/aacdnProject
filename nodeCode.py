@@ -73,8 +73,8 @@ def main():
     # Resource tree creation
     root = resource.Site()
     root.add_resource(('.well-known', 'core'), resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('node4','blinds','status'), StatusResource())
-    root.add_resource(('node4','blinds','move'), MovementResource())
+    root.add_resource(('blinds','status'), StatusResource())
+    root.add_resource(('blinds','move'), MovementResource())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
