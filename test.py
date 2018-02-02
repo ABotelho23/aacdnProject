@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-
+import time
 def testOn():
   
   GPIO.setmode(GPIO.BCM)
