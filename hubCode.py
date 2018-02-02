@@ -5,7 +5,7 @@ import dbus
 #import avahi
 import threading
 import aiocoap.resource as resource
-import aiocoap
+from aiocoap import *
 
 class ServerThread(threading.Thread):
     def run(self):
