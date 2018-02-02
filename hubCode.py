@@ -187,6 +187,24 @@ async def main():
 
             print('\nResponses received!')
 
+        if (multiSelection == 'good morning'):
+            targetURI1 = 'coap://node1/bulb/colours'
+            targetURI4 = 'coap://node4/blinds/move'
+
+            context1 = await Context.create_client_context()
+            context4 = await Context.create_client_context()
+
+            request1 = Message(code=PUT, uri=targetURI1, payload=b'on')
+            request4 = Message(code=PUT, uri=targetURI4, payload=b'0')
+
+            response1 = await context1.request(request1).response
+            response4 = await context4.request(request4).response
+
+            print('Result: %s\n%r'%(response1.code, response1.payload))
+            print('Result: %s\n%r'%(response4.code, response4.payload))
+
+            print('\nResponses received!')
+
         else:
             print('\nThat is not a supported command!')
 
