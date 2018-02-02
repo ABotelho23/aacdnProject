@@ -68,8 +68,8 @@ def main():
 
     root.add_resource(('.well-known', 'core'),
             resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('node2','camera','capture'), TakePicture())
-    root.add_resource(('node2','camera','captureVideo'), TakeVideo())
+    root.add_resource(('camera','capture'), TakePicture())
+    root.add_resource(('camera','captureVideo'), TakeVideo())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
