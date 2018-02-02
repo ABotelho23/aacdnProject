@@ -15,7 +15,7 @@ def main(fromServer):
     #Current time
     cTime = datetime.now()
    
-    picT = cTime.strftime("%Y-%m-%d_%H:%M:%S")
+    picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
     picName = picT + '.jpg'
     FilePathPic = filePath + picName
 
@@ -27,7 +27,7 @@ def main(fromServer):
       #camera.annotate = 700+650
       camera.annotate_foreground = Color('black')
       camera.annotate_background = Color('white')
-      camera.annotate_text = picT+700+650
+      camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
 
