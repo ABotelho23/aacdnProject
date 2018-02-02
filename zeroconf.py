@@ -3,7 +3,6 @@ import socket
 import sys
 from time import sleep
 
-from zeroconf import *
 import zeroconf
 
 
