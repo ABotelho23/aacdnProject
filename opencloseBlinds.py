@@ -57,6 +57,9 @@ def writeStatus(num):
   statusFile.close()
   
 def main(fromServer):
+  # Step incrememter 
+  # 0 = fully open
+  # 10 = full closed
   
   GPIO.setmode(GPIO.BOARD)
 
@@ -68,15 +71,9 @@ def main(fromServer):
   GPIO.setup(Motor1B,GPIO.OUT)
   GPIO.setup(Motor1E,GPIO.OUT)
 
-  #Amount of time to fully open/close 
-  #5 Seconds
+  #Amount of time to fully open/close = 5 Seconds
   fullTime = 5
   
-  #Step incrememter 
-  # 1 = fully open
-  # 11 = full closed
-  stepCounter = 11
-
   pwmtest = GPIO.PWM(Motor1E,100)
 
   #Check what is the argument
@@ -93,29 +90,35 @@ def main(fromServer):
   currentStatus = int(currentStatus)
   hubRequeststr = int(hubRequeststr)
   
+  #Convert request into intervals of 0.5
+  hubReqeustTime = (hubRequeststr * 0.5)
+  
   if (currentStatus == hubRequeststr):
     #If current status = whats requested form hub, no movement nessecary
     print("Blinds Already At Current Level")
     
   elif (currentStatus < hubRequeststr):
     #If current status less than whats requested from hub, close appropraitely
-    adjustBlinds = (((hubRequeststr - currentStatus)/stepCounter)* fullTime)
+    adjustBlinds = (currentStatus * 0.5)
+    adjustBlindsTime = (hubRequestTime - adjustBlinds)
     #Debugging
     print("Closing blinds for ")
-    print(adjustBlinds)
+    print(adjustBlindsTime)
     #Close Blinds
-    closeStart(adjustBlinds)
-    writeStatus(hubRequeststr)
+    closeStart(adjustBlindsTime)
+    #Might fail here
+    writeStatus(str(hubRequeststr))
     
   elif (currentStatus > hubRequeststr):
     #If current status greater than whats requested from hub, move appropraitely
-    adjustBlinds = (((currentStatus - hubRequeststr)/stepCounter)* fullTime)
+    adjustBlinds = (currentStatus * 0.5)
+    adjustBlindsTime = (adjustBlinds - hubRequestTime)
     #Debugging
     print("Openning blinds for ")
-    print(adjustBlinds)
+    print(adjustBlindsTime)
     #Open Blinds
-    openStart(adjustBlinds)
-    writeStatus(hubRequeststr)
+    openStart(adjustBlindsTime)
+    writeStatus(str(hubRequeststr))
 
 if __name__ == "__main__":
     main()
