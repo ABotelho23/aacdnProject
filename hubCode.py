@@ -179,13 +179,14 @@ async def main():
             request1 = Message(code=PUT, uri=targetURI1, payload=b'off')
             request4 = Message(code=PUT, uri=targetURI4, payload=b'10')
 
-            response1 = await context1.request(request1).response1
-            response4 = await context4.request(request4).response4
+            response1 = await context1.request(request1).response
+            response4 = await context4.request(request4).response
 
             print('Result: %s\n%r'%(response1.code, response1.payload))
             print('Result: %s\n%r'%(response4.code, response4.payload))
 
             print('\nResponses received!')
+
         else:
             print('\nThat is not a supported command!')
 
