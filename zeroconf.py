@@ -3,7 +3,8 @@ import socket
 import sys
 from time import sleep
 
-from zeroconf import ServiceBrowser, ServiceStateChange, Zeroconf
+from zeroconf import *
+import zeroconf
 
 
 def on_service_state_change(zeroconf, service_type, name, state_change):
