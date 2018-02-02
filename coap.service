@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+
+<service-group>
+
+<name replace-wildcards="yes">CoAP on %h</name>
+
+<service protocol="ipv4">
+  <type>_coap._udp</type>
+  <domain-name>local</domain-name>
+  <host-name>hub.local</host-name>
+  <port>5683</port>
+  <txt-record>TEXT_RECORD</txt-record>
+</service>
+
+</service-group>
