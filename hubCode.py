@@ -118,51 +118,54 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
   serverRunning = '0'
-  selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
 
-  if (selection == '1'):
-    targetIPAdd = input("What is the IP address of the target?")
-    targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
-    targetURI = 'coap://' + targetIPAdd + targetResource
-    protocol = await Context.create_client_context()
+  while True:
 
-    request = Message(code=GET, uri=targetURI)
+      selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
 
-    try:
-      response = await protocol.request(request).response
-    except Exception as e:
-      print('Failed to fetch resource:')
-      print(e)
-    else:
-      print('Result: %s\n%r'%(response.code, response.payload))
+      if (selection == '1'):
+        targetIPAdd = input("What is the IP address of the target?")
+        targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
+        targetURI = 'coap://' + targetIPAdd + targetResource
+        protocol = await Context.create_client_context()
 
-  elif (selection == '2'):
-    targetIPAdd = input("What is the IP address of the target?")
-    targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
-    targetURI = 'coap://' + targetIPAdd + targetResource
-    context = await Context.create_client_context()
+        request = Message(code=GET, uri=targetURI)
 
-    userInput = input("What is the payload?")
-    payload = userInput.encode()
-    request = Message(code=PUT, uri=targetURI, payload=payload)
-    # These direct assignments are an alternative to setting the URI like in
-    # the GET example:
-    #request.opt.uri_host = '10.0.0.101'
-    #request.opt.uri_path = 'test'
-    print(payload)
-    response = await context.request(request).response
+        try:
+          response = await protocol.request(request).response
+        except Exception as e:
+          print('Failed to fetch resource:')
+          print(e)
+        else:
+          print('Result: %s\n%r'%(response.code, response.payload))
 
-    print('Result: %s\n%r'%(response.code, response.payload))
+      elif (selection == '2'):
+        targetIPAdd = input("What is the IP address of the target?")
+        targetResource = input("What is the resource of the target?\n Include initial slash, and no ending slash. \n")
+        targetURI = 'coap://' + targetIPAdd + targetResource
+        context = await Context.create_client_context()
 
-  elif (selection == '3'):
-    if (serverRunning == '0'):
-        serverRunning = 1
-        receiverThread = ServerThread()
-    else:
-        print('Server should already be running.')
+        userInput = input("What is the payload?")
+        payload = userInput.encode()
+        request = Message(code=PUT, uri=targetURI, payload=payload)
+        # These direct assignments are an alternative to setting the URI like in
+        # the GET example:
+        #request.opt.uri_host = '10.0.0.101'
+        #request.opt.uri_path = 'test'
+        print(payload)
+        response = await context.request(request).response
 
-  else:
-    print('Invalid selection.')
+        print('Result: %s\n%r'%(response.code, response.payload))
+
+      elif (selection == '3'):
+        if (serverRunning == '0'):
+            serverRunning = 1
+            receiverThread = ServerThread()
+        else:
+            print('Server should already be running.')
+
+      else:
+        print('Invalid selection.')
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
