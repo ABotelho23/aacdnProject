@@ -141,11 +141,11 @@ async def main():
 
       elif (selection == '2'):
         targetIPAdd = input("\nWhat is the IP address of the target?\n")
-        targetResource = input("\nWhat is the resource of the target?\n Include initial slash, and no ending slash. \n")
+        targetResource = input("\nWhat is the resource of the target?\nInclude initial slash, and no ending slash.\n")
         targetURI = 'coap://' + targetIPAdd + targetResource
         context = await Context.create_client_context()
 
-        userInput = input("What \nis the payload?")
+        userInput = input("\nWhat is the payload?")
         payload = userInput.encode()
         request = Message(code=PUT, uri=targetURI, payload=payload)
         # These direct assignments are an alternative to setting the URI like in
