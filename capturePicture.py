@@ -24,7 +24,7 @@ def main(fromServer):
       camera.resolution = (1280,720)
      
       #Timestamp
-      camera.annotate 700+650
+      camera.annotate = 700+650
       camera.annotate_foreground = Color('black')
       camera.annotate_background = Color('white')
       camera.annotate_text = picT
