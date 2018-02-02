@@ -3,27 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 #Script Imports
 import blindStatus
-"""
-#Motor Variables for easier management
-GPIO.setmode(GPIO.BOARD)
 
-Motor1A = 16
-Motor1B = 18
-Motor1E = 22
-
-GPIO.setup(Motor1A,GPIO.OUT)
-GPIO.setup(Motor1B,GPIO.OUT)
-GPIO.setup(Motor1E,GPIO.OUT)
-
-#Amount of time to fully open/close
-fullTime = 5
-#Step incrememter 
-stepCounter = 10
-#Adjust time accordinly
-finalTime = 0
-
-pwmtest = GPIO.PWM(Motor1E,100)
-"""
 def openStart(time):
 
   print ("Opening Blinds...")
@@ -92,6 +72,10 @@ def main(fromServer):
   
   #Check current blind status
   currentStatus = blindStatus.checkStatus()
+  
+  #Convert to ints
+  currentStatus = int(currentStatus)
+  hubRequeststr = int(hubRequeststr)
   
   if (currentStatus == hubRequeststr):
     #If current status = whats requested form hub, no movement nessecary
