@@ -87,7 +87,9 @@ def main(fromServer):
   pwmtest = GPIO.PWM(Motor1E,100)
 
   #Check what is the argument
-  print(fromServer)
+  hubRequeststr = fromServer
+  print(hubRequeststr)
+  
   #Check current blind status
   currentStatus = blindStatus.checkStatus()
   
