@@ -1,4 +1,3 @@
-import SocketServer
 from zeroconf import *
 import socket
 import time
