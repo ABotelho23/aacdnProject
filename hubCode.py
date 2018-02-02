@@ -6,6 +6,7 @@ import dbus
 import threading
 import aiocoap.resource as resource
 from aiocoap import *
+import aiocoap
 
 class ServerThread(threading.Thread):
     def run(self):
