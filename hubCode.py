@@ -161,6 +161,7 @@ async def main():
         if (serverRunning == '0'):
             serverRunning = 1
             receiverThread = ServerThread()
+            start.receiverThread
         else:
             print('\nServer should already be running.')
 
