@@ -39,8 +39,8 @@ def testOn():
           time.sleep(0.025)
           
   except KeyboardInterrupt:
-  RUNNING = False
-  GPIO.cleanup()
+    RUNNING = False
+    GPIO.cleanup()
           
 
   
