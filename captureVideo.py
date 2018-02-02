@@ -10,6 +10,17 @@ def main():
     fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
     fileWithExtension = fileName
     fileWithExtension += '.h264'
+    # Motion detection 
+    def captureTestImage(settings, width, height):
+    command = "raspistill %s -w %s -h %s -t 200 -e bmp -n -o -" % (settings, width, height)
+    #imageData = StringIO.StringIO()
+    imageData = io.BytesIO()
+    imageData.write(subprocess.check_output(command, shell=True))
+    imageData.seek(0)
+    im = Image.open(imageData)
+    buffer = im.load()
+    imageData.close()
+    return im, buffer
 
     #Camera Setup
     with picamera.PiCamera() as camera:
