@@ -8,7 +8,7 @@
 <service protocol="ipv4">
   <type>_coap._udp</type>
   <domain-name>local</domain-name>
-  <host-name>hub.local</host-name>
+  <host-name>node2.local</host-name>
   <port>5683</port>
   <txt-record>TEXT_RECORD</txt-record>
 </service>
