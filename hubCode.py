@@ -121,7 +121,7 @@ async def main():
 
   while True:
 
-      selection = input("1. GET\n2. PUT \n3. SERVER (not yet available)\n")
+      selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available)\n\n==========\n")
 
       if (selection == '1'):
         targetIPAdd = input("What is the IP address of the target?")
