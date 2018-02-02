@@ -37,3 +37,9 @@ def searchForDynamixServices():
     time.sleep(5)
     r.close()
     return devices[0]
+
+def main():
+    searchForDynamixServices()
+
+if __name__ == "__main__":
+    main()
