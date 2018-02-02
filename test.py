@@ -26,15 +26,15 @@ def testOn():
       green.start(100)
       blue.start(100)
         
-        for x in range(1,101):
+      for x in range(1,101):
           red.ChangeDutyCycle(101-x)
           
           time.sleep(0.05)
-        for x in range(1,101):
+      for x in range(1,101):
           green.ChangeDutyCycle(101-x)
           blue.ChangeDutyCycle(x)
           time.sleep(0.025)
-        for x in range (1,101):
+      for x in range (1,101):
           red.ChangeDutyCycle(x)
           time.sleep(0.025)
           
