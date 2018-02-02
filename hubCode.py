@@ -122,7 +122,7 @@ async def main():
 
   while True:
 
-      selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available)\n==========\n")
+      selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available) \n4. MULTI-DEVICE\n==========\n")
 
       if (selection == '1'):
         targetIPAdd = input("\nWhat is the IP address of the target?")
@@ -165,6 +165,29 @@ async def main():
             receiverThread.start()
         else:
             print('\nServer should already be running.')
+      elif (selection == '4'):
+
+        multiSelection = input("\nWhat is the command?\n")
+
+        if (multiSelection == 'goodnight'):
+            targetURI1 = 'coap://node1/bulb/colours'
+            targetURI4 = 'coap://node4/blinds/move'
+
+            context1 = await Context.create_client_context()
+            context4 = await Context.create_client_context()
+
+            request1 = Message(code=PUT, uri=targetURI1, payload=b'off')
+            request4 = Message(code=PUT, uri=targetURI4, payload=b'10')
+
+            response1 = await context1.request(request1).response1
+            response4 = await context4.request(request4).response4
+
+            print('Result: %s\n%r'%(response1.code, response1.payload))
+            print('Result: %s\n%r'%(response4.code, response4.payload))
+
+            print('\nResponses received!')
+        else:
+            print('\nThat is not a supported command!')
 
       else:
         print('\nInvalid selection.')
