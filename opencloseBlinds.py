@@ -15,8 +15,6 @@ GPIO.setup(Motor1B,GPIO.OUT)
 GPIO.setup(Motor1E,GPIO.OUT)
 pwmtest = GPIO.PWM(Motor1E,100)
 
-
-
 def openStart(time):
 
   print ("Opening Blinds...")
@@ -104,6 +102,7 @@ def main(fromServer):
     #Debugging
     print("Closing blinds for ")
     print(adjustBlindsTime)
+    print("Seconds")
     #Close Blinds
     closeStart(adjustBlindsTime)
     #Might fail here
@@ -116,6 +115,7 @@ def main(fromServer):
     #Debugging
     print("Openning blinds for ")
     print(adjustBlindsTime)
+    print("Seconds")
     #Open Blinds
     openStart(adjustBlindsTime)
     writeStatus(str(hubRequeststr))
