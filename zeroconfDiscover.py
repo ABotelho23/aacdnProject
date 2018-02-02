@@ -13,7 +13,7 @@ def on_service_state_change(zeroconf, service_type, name, state_change):
         info = zeroconf.get_service_info(service_type, name)
         if info:
             print("  Address: %s:%d" % (socket.inet_ntoa(info.address))
-            print("  Port: %s:%d" % (info.port,))
+            print("  Port: %s" % (info.port,))
             print("  Hostname: %s" % (info.server,))
             if info.properties:
                 print("  Properties are:")
