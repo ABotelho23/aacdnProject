@@ -13,6 +13,15 @@ def main():
     
     
     # Motion detection 
+    threshold = 10
+    sensitivity = 20
+    forceCapture = True
+    forceCaptureTime = 60 * 60 # Once an hour
+    filepath = "/mnt/captures/"
+    filenamePrefix = "captures"
+    diskSpaceToReserve = 40 * 1024 * 1024 # Keep 40 mb free on disk
+    cameraSettings = ""
+
 def captureTestImage(settings, width, height):
     command = "raspistill %s -w %s -h %s -t 200 -e bmp -n -o -" % (settings, width, height)
     imageData = io.BytesIO()
