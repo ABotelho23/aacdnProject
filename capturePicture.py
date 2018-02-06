@@ -6,7 +6,6 @@ from picamera import Color
 import io 
 import P3picam
 
-
 motionState = False
 picPath = "/mnt/captures"
 
