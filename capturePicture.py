@@ -12,13 +12,7 @@ import picamera
 motionState = False
 picPath = "/mnt/captures"
 
-while True:
-    motionState = camera.motion()
-    print(motionState)
-    if motionState:
-        currentTime = getTime()
-        picName = captureImage(currentTime, picPath)
-        timeStamp(currentTime, picPath, picName)
+
 
 def main(fromServer):
 # File path
@@ -46,6 +40,14 @@ def main(fromServer):
       camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
-
+    
+while True:
+    motionState = camera.motion()
+    print(motionState)
+    if motionState:
+        cTime = getTime()
+        picName = captureImage(cTime, picPath)
+        timeStamp(currentTime, picPath, picName)
+        
     picCount += 1
     sleep(3)
