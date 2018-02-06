@@ -40,7 +40,7 @@ def timeStamp(currentTime, picPath, picName):
     print("We have timestamped our picture.")
 
 while True:
-    motionState = picamera.motion()
+    motionState = camera.motion()
     print(motionState)
     if motionState:
         currentTime = getTime()
