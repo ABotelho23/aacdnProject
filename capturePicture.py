@@ -4,7 +4,7 @@ from datetime import datetime
 from time import sleep
 from picamera import Color
 import io 
-import P3picam
+#import P3picam
 
 motionState = False
 picPath = "/mnt/captures"
@@ -37,7 +37,7 @@ def main(fromServer):
       print("picture taken.")
     
 while True:
-    motionState = camera.motion()
+    motionState = Picamera.motion()
     print(motionState)
     if motionState:
         cTime = getTime()
