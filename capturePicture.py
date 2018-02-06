@@ -4,7 +4,7 @@ from datetime import datetime
 from time import sleep
 from picamera import Color
 import io 
-from PTL import image 
+#from PTL import image 
 #import P3picam
 import picamera
 
