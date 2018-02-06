@@ -7,12 +7,8 @@ import io
 import P3picam
 
 
-
-
 motionState = False
 picPath = "/mnt/captures"
-
-
 
 def main(fromServer):
 # File path
