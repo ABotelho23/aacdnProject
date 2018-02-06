@@ -4,7 +4,7 @@ from datetime import datetime
 from subprocess import call
 
 motionState = False
-picPath = "/home/pi/Desktop/cookie/images/"
+picPath = "/mnt/captures/"
 
 def captureImage(currentTime, picPath):
     # Generate the picture's name
