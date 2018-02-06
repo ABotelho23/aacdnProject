@@ -5,7 +5,7 @@ from time import sleep
 from picamera import Color
 import io 
 import P3picam
-import picamera
+
 
 
 
