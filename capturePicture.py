@@ -28,7 +28,7 @@ def main(fromServer):
   picCount = 0
 
   while picCount < intpicTotal:
-    Current time
+    #Current time
     cTime = datetime.now()
    
     picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
