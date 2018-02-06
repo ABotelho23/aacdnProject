@@ -33,7 +33,7 @@ def main(fromServer):
    
     picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
     picName = picT + '.jpg'
-   FilePathPic = filePath + picName
+    FilePathPic = filePath + picName
 
     # Take picture
     with picamera.PiCamera() as camera:
