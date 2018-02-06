@@ -37,7 +37,7 @@ def main(fromServer):
       print("picture taken.")
     
 while True:
-    motionState = Picamera.motion()
+    motionState = picamera.motion()
     print(motionState)
     if motionState:
         cTime = getTime()
