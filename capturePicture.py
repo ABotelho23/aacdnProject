@@ -1,9 +1,9 @@
 
 import picamera
- from subprocess import call
- from datetime import datetime
- from time import sleep
- from picamera import Color
+from subprocess import call
+from datetime import datetime
+from time import sleep
+from picamera import Color
  
  def main(fromServer):
  # File path
