@@ -33,7 +33,7 @@ def main(fromServer):
        camera.capture(FilePathPic)
        print("picture taken.")
  
- picCount += 1
+  picCount += 1
      sleep(3)
 
 """
