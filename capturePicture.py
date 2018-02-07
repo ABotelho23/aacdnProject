@@ -9,7 +9,7 @@ import io
  
 
 #motionState = False
-    picPath = "/mnt/captures/"
+picPath = "/mnt/captures"
  
 def main(fromServer):  
 # File path
