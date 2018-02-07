@@ -8,7 +8,7 @@ import io
 
  
 
-#motionState = False
+motionState = False
 picPath = "/mnt/captures"
  
 def main(fromServer):  
