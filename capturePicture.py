@@ -38,7 +38,7 @@ def captureTestImage():
     buffer = im.load()
     imageData.close()
     return im, buffer
-  while picCount < intpicTotal:
+    while picCount < intpicTotal:
     #Current time
     cTime = datetime.now()
    
