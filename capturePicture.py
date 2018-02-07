@@ -34,7 +34,9 @@ while picCount < intpicTotal:
       camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
-    """"
+      
+      
+ """"
 while True:
     motionState = p3picamera.motion()
     print(motionState)
