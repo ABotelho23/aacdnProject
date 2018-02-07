@@ -45,5 +45,5 @@ while True:
         picName = captureImage(cTime, picPath)
         timeStamp(currentTime, picPath, picName)
 """
-    picCount += 1
-    sleep(3)
+     picCount += 1
+     sleep(3)
