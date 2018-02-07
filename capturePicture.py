@@ -6,12 +6,19 @@ from picamera import Color
 import io 
 
 
-
-
 def main(fromServer):
 #import P3picam
 
-    threshold = 10
+ 
+ 
+#motionState = False
+picPath = "/mnt/captures"
+# File path
+    filePath = "/mnt/captures/"
+    picTotal = fromServer
+    intpicTotal = int(picTotal)
+    picCount = 0
+   threshold = 10
     sensitivity = 20
     forceCapture = True
     forceCaptureTime = 60 * 60 # Once an hour
@@ -31,15 +38,6 @@ def captureTestImage():
     buffer = im.load()
     imageData.close()
     return im, buffer
- 
-#motionState = False
-picPath = "/mnt/captures"
-# File path
-    filePath = "/mnt/captures/"
-    picTotal = fromServer
-    intpicTotal = int(picTotal)
-    picCount = 0
-
   while picCount < intpicTotal:
     #Current time
     cTime = datetime.now()
