@@ -34,13 +34,11 @@ def captureTestImage():
  
 #motionState = False
 picPath = "/mnt/captures"
-
-
 # File path
-    filePath = "/mnt/captures/"
-    picTotal = fromServer
-    intpicTotal = int(picTotal)
-    picCount = 0
+     filePath = "/mnt/captures/"
+     picTotal = fromServer
+     intpicTotal = int(picTotal)
+     picCount = 0
 
   while picCount < intpicTotal:
     #Current time
