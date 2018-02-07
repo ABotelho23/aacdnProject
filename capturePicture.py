@@ -49,4 +49,4 @@ while True:
         timeStamp(currentTime, picPath, picName)
 """
 picCount += 1
-   sleep(3)
+sleep(3)
