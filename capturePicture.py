@@ -12,7 +12,7 @@ def main(fromServer):
  
  
 #motionState = False
-picPath = "/mnt/captures"
+    picPath = "/mnt/captures"
 # File path
     filePath = "/mnt/captures/"
     picTotal = fromServer
