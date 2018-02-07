@@ -4,6 +4,11 @@ from datetime import datetime
 from time import sleep
 from picamera import Color
 import io 
+
+
+
+
+def main(fromServer):
 #import P3picam
 
 threshold = 10
@@ -26,11 +31,11 @@ def captureTestImage():
     buffer = im.load()
     imageData.close()
     return im, buffer
-  
+ 
 #motionState = False
 picPath = "/mnt/captures"
 
-def main(fromServer):
+
 # File path
   filePath = "/mnt/captures/"
   picTotal = fromServer
