@@ -36,7 +36,7 @@ while picCount < intpicTotal:
     camera.annotate_background = Color('white')
     camera.annotate_text = picT
     camera.capture(FilePathPic)
-     print("picture taken.")
+    print("picture taken.")
       
       
 """
