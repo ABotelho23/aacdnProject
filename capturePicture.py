@@ -11,10 +11,10 @@ import io
 def main(fromServer):
 #import P3picam
 
-threshold = 10
-sensitivity = 20
-forceCapture = True
-forceCaptureTime = 60 * 60 # Once an hour
+    threshold = 10
+    sensitivity = 20
+    forceCapture = True
+    forceCaptureTime = 60 * 60 # Once an hour
 
 # File settings
 saveWidth = 1280
