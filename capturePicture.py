@@ -4,15 +4,12 @@ from datetime import datetime
 from time import sleep
 from picamera import Color
 import io 
-
-
-
 #import P3picam
 
  
 def main(fromServer): 
 #motionState = False
-    picPath = "/mnt/captures"
+    picPath = "/mnt/captures/"
  
 # File path
     filePath = "/mnt/captures/"
