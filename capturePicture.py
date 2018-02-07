@@ -29,7 +29,7 @@ while picCount < intpicTotal:
 
   # Take picture
   
-   with picamera.PiCamera() as camera:
+ with picamera.PiCamera() as camera:
     camera.resolution = (1280,720)
      
       #Timestamp
