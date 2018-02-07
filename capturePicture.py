@@ -30,15 +30,15 @@ diskSpaceToReserve = 40 * 1024 * 1024 # Keep 40 mb free on disk
 
 # Capture a small test image (for motion detection)
 
-    command = "raspistill -w %s -h %s -t 0 -e bmp -o -" % (100, 75)
-    imageData = StringIO.StringIO()
-    imageData.write(subprocess.check_output(command, shell=True))
-    imageData.seek(0)
-    im = Image.open(imageData)
-    buffer = im.load()
-    imageData.close()
-    return im, buffer
-    while picCount < intpicTotal:
+     command = "raspistill -w %s -h %s -t 0 -e bmp -o -" % (100, 75)
+     imageData = StringIO.StringIO()
+     imageData.write(subprocess.check_output(command, shell=True))
+     imageData.seek(0)
+     im = Image.open(imageData)
+     buffer = im.load()
+     imageData.close()
+     return im, buffer
+     while picCount < intpicTotal:
     #Current time
      cTime = datetime.now()
    
