@@ -18,7 +18,7 @@ def main(fromServer):
     picTotal = fromServer
     intpicTotal = int(picTotal)
     picCount = 0
-   threshold = 10
+    threshold = 10
     sensitivity = 20
     forceCapture = True
     forceCaptureTime = 60 * 60 # Once an hour
