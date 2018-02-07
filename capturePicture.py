@@ -6,13 +6,14 @@ from picamera import Color
 import io 
 
 
-def main(fromServer):
+
 #import P3picam
 
  
- 
+def main(fromServer): 
 #motionState = False
     picPath = "/mnt/captures"
+ 
 # File path
     filePath = "/mnt/captures/"
     picTotal = fromServer
@@ -20,8 +21,7 @@ def main(fromServer):
     picCount = 0
     
     #Current time
-      cTime = datetime.now()
-   
+     cTime = datetime.now()
      picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
      picName = picT + '.jpg'
      FilePathPic = filePath + picName
