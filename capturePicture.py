@@ -17,8 +17,7 @@ def main(fromServer):
   picTotal = fromServer
   intpicTotal = int(picTotal)
   picCount = 0
-    
- 
+   
 while picCount < intpicTotal:
   #Current time
   cTime = datetime.now()
