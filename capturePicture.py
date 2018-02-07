@@ -36,7 +36,7 @@ while picCount < intpicTotal:
       print("picture taken.")
       
       
-""""
+
 while True:
     motionState = p3picamera.motion()
     print(motionState)
@@ -44,6 +44,6 @@ while True:
         cTime = getTime()
         picName = captureImage(cTime, picPath)
         timeStamp(currentTime, picPath, picName)
-""""
+
     picCount += 1
     sleep(3)
