@@ -28,8 +28,9 @@ while picCount < intpicTotal:
   FilePathPic = filePath + picName
 
   # Take picture
- with picamera.PiCamera() as camera:
-   camera.resolution = (1280,720)
+  
+   with picamera.PiCamera() as camera:
+    camera.resolution = (1280,720)
      
       #Timestamp
       camera.annotate_foreground = Color('black')
