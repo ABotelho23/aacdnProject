@@ -36,7 +36,7 @@ while picCount < intpicTotal:
       print("picture taken.")
       
       
- """"
+""""
 while True:
     motionState = p3picamera.motion()
     print(motionState)
