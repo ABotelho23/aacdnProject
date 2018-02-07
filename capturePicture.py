@@ -28,8 +28,7 @@ while picCount < intpicTotal:
   FilePathPic = filePath + picName
 
   # Take picture
-  
- with picamera.PiCamera() as camera:
+  with picamera.PiCamera() as camera:
     camera.resolution = (1280,720)
      
       #Timestamp
