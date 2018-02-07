@@ -7,26 +7,29 @@ import io
 #import P3picam
 
  
-def main(fromServer): 
+
 #motionState = False
     picPath = "/mnt/captures/"
  
+def main(fromServer):  
 # File path
-    filePath = "/mnt/captures/"
-    picTotal = fromServer
-    intpicTotal = int(picTotal)
-    picCount = 0
+  filePath = "/mnt/captures/"
+  picTotal = fromServer
+  intpicTotal = int(picTotal)
+  picCount = 0
     
-    #Current time
+ 
 while picCount < intpicTotal:
-   cTime = datetime.now()
-   picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
-   picName = picT + '.jpg'
-   FilePathPic = filePath + picName
+  #Current time
+  cTime = datetime.now()
+  
+  picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
+  picName = picT + '.jpg'
+  FilePathPic = filePath + picName
 
-    # Take picture
-   with picamera.PiCamera() as camera:
-      camera.resolution = (1280,720)
+  # Take picture
+ with picamera.PiCamera() as camera:
+   camera.resolution = (1280,720)
      
       #Timestamp
       camera.annotate_foreground = Color('black')
