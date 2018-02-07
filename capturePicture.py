@@ -5,8 +5,8 @@ from time import sleep
 from picamera import Color
 import io 
 
-
-def main(fromServer):
+def captureTestImage(fromserver):
+##def main(fromServer):
 #import P3picam
 
  
@@ -29,7 +29,7 @@ saveHeight = 960
 diskSpaceToReserve = 40 * 1024 * 1024 # Keep 40 mb free on disk
 
 # Capture a small test image (for motion detection)
-def captureTestImage(fromserver):
+
     command = "raspistill -w %s -h %s -t 0 -e bmp -o -" % (100, 75)
     imageData = StringIO.StringIO()
     imageData.write(subprocess.check_output(command, shell=True))
