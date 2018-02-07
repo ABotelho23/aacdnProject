@@ -7,7 +7,7 @@ import io
 #import P3picam
 
 
-motionState = False
+#motionState = False
 picPath = "/mnt/captures"
 
 def main(fromServer):
@@ -35,7 +35,7 @@ def main(fromServer):
       camera.annotate_text = picT
       camera.capture(FilePathPic)
       print("picture taken.")
-    
+    """"
 while True:
     motionState = p3picamera.motion()
     print(motionState)
@@ -43,6 +43,6 @@ while True:
         cTime = getTime()
         picName = captureImage(cTime, picPath)
         timeStamp(currentTime, picPath, picName)
-        
+        """
     picCount += 1
     sleep(3)
