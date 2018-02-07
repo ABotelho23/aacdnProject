@@ -36,9 +36,9 @@ def captureTestImage():
 picPath = "/mnt/captures"
 # File path
     filePath = "/mnt/captures/"
-     picTotal = fromServer
-     intpicTotal = int(picTotal)
-     picCount = 0
+    picTotal = fromServer
+    intpicTotal = int(picTotal)
+    picCount = 0
 
   while picCount < intpicTotal:
     #Current time
