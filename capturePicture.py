@@ -35,7 +35,7 @@ def captureTestImage():
 #motionState = False
 picPath = "/mnt/captures"
 # File path
-     filePath = "/mnt/captures/"
+    filePath = "/mnt/captures/"
      picTotal = fromServer
      intpicTotal = int(picTotal)
      picCount = 0
