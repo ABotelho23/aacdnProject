@@ -17,11 +17,11 @@ def main(fromServer):
     filePath = "/mnt/captures/"
     picTotal = fromServer
     intpicTotal = int(picTotal)
-    picCount = 0
+    ##picCount = 0
     threshold = 10
     sensitivity = 20
     forceCapture = True
-    forceCaptureTime = 60 * 60 # Once an hour
+    #forceCaptureTime = 60 * 60 # Once an hour
 
 # File settings
 saveWidth = 1280
@@ -29,7 +29,7 @@ saveHeight = 960
 diskSpaceToReserve = 40 * 1024 * 1024 # Keep 40 mb free on disk
 
 # Capture a small test image (for motion detection)
-def captureTestImage():
+def captureTestImage(fromserver):
     command = "raspistill -w %s -h %s -t 0 -e bmp -o -" % (100, 75)
     imageData = StringIO.StringIO()
     imageData.write(subprocess.check_output(command, shell=True))
