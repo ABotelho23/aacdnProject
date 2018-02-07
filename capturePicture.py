@@ -20,7 +20,7 @@ def main(fromServer):
     picCount = 0
     
     #Current time
-     cTime = datetime.now()
+      cTime = datetime.now()
    
      picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
      picName = picT + '.jpg'
