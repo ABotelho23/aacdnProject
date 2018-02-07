@@ -5,7 +5,7 @@ from datetime import datetime
 from time import sleep
 from picamera import Color
  
- def main(fromServer):
+  def main(fromServer):
  # File path
    filePath = "/mnt/captures/"
    picTotal = fromServer
