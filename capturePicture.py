@@ -33,9 +33,9 @@ while picCount < intpicTotal:
      
       #Timestamp
     camera.annotate_foreground = Color('black')
-     camera.annotate_background = Color('white')
-     camera.annotate_text = picT
-     camera.capture(FilePathPic)
+    camera.annotate_background = Color('white')
+    camera.annotate_text = picT
+    camera.capture(FilePathPic)
      print("picture taken.")
       
       
