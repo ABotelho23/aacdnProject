@@ -23,7 +23,7 @@ def main(fromServer):
       picName = picT + '.jpg'
       FilePathPic = filePath + picName
       
-  while True:
+   while True:
     motionState = picammotion.motion()
     print(motionState)
     if motionState:
