@@ -1,9 +1,11 @@
 
 import picamera
+import picammotion
 from subprocess import call
 from datetime import datetime
 from time import sleep
 from picamera import Color
+ 
  
 def main(fromServer):
  # File path
@@ -20,10 +22,15 @@ def main(fromServer):
      # picName = cTime + '.jpg'
       picName = picT + '.jpg'
       FilePathPic = filePath + picName
-  
+      
+  while True:
+    motionState = picammotion.motion()
+    print(motionState)
+    if motionState:
+        currentTime = getTime()  
       # Take picture
-   with picamera.PiCamera() as camera:
-       camera.resolution = (1280,720)
+      with picamera.PiCamera() as camera:
+        camera.resolution = (1280,720)
       
        #Timestamp
        #camera.annotate = 700+650
