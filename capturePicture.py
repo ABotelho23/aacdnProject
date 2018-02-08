@@ -30,7 +30,6 @@ def main(fromServer):
         motionState = picammotion.motion()
         print(motionState)
         if motionState:
-            currentTime = getTime()  
             # Take picture
             with picamera.PiCamera() as camera:
                 camera.resolution = (1280,720)
