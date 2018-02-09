@@ -28,7 +28,7 @@ class ServerThread(threading.Thread):
       loop = asyncio.new_event_loop()
       asyncio.set_event_loop(loop)
 
-      asyncio.get_event_loop().run_forever()
+      asyncio.get_event_loop(loop).run_forever()
 
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
