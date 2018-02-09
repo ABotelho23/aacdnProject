@@ -5,7 +5,7 @@ import asyncio
 
 import aiocoap.resource as resource
 import aiocoap
-
+import threading 
 import capturePicture
 import captureVideo
 
