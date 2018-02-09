@@ -121,10 +121,11 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 async def main():
   serverRunning = '0'
 
+  zeroconfDiscover.main()
+
   while True:
 
-      zeroconfDiscover.main()
-      selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available) \n4. MULTI-DEVICE\n==========\n")
+      selection = input("\n==========\nMAIN MENU\n==========\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n==========\n")
 
       if (selection == '1'):
         targetIPAdd = input("\nWhat is the IP address of the target?")
