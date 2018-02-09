@@ -125,7 +125,7 @@ async def main():
 
   while True:
 
-      selection = input("\n==========\nMAIN MENU\n==========\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n==========\n")
+      selection = input("\n====================\nMAIN MENU\n====================\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n====================\n")
 
       if (selection == '1'):
         targetIPAdd = input("\nWhat is the IP address of the target?")
@@ -210,6 +210,9 @@ async def main():
 
         else:
             print('\nThat is not a supported command!')
+
+      elif (selection == '5'):
+          zeroconfDiscover.main()
 
       else:
         print('\nInvalid selection.')
