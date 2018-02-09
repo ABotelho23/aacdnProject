@@ -14,6 +14,10 @@ class MotionThread(threading.Thread):
     def run(self):
 
         targetURI = 'coap://10.0.0.100/cameras/capture'
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
         _await = asyncio.get_event_loop().run_until_complete
         ctx = _await(Context.create_client_context())
 
