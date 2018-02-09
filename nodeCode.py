@@ -12,9 +12,13 @@ import captureVideo
 class MotionThread(threading.Thread):
     def run(self):
 
-
-
-
+        motionState = picammotion.motion()
+        print(motionState)
+        if motionState:
+            with picamera.PiCamera() as camera:
+                camera.resolution = (1280,720)
+                
+               
         targetURI = 'coap://' + '10.0.0.100' + '/cameras/capture'
         context = await Context.create_client_context()
 
