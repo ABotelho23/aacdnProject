@@ -4,8 +4,9 @@ import logging
 import asyncio
 
 import aiocoap.resource as resource
+from aiocoap import *
 import aiocoap
-import threading 
+import threading
 import capturePicture
 import captureVideo
 
@@ -17,11 +18,11 @@ class MotionThread(threading.Thread):
         if motionState:
             with picamera.PiCamera() as camera:
                 camera.resolution = (1280,720)
-                
-               
+
+
         targetURI = 'coap://' + '10.0.0.100' + '/cameras/capture'
         context = await Context.create_client_context()
-        
+
 
         #DEFINE WHAT THE PAYLOAD IS
         payload = 'PAYLOAD CONTENT'
