@@ -19,7 +19,7 @@ class MotionThread(threading.Thread):
             with picamera.PiCamera() as camera:
                 camera.resolution = (1280,720)
 
-        targetURI = 'coap://10.0.0.100/cameras/capture'
+        #targetURI = 'coap://10.0.0.100/cameras/capture'
         contextCamera = await Context.create_client_context()
 
         #DEFINE WHAT THE PAYLOAD IS
