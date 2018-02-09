@@ -82,7 +82,7 @@ def main():
     #start motion detection thread
 
     moDetectionThread = MotionThread()
-        moDetectionThread.start()
+    moDetectionThread.start()
 
     # Resource tree creation
     root = resource.Site()
