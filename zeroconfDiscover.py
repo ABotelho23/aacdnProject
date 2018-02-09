@@ -32,11 +32,11 @@ def main():
         logging.getLogger('zeroconf').setLevel(logging.DEBUG)
 
     zeroconf = Zeroconf()
-    print("\nDiscovering services...\n")
+    print("\n+++++Discovering services...+++++\n")
     browser = ServiceBrowser(zeroconf, "_coap._udp.local.", handlers=[on_service_state_change])
 
     sleep(3)
-    print("\nEnding services discovery...\n")
+    print("\n+++++Ending services discovery...+++++\n")
     zeroconf.close()
 if __name__ == '__main__':
     main()

@@ -125,11 +125,11 @@ async def main():
 
   while True:
 
-      selection = input("\n====================\nMAIN MENU\n====================\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n====================\n")
+      selection = input("\n====================\n=====MAIN MENU=====\n====================\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n====================\n")
 
       if (selection == '1'):
-        targetIPAdd = input("\nWhat is the IP address of the target?")
-        targetResource = input("\nWhat is the resource of the target?\n Include initial slash, and no ending slash. \n")
+        targetIPAdd = input("\nWhat is the IP address of the target?\n")
+        targetResource = input("\nWhat is the resource of the target?\n Include initial slash, and no ending slash.\n")
         targetURI = 'coap://' + targetIPAdd + targetResource
         protocol = await Context.create_client_context()
 
@@ -149,7 +149,7 @@ async def main():
         targetURI = 'coap://' + targetIPAdd + targetResource
         context = await Context.create_client_context()
 
-        userInput = input("\nWhat is the payload?")
+        userInput = input("\nWhat is the payload?\n")
         payload = userInput.encode()
         request = Message(code=PUT, uri=targetURI, payload=payload)
         # These direct assignments are an alternative to setting the URI like in
@@ -167,7 +167,7 @@ async def main():
             receiverThread = ServerThread()
             receiverThread.start()
         else:
-            print('\nServer should already be running.')
+            print('\nServer should already be running.\n')
       elif (selection == '4'):
 
         multiSelection = input("\nWhat is the command?\n")
@@ -188,7 +188,7 @@ async def main():
             print('Result: %s\n%r'%(response1.code, response1.payload))
             print('Result: %s\n%r'%(response4.code, response4.payload))
 
-            print('\nResponses received!')
+            print('\nResponses received!\n')
 
         elif (multiSelection == 'good morning'):
             targetURI1 = 'coap://node1/bulb/colours'
@@ -206,10 +206,10 @@ async def main():
             print('Result: %s\n%r'%(response1.code, response1.payload))
             print('Result: %s\n%r'%(response4.code, response4.payload))
 
-            print('\nResponses received!')
+            print('\nResponses received!\n')
 
         else:
-            print('\nThat is not a supported command!')
+            print('\nThat is not a supported command!\n')
 
       elif (selection == '5'):
           zeroconfDiscover.main()
