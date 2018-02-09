@@ -14,7 +14,7 @@ class MotionThread(threading.Thread):
     def run(self):
 
         #targetURI = 'coap://10.0.0.100/cameras/capture'
-        contextCamera = await Context.create_client_context()
+        context1 = await Context.create_client_context()
 
         #DEFINE WHAT THE PAYLOAD IS
         payload = 'PAYLOAD CONTENT'
