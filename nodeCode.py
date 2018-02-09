@@ -22,7 +22,7 @@ class MotionThread(threading.Thread):
         context1 = await Context.create_client_context()
 
         #DEFINE WHAT THE PAYLOAD IS
-        payload = 'PAYLOAD CONTENT
+        payload = b"PAYLOAD CONTENT"
         request = Message(code=PUT, uri=targetURI, payload=payload)
         print('Sending payload')
         response = await context.request(request).response
