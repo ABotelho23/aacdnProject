@@ -9,6 +9,27 @@ from aiocoap import *
 import aiocoap
 import zeroconfDiscover
 
+class CameraCapture(resource.Resource):
+    """For receiving notifications from camera."""
+
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"No notifications from camera yet.")
+
+    def set_content(self, content):
+        self.content = content
+
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        print('\nReceived notification from a camera: %s' % request.payload)
+        print('\n')
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
+
 class ServerThread(threading.Thread):
     def run(self):
       print('Starting server, creating resource tree...')
@@ -18,10 +39,10 @@ class ServerThread(threading.Thread):
       root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
 
-      root.add_resource(('hub', 'bulbs', 'schedule'), BulbSchedule())
-      root.add_resource(('hub', 'cameras', 'capture'), CameraCapture())
-      root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
-      root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
+      root.add_resource(('bulbs', 'schedule'), BulbSchedule())
+      root.add_resource(('cameras', 'capture'), CameraCapture())
+      root.add_resource(('thermometers', 'temperature'), ThermoTemperature())
+      root.add_resource(('blinds', 'schedule'), BlindsSchedule())
 
       loop = asyncio.new_event_loop()
       asyncio.set_event_loop(loop)
