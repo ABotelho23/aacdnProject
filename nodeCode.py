@@ -13,11 +13,16 @@ import captureVideo
 class MotionThread(threading.Thread):
     def run(self):
 
-        #targetURI = 'coap://10.0.0.100/cameras/capture'
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        #asyncio.Task(aiocoap.Context.create_server_context(root))
+        #asyncio.get_event_loop().run_forever()
+
+        targetURI = 'coap://10.0.0.100/cameras/capture'
         context1 = await Context.create_client_context()
 
         #DEFINE WHAT THE PAYLOAD IS
-        #payload = 'PAYLOAD CONTENT
+        payload = 'PAYLOAD CONTENT
         request = Message(code=PUT, uri=targetURI, payload=payload)
         print('Sending payload')
         response = await context.request(request).response
