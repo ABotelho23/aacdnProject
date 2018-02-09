@@ -25,6 +25,9 @@ class ServerThread(threading.Thread):
 
       asyncio.Task(aiocoap.Context.create_server_context(root))
 
+      loop = asyncio.new_event_loop()
+      asyncio.set_event_loop(loop)
+
       asyncio.get_event_loop().run_forever()
 
 
