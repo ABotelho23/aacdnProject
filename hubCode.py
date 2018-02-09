@@ -24,10 +24,8 @@ class ServerThread(threading.Thread):
       root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
 
       loop = asyncio.new_event_loop()
-
+      asyncio.set_event_loop(loop)
       asyncio.Task(aiocoap.Context.create_server_context(root))
-
-      asyncio.set_event_loop(loop).run_forever()
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
     """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
