@@ -125,7 +125,7 @@ async def main():
 
   while True:
 
-      selection = input("\n====================\n=====MAIN MENU=====\n====================\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n====================\n")
+      selection = input("\n====================\n==== MAIN MENU =====\n====================\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n====================\n")
 
       if (selection == '1'):
         targetIPAdd = input("\nWhat is the IP address of the target?\n")
