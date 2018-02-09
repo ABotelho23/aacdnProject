@@ -23,9 +23,10 @@ class ServerThread(threading.Thread):
       root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
       root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
 
+      loop = asyncio.new_event_loop()
+
       asyncio.Task(aiocoap.Context.create_server_context(root))
 
-      loop = asyncio.new_event_loop()
       asyncio.set_event_loop(loop).run_forever()
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
