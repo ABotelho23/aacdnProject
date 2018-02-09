@@ -19,7 +19,7 @@ class MotionThread(threading.Thread):
         #asyncio.get_event_loop().run_forever()
 
         targetURI = 'coap://10.0.0.100/cameras/capture'
-        #context = await Context.create_client_context()
+        context = await aiocoap.Context.create_client_context()
 
         #DEFINE WHAT THE PAYLOAD IS
         payload = b"PAYLOAD CONTENT"
