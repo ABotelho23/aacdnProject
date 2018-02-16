@@ -8,6 +8,10 @@ import aiocoap.resource as resource
 from aiocoap import *
 import aiocoap
 import zeroconfDiscover
+import flask
+from flask import Flask
+from flask import render_template
+
 
 class CameraCapture(resource.Resource):
     """For receiving notifications from camera."""
@@ -29,6 +33,18 @@ class CameraCapture(resource.Resource):
         print('\n')
         self.set_content(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
+
+class WebThread(threading.Thread):
+
+    def index():
+      return render_template('index.html')
+
+    def run(self):
+      app = Flask(__name__)
+      @app.route("/")
+
+      app.run()
+
 
 class ServerThread(threading.Thread):
     def run(self):
@@ -140,6 +156,7 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
+
   serverRunning = '0'
 
   zeroconfDiscover.main()
