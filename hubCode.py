@@ -43,7 +43,7 @@ class WebThread(threading.Thread):
       app = Flask(__name__)
       @app.route("/")
 
-      app.run()
+    app.run()
 
 
 class ServerThread(threading.Thread):
