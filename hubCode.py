@@ -36,13 +36,12 @@ class CameraCapture(resource.Resource):
 
 class WebThread(threading.Thread):
 
-    app = Flask(__name__)
-    @app.route("/")
-
     def index():
       return render_template('index.html')
 
     def run(self):
+      app = Flask(__name__)
+      @app.route("/")
       app.run()
 
 
