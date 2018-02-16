@@ -36,12 +36,7 @@ class CameraCapture(resource.Resource):
 
 class WebThread(threading.Thread):
 
-    def index():
-      return render_template('index.html')
-
     def run(self):
-      app = Flask(__name__)
-      @app.route("/")
       app.run()
 
 
@@ -153,6 +148,12 @@ class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template('index.html')
 
 async def main():
 
