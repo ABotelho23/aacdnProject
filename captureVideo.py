@@ -12,7 +12,8 @@ def main(fromServer):
     fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
     fileWithExtension = fileName
     fileWithExtension += '.h264'
-    
+    picTotal = fromServer
+    intpicTotal = int(picTotal)
     
     # Motion detection
     def captureTestImage(settings, width, height):
@@ -26,7 +27,7 @@ def main(fromServer):
         return im, buffer
     
         cTime = datetime.now()
-        dtime + cTime + timedelta(seconds=intpicTotal)
+        dTime + cTime + timedelta(seconds=intpicTotal)
         while cTime < dTime:
     
 			motionState = picammotion.motion()
