@@ -157,6 +157,9 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 async def main():
 
+  webpage = WebThread()
+  webpage.start()
+
   serverRunning = '0'
 
   zeroconfDiscover.main()
