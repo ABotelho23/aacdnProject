@@ -30,8 +30,8 @@ class MotionThread(threading.Thread):
                 payload = b"PAYLOAD CONTENT"
                 request = Message(code=PUT, uri=targetURI, payload=payload)
                 print('Sending payload')
-                response = _await(ctx.request(request).response)
-                print('Result: %s\n%r'%(response.code, response.payload))
+                #response = _await(ctx.request(request).response)
+                #print('Result: %s\n%r'%(response.code, response.payload))
                 takeVideo(b'10')
                 
         async def render_put(self, request):
