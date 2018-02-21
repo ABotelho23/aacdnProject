@@ -21,12 +21,20 @@ class MotionThread(threading.Thread):
         _await = asyncio.get_event_loop().run_until_complete
         ctx = _await(Context.create_client_context())
 
-        #DEFINE WHAT THE PAYLOAD IS
-        payload = b"PAYLOAD CONTENT"
-        request = Message(code=PUT, uri=targetURI, payload=payload)
-        print('Sending payload')
-        response = _await(ctx.request(request).response)
-        print('Result: %s\n%r'%(response.code, response.payload))
+        while True:
+            motionState = picammotion.motion()
+            print(motionState)
+            if motionState:
+                #DEFINE WHAT THE PAYLOAD IS
+                payload = b"PAYLOAD CONTENT"
+                request = Message(code=PUT, uri=targetURI, payload=payload)
+                print('Sending payload')
+                response = _await(ctx.request(request).response)
+                print('Result: %s\n%r'%(response.code, response.payload))
+                takeVideo(b'10')
+                
+        async def render_put(self, request):
+            return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
 
 class TakePicture(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -107,3 +115,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
