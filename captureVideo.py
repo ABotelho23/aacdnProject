@@ -17,7 +17,7 @@ def main(fromServer):
 	intpicTotal = int(picTotal)
 
 
-	cTime = dt.now()
+	cTime = dt.datetime.now()
 	dTime + cTime + timedelta(seconds=intpicTotal)
 	while cTime < dTime:
 
