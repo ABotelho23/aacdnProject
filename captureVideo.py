@@ -3,6 +3,7 @@ import picamera
 import picammotion
 from  time import sleep
 import datetime as dt
+from datetime import timedelta
 import os
 import subprocess
 
@@ -16,7 +17,7 @@ def main(fromServer):
 	intpicTotal = int(picTotal)
 
 
-	cTime = datetime.now()
+	cTime = dt.now()
 	dTime + cTime + timedelta(seconds=intpicTotal)
 	while cTime < dTime:
 
@@ -37,5 +38,8 @@ def main(fromServer):
 				except subprocess.CalledProcessError as e:
 					print('FAIL:\ncmd:{}\noutput:{}'.format(e.cmd, e.output))
 					print("Video converted.")
+
+
+
 
 
