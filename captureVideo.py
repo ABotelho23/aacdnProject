@@ -18,7 +18,7 @@ def main(fromServer):
 
 
 	cTime = dt.datetime.now()
-	dTime = cTime + timedelta(seconds=intpicTotal)
+	dTime = cTime + timedelta(seconds=10)  # constant time for motion detection to stay on
 	while cTime < dTime:
 		
 		cTime = dt.datetime.now()
@@ -29,7 +29,7 @@ def main(fromServer):
 			#Camera Setup
 			with picamera.PiCamera() as camera:
 				camera.start_recording(fileWithExtension)
-				sleep(5)
+				sleep(intpicTotal)  # payload specfying how long to record in seconds
 				camera.stop_recording()
 
 				print("convert the video.")
