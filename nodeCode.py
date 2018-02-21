@@ -9,6 +9,7 @@ import aiocoap
 import threading
 import capturePicture
 import captureVideo
+import picammotion
 
 class MotionThread(threading.Thread):
     def run(self):
