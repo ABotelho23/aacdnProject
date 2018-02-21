@@ -68,7 +68,7 @@ class TakeVideo(resource.Resource):
     async def render_put(self, request):
         """print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)"""
-        captureVideo(request.payload)
+        takeVideo(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Video captured.')
 # logging setup
 
@@ -81,6 +81,11 @@ def takePicture(hubRequest):
     hubRequeststr = hubRequest.decode()
     capturePicture.main(hubRequeststr)
 
+def takeVideo(hubRequest):
+    print(hubRequest)
+    hubRequeststr = hubRequest.decode()
+    captureVideo.main(hubRequeststr)
+    
 def main():
 
     #start motion detection thread
