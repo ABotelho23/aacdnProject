@@ -68,7 +68,7 @@ class TakeVideo(resource.Resource):
     async def render_put(self, request):
         """print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)"""
-        captureVideo.main(request.payload)
+        captureVideo(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Video captured.')
 # logging setup
 
