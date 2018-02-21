@@ -22,13 +22,13 @@ def main(fromServer):
 	while cTime < dTime:
 		
 		cTime = dt.datetime.now()
-		fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S')) + '.h264'
+		fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
 		motionState = picammotion.motion()
 		print(motionState)
 		if motionState:
 			#Camera Setup
 			with picamera.PiCamera() as camera:
-				camera.start_recording(fileWithExtension)
+				camera.start_recording(fileName + '.h264')
 				sleep(intpicTotal)  # payload specfying how long to record in seconds
 				camera.stop_recording()
 
