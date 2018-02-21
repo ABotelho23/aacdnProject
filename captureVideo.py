@@ -4,7 +4,7 @@ import picammotion
 from  time import sleep
 import datetime as dt
 import os
-import subprocess
+from subprocess import call
 
 def main(fromServer):
 		#File path
