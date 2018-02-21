@@ -18,7 +18,7 @@ def main(fromServer):
 
 
 	cTime = dt.datetime.now()
-	dTime + cTime + timedelta(seconds=intpicTotal)
+	dTime = cTime + timedelta(seconds=intpicTotal)
 	while cTime < dTime:
 
 		motionState = picammotion.motion()
