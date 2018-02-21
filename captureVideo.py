@@ -11,8 +11,8 @@ def main(fromServer):
 	#File path
 	filePath = "/mnt/captures/"
 	#fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
-	fileWithExtension = fileName
-	fileWithExtension += '.h264'
+	#fileWithExtension = fileName
+	#fileWithExtension += '.h264'
 	picTotal = fromServer
 	intpicTotal = int(picTotal)
 
@@ -22,7 +22,7 @@ def main(fromServer):
 	while cTime < dTime:
 		
 		cTime = dt.datetime.now()
-		fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
+		fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S')) + '.h264'
 		motionState = picammotion.motion()
 		print(motionState)
 		if motionState:
