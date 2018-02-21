@@ -30,7 +30,7 @@ class MotionThread(resource.Resource):
         self.set_content(request.payload)"""
         #Call Take picture function
         if len(request.payload) > 0:
-            self.toggleMotion = not toggleMotion
+            self.toggleMotion = not self.toggleMotion
 
         while self.toggleMotion:
             print('sending payload')
