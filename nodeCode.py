@@ -9,9 +9,39 @@ import aiocoap
 import threading
 import capturePicture
 import captureVideo
-import picammotion
 
-class MotionThread(threading.Thread):
+class MotionThread(resource.Resource):
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"If you perform a PUT on this URI, motion detection will be toggled.")
+        
+        self.toggleMotion = False
+        
+    def set_content(self, content):
+        self.content = content
+
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        """print('PUT payload: %s' % request.payload)
+        self.set_content(request.payload)"""
+        #Call Take picture function
+        if len(request.payload) > 0:
+            self.toggleMotion = not toggleMotion
+
+        while self.toggleMotion:
+            print('sending payload')
+            if request.payload == b'0':
+                takePicture(b'10')
+            else:
+                takeVideo(b'10')
+            
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Picture captured.')
+
+
     def run(self):
 
         targetURI = 'coap://10.0.0.100/cameras/capture'
@@ -30,8 +60,8 @@ class MotionThread(threading.Thread):
                 payload = b"PAYLOAD CONTENT"
                 request = Message(code=PUT, uri=targetURI, payload=payload)
                 print('Sending payload')
-                #response = _await(ctx.request(request).response)
-                #print('Result: %s\n%r'%(response.code, response.payload))
+                response = _await(ctx.request(request).response)
+                print('Result: %s\n%r'%(response.code, response.payload))
                 takeVideo(b'10')
                 
         async def render_put(self, request):
@@ -99,8 +129,8 @@ def main():
 
     #start motion detection thread
 
-    moDetectionThread = MotionThread()
-    moDetectionThread.start()
+    #moDetectionThread = MotionThread()
+    #moDetectionThread.start()
 
     # Resource tree creation
     root = resource.Site()
@@ -109,6 +139,7 @@ def main():
             resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('camera','capture'), TakePicture())
     root.add_resource(('camera','captureVideo'), TakeVideo())
+    root.add_resource(('camera', 'motionToggle'), MotionThread())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
