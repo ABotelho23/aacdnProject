@@ -1,8 +1,6 @@
 import datetime
 import logging
-
 import asyncio
-
 import aiocoap.resource as resource
 from aiocoap import *
 import aiocoap
