@@ -15,6 +15,7 @@ class MotionThread(resource.Resource):
         
         async def motionLoop(self):
             while True:
+                await asyncio.sleep(1)
                 if self.toggleMotion:
                     return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
                     while self.toggleMotion:
