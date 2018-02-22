@@ -16,6 +16,7 @@ class MotionThread(resource.Resource):
         self.set_content(b"If you perform a PUT on this URI, motion detection will be toggled.")
         self.toggleMotion = False
         thread = threading.Thread(target=self.motionLoop, args=())
+        thread.daemon = True
         thread.start()
         
     def set_content(self, content):
