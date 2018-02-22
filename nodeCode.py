@@ -30,9 +30,10 @@ class MotionThread(resource.Resource):
         self.set_content(request.payload)"""
         #Call Take picture function
         if len(request.payload) > 0:
-            self.toggleMotion = not toggleMotion
+            self.toggleMotion = not self.toggleMotion
         if not self.toggleMotion:
-            motionLoop()    
+            motionLoop()
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')    
 
     async def motionLoop():
         while self.toggleMotion:
