@@ -34,7 +34,7 @@ class MotionThread(resource.Resource):
             self.toggleMotion = not self.toggleMotion
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')    
 
-    def motionLoop():
+    def motionLoop(self):
         while True:
             if self.toggleMotion:
                 return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
