@@ -11,6 +11,19 @@ import capturePicture
 import captureVideo
 
 class MotionThread(resource.Resource):
+    async def motionLoop(self):
+        while True:
+            if self.toggleMotion:
+                return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
+                while self.toggleMotion:
+                    print('sending payload')
+                    return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
+                    if request.payload == b'0':
+                        takePicture(b'10')
+                    else:
+                        takeVideo(b'10')        
+                return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle off.')
+
     def __init__(self):
         super().__init__()
         self.set_content(b"If you perform a PUT on this URI, motion detection will be toggled.")
@@ -33,19 +46,6 @@ class MotionThread(resource.Resource):
         if len(request.payload) > 0:
             self.toggleMotion = not self.toggleMotion
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')
-
-    async def motionLoop(self):
-        while True:
-            if self.toggleMotion:
-                return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
-                while self.toggleMotion:
-                    print('sending payload')
-                    return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
-                    if request.payload == b'0':
-                        takePicture(b'10')
-                    else:
-                        takeVideo(b'10')        
-                return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle off.')
 
 
     def run(self):
