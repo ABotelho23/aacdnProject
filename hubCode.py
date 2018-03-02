@@ -165,7 +165,8 @@ def checkTemp():
     context1 = await Context.create_client_context()   
     request1 = Message(code=GET, uri=targetURI1)  
     response1 = await context1.request(request1).response    
-    return response1.payload
+  
+    return jsonify(response1.payload)
 
 async def main():
 
