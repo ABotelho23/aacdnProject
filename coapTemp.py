@@ -19,7 +19,8 @@ async def main():
     asyncio.get_event_loop().run_forever()
 
     request = Message(code=GET, uri=targetURI)
-
+    print('Test')
+    
     try:
      response = _await(ctx.request(...).response)
     except Exception as e:
