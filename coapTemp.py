@@ -21,7 +21,7 @@ async def main():
     request = Message(code=GET, uri=targetURI)
 
     try:
-     response = await (ctx.request(request).response)
+     response = _await(ctx.request(...).response)
     except Exception as e:
       print('Failed to fetch resource:')
       print(e)
