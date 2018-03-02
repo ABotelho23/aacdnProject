@@ -8,7 +8,7 @@ import aiocoap.resource as resource
 from aiocoap import *
 import aiocoap
 
-def main():
+async def main():
     targetURI = 'coap://10.0.0.103/thermo/temp'
     #_await = asyncio.get_event_loop().run_until_complete
 
