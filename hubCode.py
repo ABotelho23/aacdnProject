@@ -174,7 +174,7 @@ def checkTemp():
 
         return jsonify(response1.payload)
     except Exception as e:
-        return str(e)
+        return jsonify(str(e))
 
 async def main():
 
