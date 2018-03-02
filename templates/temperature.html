@@ -4,7 +4,7 @@
 			$(function() {
 			  $('a#process_check').bind('click', function() {
 				$.getJSON('/tempbackground_proc',
-				}, function(data) {
+				function(data) {
 				  $("#result").text(data.result);
 				});
 				return false;
