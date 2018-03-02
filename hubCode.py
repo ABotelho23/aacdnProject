@@ -161,8 +161,8 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentemp = coapTemp.main()
-    return jsonify(result=currenttemp)
+    currentTemp = coapTemp.main()
+    return jsonify(result=currentTemp)
 
 async def main():
 
