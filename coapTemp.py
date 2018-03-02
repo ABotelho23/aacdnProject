@@ -10,12 +10,13 @@ import aiocoap
 
 def main():
     targetURI = 'coap://10.0.0.103/thermo/temp'
-    protocol = await Context.create_client_context()
+    _await = asyncio.get_event_loop().run_until_complete
+    ctx = _await(Context.create_client_context())
 
     request = Message(code=GET, uri=targetURI)
 
     try:
-      response = await protocol.request(request).response
+      response = _await(ctx.request(...).response)
     except Exception as e:
       print('Failed to fetch resource:')
       print(e)
