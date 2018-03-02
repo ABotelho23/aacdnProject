@@ -160,7 +160,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    return jsonify("12.34")
+    return jsonify(result='12.34')
 
 async def main():
 
