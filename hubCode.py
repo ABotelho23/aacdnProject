@@ -160,21 +160,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    try:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-
-        _await = asyncio.get_event_loop().run_until_complete
-
-        #Temperature Background process to check current temperature
-        targetURI1 = 'coap://node3/thermo/temp'
-        ctx = _await(Context.create_client_context())
-        request1 = Message(code=GET, uri=targetURI1)
-        response1 = _await(ctx.request(...).response)
-
-        return jsonify(response1.payload)
-    except Exception as e:
-        return jsonify(str(e))
+    return jsonify("12.34")
 
 async def main():
 
