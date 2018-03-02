@@ -15,7 +15,7 @@ class Temperature(resource.Resource):
 
     def set_content(self, content):
         self.content = content
-           
+
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         readPath = '/sys/bus/w1/devices/28-0316a078c2ff/w1_slave'
@@ -31,7 +31,7 @@ class Temperature(resource.Resource):
         tempvalue = y.encode()
         self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
-    
+
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
@@ -48,7 +48,7 @@ def main():
 
     root.add_resource(('.well-known', 'core'),
             resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('node3','thermometer','temperature'), Temperature())
+    root.add_resource(('thermo','temp'), Temperature())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
