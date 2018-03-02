@@ -154,6 +154,9 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template('index.html')
+@app.route("/testTemp/")
+def checkTemp():
+    return render_template('temperature.html')
 
 async def main():
 
