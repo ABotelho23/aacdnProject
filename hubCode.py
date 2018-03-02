@@ -164,7 +164,7 @@ def checkTemp():
     _await = asyncio.get_event_loop().run_until_complete
 
     #Temperature Background process to check current temperature
-    targetURI1 = 'coap://node3/thermometer/temperature'
+    targetURI1 = 'coap://node3/thermo/temp'
     ctx = _await(Context.create_client_context())
     request1 = Message(code=GET, uri=targetURI1)
     response1 = _await(ctx.request(...).response)
