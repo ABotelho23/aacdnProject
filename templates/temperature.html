@@ -1,0 +1,25 @@
+{% extends "header.html" %}
+{% block body %}
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#process_check').bind('click', function() {
+				$.getJSON('/tempbackground_proc',
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+	</head>
+  
+	<body>
+		<div class='container'>
+		<h3>The Current Temperature is: </h3>
+				<a href=# id=process_check><button class='btn btn-default'>Check</button></a>
+		<p id=result>...</p>
+		</div>
+	</body>
+{% endblock %}
