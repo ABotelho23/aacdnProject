@@ -10,7 +10,11 @@ import aiocoap
 
 def main():
     targetURI = 'coap://10.0.0.103/thermo/temp'
-    _await = asyncio.get_event_loop().run_until_complete
+    #_await = asyncio.get_event_loop().run_until_complete
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     ctx = _await(Context.create_client_context())
 
     request = Message(code=GET, uri=targetURI)
