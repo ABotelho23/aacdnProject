@@ -160,7 +160,10 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-
+    
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    
     _await = asyncio.get_event_loop().run_until_complete
 
     #Temperature Background process to check current temperature
