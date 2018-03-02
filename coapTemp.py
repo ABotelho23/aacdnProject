@@ -16,6 +16,7 @@ async def main():
     asyncio.set_event_loop(_await)
 
     ctx = _await(Context.create_client_context())
+    asyncio.get_event_loop().run_forever()
 
     request = Message(code=GET, uri=targetURI)
 
