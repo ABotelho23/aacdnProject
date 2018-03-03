@@ -34,7 +34,7 @@ class MotionThread(resource.Resource):
         self.mode = b'0'
         self.loop = asyncio.get_event_loop()
         self.motionTask = asyncio.ensure_future(self.motionLoop())
-        self.loop.run_until_complete(motionTask)
+        self.loop.run_until_complete(self.motionTask)
         #self.loop.close()
         
     def set_content(self, content):
