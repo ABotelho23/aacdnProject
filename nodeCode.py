@@ -14,18 +14,19 @@ class MotionThread(resource.Resource):
     async def motionLoop(self):
         while True:
             await asyncio.sleep(0)
-            #await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
-            print('sending payload')
-            motionState = picammotion.motion()
-            if motionState:
-                aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
-                if self.mode == b'0':
-                    takePicture(b'10')
-                else:
-                    takeVideo(b'10')
-            if not self.toggleMotion:
-                break
-            #await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle off.')
+            if self.toggleMotion:
+                #await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
+                print('sending payload')
+                motionState = picammotion.motion()
+                if motionState:
+                    aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
+                    if self.mode == b'0':
+                        takePicture(b'10')
+                    else:
+                        takeVideo(b'10')
+                if not self.toggleMotion:
+                    break
+                #await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle off.')
 
     def __init__(self):
 
@@ -53,8 +54,8 @@ class MotionThread(resource.Resource):
         self.mode = request.payload
         if len(request.payload) > 0:
             self.toggleMotion = not self.toggleMotion
-        if self.toggleMotion:
-            self.loop.run_until_complete(self.motionTask)
+        #if self.toggleMotion:
+        #    self.loop.run_until_complete(self.motionTask)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')
 
 
