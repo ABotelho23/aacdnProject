@@ -9,14 +9,12 @@ from aiocoap import *
 import aiocoap
 
 async def main(..., callback_to_main_thread):
-    targetURI = 'coap://10.0.0.103/thermo/temp'
-    #_await = asyncio.get_event_loop().run_until_complete
+    targetURI = 'coap://10.0.0.103/thermo/temp
 
-    def called_from_main_program_as_a_new_thread
     _await = asyncio.get_event_loop().run_until_complete
     ctx = _await(Context.create_client_context())
     response = _await(ctx.request(...).response)
-    callback_to_main_thread(response.payload)
+    hubCode.(response.payload)
 
     _await = asyncio.new_event_loop()
     asyncio.set_event_loop(_await)
