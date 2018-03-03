@@ -18,7 +18,7 @@ class MotionThread(resource.Resource):
             print('sending payload')
             motionState = picammotion.motion()
             if motionState:
-                await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
+                aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
                 if self.mode == b'0':
                     takePicture(b'10')
                 else:
