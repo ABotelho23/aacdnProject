@@ -24,8 +24,6 @@ class MotionThread(resource.Resource):
                         takePicture(b'10')
                     else:
                         takeVideo(b'10')
-                if not self.toggleMotion:
-                    break
                 #await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle off.')
 
     def __init__(self):
@@ -59,30 +57,30 @@ class MotionThread(resource.Resource):
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')
 
 
-    def run(self):
-
-        targetURI = 'coap://10.0.0.100/cameras/capture'
-
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-
-        _await = asyncio.get_event_loop().run_until_complete
-        ctx = _await(Context.create_client_context())
-
-        while True:
-            motionState = picammotion.motion()
-            print(motionState)
-            if motionState:
-                #DEFINE WHAT THE PAYLOAD IS
-                payload = b"PAYLOAD CONTENT"
-                request = Message(code=PUT, uri=targetURI, payload=payload)
-                print('Sending payload')
-                response = _await(ctx.request(request).response)
-                print('Result: %s\n%r'%(response.code, response.payload))
-                takeVideo(b'10')
-                
-        async def render_put(self, request):
-            return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
+    # def run(self):
+    # 
+    #     targetURI = 'coap://10.0.0.100/cameras/capture'
+    # 
+    #     loop = asyncio.new_event_loop()
+    #     asyncio.set_event_loop(loop)
+    # 
+    #     _await = asyncio.get_event_loop().run_until_complete
+    #     ctx = _await(Context.create_client_context())
+    # 
+    #     while True:
+    #         motionState = picammotion.motion()
+    #         print(motionState)
+    #         if motionState:
+    #             #DEFINE WHAT THE PAYLOAD IS
+    #             payload = b"PAYLOAD CONTENT"
+    #             request = Message(code=PUT, uri=targetURI, payload=payload)
+    #             print('Sending payload')
+    #             response = _await(ctx.request(request).response)
+    #             print('Result: %s\n%r'%(response.code, response.payload))
+    #             takeVideo(b'10')
+    # 
+    #     async def render_put(self, request):
+    #         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
 
 class TakePicture(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
