@@ -35,7 +35,7 @@ class MotionThread(resource.Resource):
         self.mode = b'0'
         self.loop = asyncio.get_event_loop()
         self.motionTask = asyncio.ensure_future(self.motionLoop())
-        self.loop.run_until_complete(self.motionTask)
+        #self.loop.run_until_complete(self.motionTask)
         #self.loop.close()
         
     def set_content(self, content):
@@ -53,6 +53,8 @@ class MotionThread(resource.Resource):
         self.mode = request.payload
         if len(request.payload) > 0:
             self.toggleMotion = not self.toggleMotion
+        if self.toggleMotion:
+            self.loop.run_until_complete(self.motionTask)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')
 
 
