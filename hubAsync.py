@@ -107,6 +107,9 @@ def aiocoapThread():
 
     loop.run_forever()
 
+def discoveryThread():
+    zeroconfDiscover.main()
+
 def main():
 
   print('DEBUG: STARTING FLASK THREAD...')
@@ -118,6 +121,11 @@ def main():
   aiocoapWorker = threading.Thread(target=aiocoapThread)
   aiocoapWorker.start()
   print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
+
+  print('DEBUG: STARTING DISCOVERY THREAD...')
+  discoverNodes = threading.Thread(target=discoveryThread)
+  discoverNodes.start()
+  print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
 
   print('DEBUG: PRINTING FROM MAIN\n')
 
