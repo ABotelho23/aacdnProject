@@ -119,7 +119,7 @@ def main():
   print('DEBUG: STARTING FLASK THREAD...')
   flaskServer = FlaskThread()
   flaskServer.start()
-  print('DEBUG: FINISHED STARTING FLASK THREAD...)
+  print('DEBUG: FINISHED STARTING FLASK THREAD...')
 
   print('DEBUG: STARTING AIOCOAP THREAD...')
   aiocoapWorker = threading.Thread(target=aiocoapThread)
