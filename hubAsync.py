@@ -16,6 +16,7 @@ from flask import jsonify
 class FlaskThread(threading.Thread):
 
     def run(self):
+      print("In thread",threading.current_thread())
       app.run()
 
 class CameraCapture(resource.Resource):
@@ -73,7 +74,6 @@ def checkTemp():
 
 async def createAllContexts():
 
-    print("In thread",threading.current_thread())
     root = resource.Site()
     root.add_resource(('.well-known', 'core'),
             resource.WKCResource(root.get_resources_as_linkheader))
