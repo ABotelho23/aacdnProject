@@ -118,7 +118,7 @@ def main():
   print('DEBUG: FINISHED STARTING FLASK THREAD...\n')
 
   print('DEBUG: STARTING AIOCOAP THREAD...')
-  aiocoapWorker = threading.Thread(target=aiocoapThread,name=coapThread1)
+  aiocoapWorker = threading.Thread(target=aiocoapThread)
   aiocoapWorker.start()
   print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
 
