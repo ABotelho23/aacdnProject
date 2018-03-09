@@ -73,6 +73,7 @@ def checkTemp():
 
 async def createAllContexts():
 
+    print("In thread",threading.current_thread())
     root = resource.Site()
     root.add_resource(('.well-known', 'core'),
             resource.WKCResource(root.get_resources_as_linkheader))
@@ -96,6 +97,8 @@ async def createAllContexts():
         print('Result: %s\n%r'%(response.code, response.payload))
 
 def aiocoapThread():
+
+    print("In thread",threading.current_thread())
     print("DEBUG: In thread #1")
 
     loop = asyncio.new_event_loop()
@@ -108,6 +111,7 @@ def aiocoapThread():
     loop.run_forever()
 
 def discoveryThread():
+    print("In thread",threading.current_thread())
     zeroconfDiscover.main()
 
 def main():
@@ -115,8 +119,7 @@ def main():
   print('DEBUG: STARTING FLASK THREAD...')
   flaskServer = FlaskThread()
   flaskServer.start()
-
-  print('DEBUG: FINISHED STARTING FLASK THREAD... name: \n',threading.current_thread())
+  print('DEBUG: FINISHED STARTING FLASK THREAD...)
 
   print('DEBUG: STARTING AIOCOAP THREAD...')
   aiocoapWorker = threading.Thread(target=aiocoapThread)
