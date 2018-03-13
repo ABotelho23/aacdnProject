@@ -77,7 +77,6 @@ async def createRequest(request_type, node_address, node_resource,protocol):
 
     request = Message(code=GET, uri=targetURI)
 
-    """Will response.payload be returned prior to the request being fulfilled?"""
     """We don't technically care if the GUI thread blocks, only that the coap thread does"""
     try:
         response = await protocol.request(request).response
@@ -88,17 +87,8 @@ async def createRequest(request_type, node_address, node_resource,protocol):
 
 def aiocoapThread(loop):
 
-    """root = resource.Site()
-    root.add_resource(('.well-known', 'core'),
-        resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())"""
-
     print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
     asyncio.set_event_loop(loop)
-
-    """print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
-    #await protocol.create_server_context(root)
-    protocol = asyncio.Task(aiocoap.Context.create_server_context(root))"""
 
     print("COAP THREAD DEBUG #3, making loop run forever: ",threading.current_thread())
     loop.run_forever()
