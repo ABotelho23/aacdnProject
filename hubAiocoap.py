@@ -16,8 +16,8 @@ from flask import jsonify
 class FlaskThread(threading.Thread):
 
     def run(self):
-      print("In thread",threading.current_thread())
-      app.run()
+    	print("FLASK THREAD DEBUG #1: ",threading.current_thread())
+      	app.run()
 
 class CameraCapture(resource.Resource):
     """For receiving notifications from camera."""
@@ -38,7 +38,7 @@ class CameraCapture(resource.Resource):
         print('\nReceived notification from a camera: %s' % request.payload)
         print('\n')
         self.set_content(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
+		return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -51,8 +51,8 @@ class TestResource(resource.Resource):
         self.content = content
 
     #this is the render for a GET. This returns the payload.
-    async def render_get(self, request):
-        return aiocoap.Message(payload=self.content)
+	async def render_get(self, request):
+    	return aiocoap.Message(payload=self.content)
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
@@ -68,70 +68,85 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentTemp = coapTemp.main()
+	currentTemp = coapTemp.main()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
-async def createAllContexts():
+async def createRequest(request_type, node_address, node_resource):
+	print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
+	targetURI = 'coap://' + node_address + node_resource
 
-    root = resource.Site()
-    root.add_resource(('.well-known', 'core'),
-            resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
-
-    protocol = await Context.create_client_context()
-    await protocol.create_server_context(root)
-
-    print("DEBUG: In thread #3")
-
-    request = Message(code=GET, uri='coap://10.0.0.101/bulb/colours')
-
-    print("DEBUG: In thread #4")
+    request = Message(code=request_type, uri=targetURI)
 
     try:
         response = await protocol.request(request).response
     except Exception as e:
-        print('Failed to fetch resource:')
-        print(e)
+        return e
     else:
-        print('Result: %s\n%r'%(response.code, response.payload))
+        return response.payload
 
-def aiocoapThread():
+def aiocoapThread(loop):
 
-    print("In thread",threading.current_thread())
-    print("DEBUG: In thread #1")
+	root = resource.Site()
+	root.add_resource(('.well-known', 'core'),
+		resource.WKCResource(root.get_resources_as_linkheader))
+	root.add_resource(('test',), TestResource())
 
-    loop = asyncio.new_event_loop()
+	print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
     asyncio.set_event_loop(loop)
 
-    print("DEBUG: In thread #2")
+	print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
+	await protocol.create_server_context(root)
 
-    loop.run_until_complete(createAllContexts())
+	print("COAP THREAD DEBUG #3, making loop run forever: ",threading.current_thread())
+	loop.run_forever()
 
-    loop.run_forever()
+	print("COAP THREAD DEBUG #4: ",threading.current_thread())
 
 def discoveryThread():
-    print("In thread",threading.current_thread())
+    print("DISCOVERY THREAD DEBUG #1: ",threading.current_thread())
     zeroconfDiscover.main()
+	print("DISCOVERY THREAD DEBUG #2 (SHOULDN'T SEE THIS): ",threading.current_thread())
+
+def testThread(loop):
+	"""This thread emulates what would be the GUI in the final product"""
+	print("TEST THREAD DEBUG #1: ",threading.current_thread())
+
+	"""this might return a future before it is available, CHECK THIS"""
+	packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours'), loop)
+
+    print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
+
+    print("COAP THREAD DEBUG #3: ",threading.current_thread())
 
 def main():
 
-  print('DEBUG: STARTING FLASK THREAD...')
-  flaskServer = FlaskThread()
-  flaskServer.start()
-  print('DEBUG: FINISHED STARTING FLASK THREAD...')
+	print('DEBUG: STARTING FLASK THREAD...')
+ 	flaskServer = FlaskThread()
+ 	flaskServer.start()
+ 	print('DEBUG: FINISHED STARTING FLASK THREAD...')
 
-  print('DEBUG: STARTING AIOCOAP THREAD...')
-  aiocoapWorker = threading.Thread(target=aiocoapThread)
-  aiocoapWorker.start()
-  print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
+	coap_loop = asyncio.new_event_loop()
+	coap_loop.set_debug()
 
-  print('DEBUG: STARTING DISCOVERY THREAD...')
-  discoverNodes = threading.Thread(target=discoveryThread)
-  discoverNodes.start()
-  print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
+  	print('DEBUG: STARTING AIOCOAP THREAD...')
+  	aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop))
+  	aiocoapWorker.start()
+  	print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
 
-  print('DEBUG: PRINTING FROM MAIN\n')
+  	print('DEBUG: STARTING DISCOVERY THREAD...')
+  	discoverNodes = threading.Thread(target=discoveryThread)
+  	discoverNodes.start()
+  	print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
+
+
+
+	print('ALL THREADS STARTED!\n')
+
+	while True:
+		counter = 0
+		time.sleep(1)
+		print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
 
 if __name__ == "__main__":
     main()
