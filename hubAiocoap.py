@@ -96,7 +96,8 @@ def aiocoapThread(loop):
     asyncio.set_event_loop(loop)
 
     print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
-    await protocol.create_server_context(root)
+    #await protocol.create_server_context(root)
+    protocol = asyncio.Task(aiocoap.Context.create_server_context(root))
 
     print("COAP THREAD DEBUG #3, making loop run forever: ",threading.current_thread())
     loop.run_forever()
