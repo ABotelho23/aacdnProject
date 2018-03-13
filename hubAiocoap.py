@@ -129,7 +129,7 @@ def main():
     print('DEBUG: FINISHED STARTING FLASK THREAD...')
 
     coap_loop = asyncio.new_event_loop()
-    coap_loop.set_debug()
+    #coap_loop.set_debug()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop))
