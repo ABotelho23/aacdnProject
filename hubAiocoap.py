@@ -38,7 +38,7 @@ class CameraCapture(resource.Resource):
         print('\nReceived notification from a camera: %s' % request.payload)
         print('\n')
         self.set_content(request.payload)
-		return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
