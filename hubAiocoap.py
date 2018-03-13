@@ -122,7 +122,7 @@ def testThread(loop,protocol):
 
     print("COAP THREAD DEBUG #3: ",threading.current_thread())
 
-def main():
+async def main():
 
     print('DEBUG: STARTING FLASK THREAD...')
     flaskServer = FlaskThread()
@@ -138,7 +138,7 @@ def main():
     root.add_resource(('test',), TestResource())
 
     #protocol = asyncio.run_coroutine_threadsafe(asyncio.Context.create_server_context(...),loop).result()
-    protocol = asyncio.Task(aiocoap.Context.create_server_context(root)).result()
+    protocol = await asyncio.Task(aiocoap.Context.create_server_context(root)).result()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
