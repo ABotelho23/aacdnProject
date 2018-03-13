@@ -78,6 +78,8 @@ async def createRequest(request_type, node_address, node_resource):
 
     request = Message(code=request_type, uri=targetURI)
 
+	"""Will response.payload be returned prior to the request being fulfilled?"""
+	"""We don't technically care if the GUI thread blocks, only that the coap thread does"""
     try:
         response = await protocol.request(request).response
     except Exception as e:
