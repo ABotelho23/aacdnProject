@@ -16,8 +16,8 @@ from flask import jsonify
 class FlaskThread(threading.Thread):
 
     def run(self):
-    	print("FLASK THREAD DEBUG #1: ",threading.current_thread())
-      	app.run()
+        print("FLASK THREAD DEBUG #1: ",threading.current_thread())
+        app.run()
 
 class CameraCapture(resource.Resource):
     """For receiving notifications from camera."""
