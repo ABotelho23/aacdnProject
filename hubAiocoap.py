@@ -86,7 +86,7 @@ async def createRequest(request_type, node_address, node_resource):
     else:
         return response.payload
 
-def aiocoapThread(loop):
+def aiocoapThread(loop,protocol):
 
     """root = resource.Site()
     root.add_resource(('.well-known', 'core'),
@@ -111,7 +111,7 @@ def discoveryThread():
     zeroconfDiscover.main()
     print("DISCOVERY THREAD DEBUG #2: ",threading.current_thread())
 
-def testThread(loop):
+def testThread(loop,protocol):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
