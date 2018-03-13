@@ -116,7 +116,7 @@ def testThread(loop):
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
     """this might return a future before it is available, CHECK THIS"""
-    packet = asyncio.call_soon_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours'), loop)
+    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours'), loop)
 
     print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
 
@@ -141,6 +141,11 @@ def main():
     discoverNodes = threading.Thread(target=discoveryThread)
     discoverNodes.start()
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
+
+    print('DEBUG: STARTING TEST THREAD...')
+    testInstance = testThread(coap_loop)
+    testInstance.start()
+    print('DEBUG: FINISHED STARTING TEST THREAD...')
 
     print('ALL THREADS STARTED!\n')
 
