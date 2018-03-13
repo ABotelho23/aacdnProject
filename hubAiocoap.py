@@ -128,7 +128,7 @@ def main():
     flaskServer.start()
     print('DEBUG: FINISHED STARTING FLASK THREAD...')
 
-    coap_loop = asyncio.new_event_loop()
+    coap_loop = asyncio.get_event_loop()
     #coap_loop.set_debug()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
