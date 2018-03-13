@@ -87,10 +87,10 @@ async def createRequest(request_type, node_address, node_resource):
 
 def aiocoapThread(loop):
 
-	root = resource.Site()
-	root.add_resource(('.well-known', 'core'),
+    root = resource.Site()
+    root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
-	root.add_resource(('test',), TestResource())
+    root.add_resource(('test',), TestResource())
 
     print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
     asyncio.set_event_loop(loop)
