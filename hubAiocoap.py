@@ -123,27 +123,27 @@ def testThread(loop):
 
 def main():
 
-	print('DEBUG: STARTING FLASK THREAD...')
- 	flaskServer = FlaskThread()
- 	flaskServer.start()
- 	print('DEBUG: FINISHED STARTING FLASK THREAD...')
+    print('DEBUG: STARTING FLASK THREAD...')
+    flaskServer = FlaskThread()
+    flaskServer.start()
+    print('DEBUG: FINISHED STARTING FLASK THREAD...')
 
-	coap_loop = asyncio.new_event_loop()
-	coap_loop.set_debug()
+    coap_loop = asyncio.new_event_loop()
+    coap_loop.set_debug()
 
-  	print('DEBUG: STARTING AIOCOAP THREAD...')
-  	aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop))
-  	aiocoapWorker.start()
-  	print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
+    print('DEBUG: STARTING AIOCOAP THREAD...')
+    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop))
+    aiocoapWorker.start()
+    print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
 
-  	print('DEBUG: STARTING DISCOVERY THREAD...')
-  	discoverNodes = threading.Thread(target=discoveryThread)
-  	discoverNodes.start()
-  	print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
+    print('DEBUG: STARTING DISCOVERY THREAD...')
+    discoverNodes = threading.Thread(target=discoveryThread)
+    discoverNodes.start()
+    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
 
-	print('ALL THREADS STARTED!\n')
+    print('ALL THREADS STARTED!\n')
 
-	while True:
+    while True:
         counter = 0
         time.sleep(1)
         print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
