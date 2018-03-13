@@ -88,17 +88,17 @@ async def createRequest(request_type, node_address, node_resource):
 
 def aiocoapThread(loop):
 
-    root = resource.Site()
+    """root = resource.Site()
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
+    root.add_resource(('test',), TestResource())"""
 
     print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
     asyncio.set_event_loop(loop)
 
-    print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
+    """print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
     #await protocol.create_server_context(root)
-    protocol = asyncio.Task(aiocoap.Context.create_server_context(root))
+    protocol = asyncio.Task(aiocoap.Context.create_server_context(root))"""
 
     print("COAP THREAD DEBUG #3, making loop run forever: ",threading.current_thread())
     loop.run_forever()
@@ -132,8 +132,15 @@ def main():
     coap_loop = asyncio.get_event_loop()
     #coap_loop.set_debug()
 
+    root = resource.Site()
+    root.add_resource(('.well-known', 'core'),
+        resource.WKCResource(root.get_resources_as_linkheader))
+    root.add_resource(('test',), TestResource())
+
+    protocol = asyncio.Task(aiocoap.Context.create_server_context(root))
+
     print('DEBUG: STARTING AIOCOAP THREAD...')
-    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
+    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,protocol,))
     aiocoapWorker.start()
     print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
 
@@ -143,7 +150,7 @@ def main():
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
 
     print('DEBUG: STARTING TEST THREAD...')
-    testInstance = testThread(coap_loop)
+    testInstance = testThread(coap_loop,protocol)
     testInstance.start()
     print('DEBUG: FINISHED STARTING TEST THREAD...')
 
