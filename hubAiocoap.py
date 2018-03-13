@@ -19,6 +19,7 @@ class FlaskThread(threading.Thread):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
 
+
 class CameraCapture(resource.Resource):
     """For receiving notifications from camera."""
 
@@ -40,6 +41,7 @@ class CameraCapture(resource.Resource):
         self.set_content(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
 
+
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
     def __init__(self):
@@ -52,6 +54,7 @@ class TestResource(resource.Resource):
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
+
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
@@ -85,6 +88,7 @@ async def createRequest(request_type, node_address, node_resource,protocol):
     else:
         return response.payload
 
+
 def aiocoapThread(loop):
 
     print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
@@ -95,11 +99,13 @@ def aiocoapThread(loop):
 
     print("COAP THREAD DEBUG #4, should this be seen?: ",threading.current_thread())
 
+
 def discoveryThread():
     print("DISCOVERY THREAD DEBUG #1: ",threading.current_thread())
     """Prints here to be dumped into the main section of the GUI, maybe via queues?"""
     zeroconfDiscover.main()
     print("DISCOVERY THREAD DEBUG #2: ",threading.current_thread())
+
 
 def testThread(loop,protocol):
     """This thread emulates what would be the GUI in the final product"""
@@ -114,6 +120,7 @@ def testThread(loop,protocol):
         print("\n\n!==========REPONSE #",counter," FROM NODE: ",packet,"==========!\n\n")
 
         print("COAP THREAD DEBUG #3: ",threading.current_thread())
+
 
 def main():
 
