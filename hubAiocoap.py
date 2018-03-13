@@ -71,8 +71,8 @@ def checkTemp():
     return jsonify(result=currentTemp)
 
 async def createRequest(request_type, node_address, node_resource):
-	print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
-	targetURI = 'coap://' + node_address + node_resource
+    print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
+    targetURI = 'coap://' + node_address + node_resource
 
     request = Message(code=request_type, uri=targetURI)
 
