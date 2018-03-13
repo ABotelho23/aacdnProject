@@ -35,8 +35,8 @@ def main():
     print("\n+++++Discovering services...+++++\n")
     browser = ServiceBrowser(zeroconf, "_coap._udp.local.", handlers=[on_service_state_change])
 
-    sleep(3)
+    """sleep(3)
     print("\n+++++Ending services discovery...+++++\n")
-    zeroconf.close()
+    zeroconf.close()"""
 if __name__ == '__main__':
     main()
