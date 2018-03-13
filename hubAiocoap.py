@@ -166,4 +166,4 @@ async def main():
         print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
 
 if __name__ == "__main__":
-    main()
+    asyncio.get_event_loop().run_until_complete(main())
