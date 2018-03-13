@@ -75,7 +75,7 @@ async def createRequest(request_type, node_address, node_resource):
     print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
     targetURI = 'coap://' + node_address + node_resource
 
-    request = Message(code=request_type, uri=targetURI)
+    request = Message(code=GET, uri=targetURI)
 
     """Will response.payload be returned prior to the request being fulfilled?"""
     """We don't technically care if the GUI thread blocks, only that the coap thread does"""
