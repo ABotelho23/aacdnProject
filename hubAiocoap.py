@@ -137,8 +137,8 @@ def main():
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
 
-    protocol = asyncio.run_coroutine_threadsafe(aiocoap.Context.create_server_context(root),coap_loop).result()
-    coap_loop.run_until_complete()
+    #protocol = asyncio.run_coroutine_threadsafe(asyncio.Context.create_server_context(...),loop).result()
+    protocol = asyncio.Task(aiocoap.Context.create_server_context(root)).result()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,protocol,))
