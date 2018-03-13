@@ -86,7 +86,7 @@ async def createRequest(request_type, node_address, node_resource,protocol):
     else:
         return response.payload
 
-def aiocoapThread(loop,protocol):
+def aiocoapThread(loop):
 
     """root = resource.Site()
     root.add_resource(('.well-known', 'core'),
@@ -141,9 +141,11 @@ def main():
     protocol = asyncio.Task(aiocoap.Context.create_server_context(root)).result()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
-    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,protocol,))
+    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
     aiocoapWorker.start()
     print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
+
+    protocol = asyncio.run_coroutine_threadsafe(aiocoap.Context.create_server_context(root),coap_loop).result()
 
     print('DEBUG: STARTING DISCOVERY THREAD...')
     discoverNodes = threading.Thread(target=discoveryThread)
