@@ -150,7 +150,7 @@ def main():
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
 
     print('DEBUG: STARTING TEST THREAD...')
-    testInstance = testThread(coap_loop,protocol)
+    testInstance = threading.Thread(target=testThread, args=(coap_loop,protocol,))
     testInstance.start()
     print('DEBUG: FINISHED STARTING TEST THREAD...')
 
