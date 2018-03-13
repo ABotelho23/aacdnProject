@@ -138,6 +138,7 @@ def main():
     root.add_resource(('test',), TestResource())
 
     protocol = asyncio.run_coroutine_threadsafe(aiocoap.Context.create_server_context(root),coap_loop).result()
+    coap_loop.run_until_complete()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,protocol,))
