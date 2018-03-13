@@ -111,7 +111,7 @@ def discoveryThread():
     zeroconfDiscover.main()
     print("DISCOVERY THREAD DEBUG #2: ",threading.current_thread())
 
-def testThread(loop):
+async def testThread(loop):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
