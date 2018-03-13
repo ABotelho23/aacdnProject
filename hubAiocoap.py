@@ -115,12 +115,15 @@ def testThread(loop,protocol):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
-    """this might return a future before it is available, CHECK THIS"""
-    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
+    counter = 0
+    while True:
+        counter += 1
+        time.sleep(1)
+        packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
 
-    print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
+        print("\n\n!==========REPONSE #",counter," FROM NODE: ",packet,"==========!\n\n")
 
-    print("COAP THREAD DEBUG #3: ",threading.current_thread())
+        print("COAP THREAD DEBUG #3: ",threading.current_thread())
 
 def main():
 
