@@ -132,7 +132,7 @@ def main():
     #coap_loop.set_debug()
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
-    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop))
+    aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
     aiocoapWorker.start()
     print('DEBUG: FINISHED STARTING AIOCOAP THREAD...\n')
 
