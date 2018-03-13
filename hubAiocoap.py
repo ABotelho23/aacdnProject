@@ -144,8 +144,9 @@ def main():
 
     print('ALL THREADS STARTED!\n')
 
+    counter = 0
     while True:
-        counter = 0
+        counter += 1
         time.sleep(1)
         print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
 
