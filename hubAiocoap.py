@@ -51,8 +51,8 @@ class TestResource(resource.Resource):
         self.content = content
 
     #this is the render for a GET. This returns the payload.
-	async def render_get(self, request):
-    	return aiocoap.Message(payload=self.content)
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
