@@ -103,11 +103,12 @@ def aiocoapThread(loop):
 	print("COAP THREAD DEBUG #3, making loop run forever: ",threading.current_thread())
 	loop.run_forever()
 
-	print("COAP THREAD DEBUG #4: ",threading.current_thread())
+	print("COAP THREAD DEBUG #4, should this be seen?: ",threading.current_thread())
 
 def discoveryThread():
     print("DISCOVERY THREAD DEBUG #1: ",threading.current_thread())
-    zeroconfDiscover.main()
+	"""Prints here to be dumped into the main section of the GUI, maybe via queues?"""
+	zeroconfDiscover.main()
 	print("DISCOVERY THREAD DEBUG #2 (SHOULDN'T SEE THIS): ",threading.current_thread())
 
 def testThread(loop):
@@ -141,8 +142,6 @@ def main():
   	discoverNodes.start()
   	print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
 
-
-
 	print('ALL THREADS STARTED!\n')
 
 	while True:
@@ -152,9 +151,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-#contextClient = await Context.create_client_context() #context for sending PUTs and GETs
-
-#contextServer = await Context. create_server_context() #context for receiving PUTs and GETs
