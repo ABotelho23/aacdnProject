@@ -111,12 +111,12 @@ def discoveryThread():
     zeroconfDiscover.main()
     print("DISCOVERY THREAD DEBUG #2: ",threading.current_thread())
 
-async def testThread(loop):
+def testThread(loop):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
     """this might return a future before it is available, CHECK THIS"""
-    packet = await asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours'), loop)
+    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours'), loop)
 
     print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
 
