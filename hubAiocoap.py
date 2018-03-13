@@ -89,14 +89,14 @@ def aiocoapThread(loop):
 
 	root = resource.Site()
 	root.add_resource(('.well-known', 'core'),
-		resource.WKCResource(root.get_resources_as_linkheader))
+        resource.WKCResource(root.get_resources_as_linkheader))
 	root.add_resource(('test',), TestResource())
 
-	print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
+    print("COAP THREAD DEBUG #1, setting event loop: ",threading.current_thread())
     asyncio.set_event_loop(loop)
 
-	print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
-	await protocol.create_server_context(root)
+    print("COAP THREAD DEBUG #2, creating context: ",threading.current_thread())
+    await protocol.create_server_context(root)
 
 	print("COAP THREAD DEBUG #3, making loop run forever: ",threading.current_thread())
 	loop.run_forever()
