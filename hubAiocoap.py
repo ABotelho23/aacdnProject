@@ -147,7 +147,7 @@ def main():
     counter = 0
     while True:
         counter += 1
-        time.sleep(1)
+        time.sleep(3)
         print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
 
 if __name__ == "__main__":
