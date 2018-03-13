@@ -14,7 +14,6 @@ from flask import render_template
 from flask import jsonify
 
 class FlaskThread(threading.Thread):
-
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
@@ -42,7 +41,6 @@ class CameraCapture(resource.Resource):
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
-
     def __init__(self):
         super().__init__()
         self.set_content(b"This is the default TEST content.")
@@ -68,7 +66,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-	currentTemp = coapTemp.main()
+    currentTemp = coapTemp.main()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
@@ -145,9 +143,9 @@ def main():
 	print('ALL THREADS STARTED!\n')
 
 	while True:
-		counter = 0
-		time.sleep(1)
-		print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
+        counter = 0
+        time.sleep(1)
+        print('MAIN THREAD DEBUG #:',counter, ', PRINTING FROM END OF MAIN\n')
 
 if __name__ == "__main__":
     main()
