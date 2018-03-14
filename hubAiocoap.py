@@ -14,6 +14,13 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 
+class CoapNode()
+	def __init__(self, ip_address, hostname, device_type):
+		self.ip_address = ip_address
+		self.hostname = hostname
+		self.device_type = device_type
+
+
 class FlaskThread(threading.Thread):
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
