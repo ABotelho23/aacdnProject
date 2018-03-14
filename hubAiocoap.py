@@ -14,7 +14,7 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 
-class DiscoverNodes(threading.Thread)
+class DiscoveryThread(threading.Thread)
 	def __init__(self):
 		Thread.__init__(self)
 
@@ -166,6 +166,11 @@ def main():
     flaskServer = FlaskThread()
     flaskServer.start()
     print('DEBUG: FINISHED STARTING FLASK THREAD...')
+
+	print('DEBUG: STARTING DISCVOERY THREAD...')
+    discoverNodes = DiscoveryThread()
+    discoveryNodes.start()
+    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...')
 
     coap_loop = asyncio.get_event_loop()
     #coap_loop.set_debug()
