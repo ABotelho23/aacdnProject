@@ -14,6 +14,37 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 
+class DiscoverNodes(threading.Thread)
+	def __init__(self):
+		Thread.__init__(self)
+
+	def run(self):
+		zeroconf = Zeroconf()
+		print("\n+++++Discovering services...+++++\n")
+		browser = ServiceBrowser(zeroconf, "_coap._udp.local.", handlers=[on_service_state_change])
+
+		sleep(30)
+	    print("\n+++++Ending services discovery...+++++\n")
+	    zeroconf.close()
+
+	def on_service_state_change(zeroconf, service_type, name, state_change):
+	    print("Service %s of type %s state changed: %s" % (name, service_type, state_change))
+
+	    if state_change is ServiceStateChange.Added:
+	        info = zeroconf.get_service_info(service_type, name)
+	        if info:
+	            print("  Address: %s" % (socket.inet_ntoa(info.address)))
+	            print("  Hostname: %s" % (info.server,))
+	            if info.properties:
+	                print("  Properties are:")
+	                for key, value in info.properties.items():
+	                    print("    %s: %s" % (key, value))
+	            else:
+	                print("  No properties")
+	        else:
+	            print("  No info")
+	        print('\n')
+
 class CoapNode()
 	def __init__(self, ip_address, hostname, device_type):
 		self.ip_address = ip_address
@@ -107,11 +138,11 @@ def aiocoapThread(loop):
     print("COAP THREAD DEBUG #4, should this be seen?: ",threading.current_thread())
 
 
-def discoveryThread():
+"""def discoveryThread():
     print("DISCOVERY THREAD DEBUG #1: ",threading.current_thread())
-    """Prints here to be dumped into the main section of the GUI, maybe via queues?"""
+    Prints here to be dumped into the main section of the GUI, maybe via queues?
     zeroconfDiscover.main()
-    print("DISCOVERY THREAD DEBUG #2: ",threading.current_thread())
+    print("DISCOVERY THREAD DEBUG #2: ",threading.current_thread())"""
 
 
 def testThread(loop,protocol):
@@ -151,10 +182,10 @@ def main():
 
     protocol = asyncio.run_coroutine_threadsafe(aiocoap.Context.create_server_context(root),coap_loop).result()
 
-    print('DEBUG: STARTING DISCOVERY THREAD...')
+    """print('DEBUG: STARTING DISCOVERY THREAD...')
     discoverNodes = threading.Thread(target=discoveryThread)
     discoverNodes.start()
-    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
+    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')"""
 
     print('DEBUG: STARTING TEST THREAD...')
     testInstance = threading.Thread(target=testThread, args=(coap_loop,protocol,))
