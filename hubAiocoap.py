@@ -51,6 +51,7 @@ class CoapNode():
 
 class FlaskThread(threading.Thread):
     def __init__(self, loop, protocol):
+        threading.Thread.__init__(self)
         self.loop = loop
         self.protocol = protocol
     def run(self):
