@@ -16,7 +16,7 @@ from flask import jsonify
 
 class DiscoveryThread(threading.Thread):
     def __init__(self):
-	    Thread.__init__(self)
+        Thread.__init__(self)
 
     def run(self):
         zeroconf = Zeroconf()
