@@ -54,7 +54,7 @@
          $('a#CurrentTemp').load(function() {
           $.getJSON('/tempbackground_proc',
             function(data) {
-                $("#ChangeTemp").text(data.result);
+                $("#result").text(data.result);
             });
             return false;
         });
@@ -119,7 +119,7 @@
                 <h2 class="mdl-card__title-text">Temperature</h2>
               </div>
               <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-	          <a id=CurrentTemp><p id=ChangeTemp> </p>
+	          <a id=CurrentTemp><p id=result> </p>
               </div>
               <div class="mdl-card__actions mdl-card--border">
                 <a href="#" id="tempUpdate" class="mdl-button mdl-js-button mdl-js-ripple-effect">Status</a>
