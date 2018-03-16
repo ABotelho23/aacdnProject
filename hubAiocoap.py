@@ -164,7 +164,7 @@ def main():
 
     print('DEBUG: STARTING DISCVOERY THREAD...')
     discoverNodes = DiscoveryThread()
-    discoveryNodes.start()
+    discoverNodes.start()
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...')
 
     coap_loop = asyncio.get_event_loop()
