@@ -8,6 +8,38 @@ import aiocoap.resource as resource
 from aiocoap import *
 import aiocoap
 import zeroconfDiscover
+import flask
+from flask import Flask
+from flask import render_template
+from flask import jsonify
+import coapTemp
+
+class CameraCapture(resource.Resource):
+    """For receiving notifications from camera."""
+
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"No notifications from camera yet.")
+
+    def set_content(self, content):
+        self.content = content
+
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
+
+    #this is the render for a PUT. This sets what the resource value is.
+    async def render_put(self, request):
+        print('\nReceived notification from a camera: %s' % request.payload)
+        print('\n')
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
+
+class WebThread(threading.Thread):
+
+    def run(self):
+      app.run()
+
 
 class ServerThread(threading.Thread):
     def run(self):
@@ -18,15 +50,15 @@ class ServerThread(threading.Thread):
       root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
 
-      root.add_resource(('hub', 'bulbs', 'schedule'), BulbSchedule())
-      root.add_resource(('hub', 'cameras', 'capture'), CameraCapture())
-      root.add_resource(('hub', 'thermometers', 'temperature'), ThermoTemperature())
-      root.add_resource(('hub', 'blinds', 'schedule'), BlindsSchedule())
+      root.add_resource(('bulbs', 'schedule'), BulbSchedule())
+      root.add_resource(('cameras', 'capture'), CameraCapture())
+      root.add_resource(('thermometers', 'temperature'), ThermoTemperature())
+      root.add_resource(('blinds', 'schedule'), BlindsSchedule())
 
+      loop = asyncio.new_event_loop()
+      asyncio.set_event_loop(loop)
       asyncio.Task(aiocoap.Context.create_server_context(root))
-
       asyncio.get_event_loop().run_forever()
-
 
 class BulbSchedule(resource.Resource): #/hub/bulb/schedule
     """This could be for notifying hub that a scheduled colour change or on/off has occurred?"""
@@ -118,17 +150,37 @@ class BlindsSchedule(resource.Resource): #/hub/blinds/schedule
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template('index.html')
+@app.route("/temperatureCheck/")
+def tempstatus():
+    return render_template('temperature.html')
+
+@app.route("/tempbackground_proc")
+def checkTemp():
+    currentTemp = coapTemp.main()
+    print(currentTemp)
+    return jsonify(result=currentTemp)
+
 async def main():
+
+  webpage = WebThread()
+  webpage.start()
+
   serverRunning = '0'
+
+  zeroconfDiscover.main()
 
   while True:
 
-      zeroconfDiscover.main()
-      selection = input("\n==========\n1. GET\n2. PUT \n3. SERVER (not yet available) \n4. MULTI-DEVICE\n==========\n")
+      selection = input("\n====================\n==== MAIN MENU =====\n====================\n1. GET\n2. PUT \n3. SERVER \n4. MULTI-DEVICE\n5. Re-discover devices\n====================\n")
 
       if (selection == '1'):
-        targetIPAdd = input("\nWhat is the IP address of the target?")
-        targetResource = input("\nWhat is the resource of the target?\n Include initial slash, and no ending slash. \n")
+        targetIPAdd = input("\nWhat is the IP address of the target?\n")
+        targetResource = input("\nWhat is the resource of the target?\n Include initial slash, and no ending slash.\n")
         targetURI = 'coap://' + targetIPAdd + targetResource
         protocol = await Context.create_client_context()
 
@@ -148,7 +200,7 @@ async def main():
         targetURI = 'coap://' + targetIPAdd + targetResource
         context = await Context.create_client_context()
 
-        userInput = input("\nWhat is the payload?")
+        userInput = input("\nWhat is the payload?\n")
         payload = userInput.encode()
         request = Message(code=PUT, uri=targetURI, payload=payload)
         # These direct assignments are an alternative to setting the URI like in
@@ -166,7 +218,7 @@ async def main():
             receiverThread = ServerThread()
             receiverThread.start()
         else:
-            print('\nServer should already be running.')
+            print('\nServer should already be running.\n')
       elif (selection == '4'):
 
         multiSelection = input("\nWhat is the command?\n")
@@ -187,7 +239,7 @@ async def main():
             print('Result: %s\n%r'%(response1.code, response1.payload))
             print('Result: %s\n%r'%(response4.code, response4.payload))
 
-            print('\nResponses received!')
+            print('\nResponses received!\n')
 
         elif (multiSelection == 'good morning'):
             targetURI1 = 'coap://node1/bulb/colours'
@@ -205,10 +257,13 @@ async def main():
             print('Result: %s\n%r'%(response1.code, response1.payload))
             print('Result: %s\n%r'%(response4.code, response4.payload))
 
-            print('\nResponses received!')
+            print('\nResponses received!\n')
 
         else:
-            print('\nThat is not a supported command!')
+            print('\nThat is not a supported command!\n')
+
+      elif (selection == '5'):
+          zeroconfDiscover.main()
 
       else:
         print('\nInvalid selection.')
