@@ -51,7 +51,7 @@
     <script src="../static/jquery.js"></script>
     <script type=text/javascript>
         $(function() {
-         $('a#CurrentTemp').load(function() {
+         $('#CurrentTemp').load(function() {
           $.getJSON('/tempbackground_proc',
             function(data) {
                 $("#CurrentTemp").text(data.result);
