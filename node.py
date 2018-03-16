@@ -24,6 +24,8 @@ class TestResource(resource.Resource):
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
+
+
 class TakePicture(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
@@ -45,6 +47,7 @@ class TakePicture(resource.Resource):
         #Call Take picture function
         takePicture(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Picture captured.')
+
 
 class TakeVideo(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
