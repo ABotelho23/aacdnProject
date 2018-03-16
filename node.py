@@ -98,7 +98,7 @@ def backgroundTask(loop,protocol):
     """This is where you would run background tasks, like motion detection or scheduling temperature checks"""
     while True:
             motionState = picammotion.motion()
-             print(motionState)
+            print(motionState)
              if motionState:
                  #DEFINE WHAT THE PAYLOAD IS
                  payload = b"PAYLOAD CONTENT"
