@@ -23,26 +23,39 @@ class TestResource(resource.Resource):
         return aiocoap.Message(payload=self.content)
 
 
-async def createRequest(request_type, node_address, node_resource,protocol):
-    print("CREATING REQUEST IN THREAD: ",threading.current_thread())
-    targetURI = 'coap://' + node_address + node_resource
+async def createRequest(request_type, node_address, node_resource, userPayload, protocol):
+    if (request_type == 'GET'):
+        print("COAP THREAD DEBUG, SENDING GET REQUEST START: ",threading.current_thread())
+        targetURI = 'coap://' + node_address + node_resource
 
-    request = Message(code=PUT, uri=targetURI)
+        request = Message(code=GET, uri=targetURI)
 
-    """We don't technically care if this thread blocks, only that the coap thread does"""
-    try:
-        response = await protocol.request(request).response
-    except Exception as e:
-        return e
+        """We don't technically care if the GUI thread blocks, only that the coap thread does"""
+        try:
+            response = await protocol.request(request).response
+        except Exception as e:
+            return e
+        else:
+            return response.payload
     else:
-        return response.payload
+        print("COAP THREAD DEBUG, SENDING PUT REQUEST START: ",threading.current_thread())
+        targetURI = 'coap://' + node_address + node_resource
+        payload1 = userPayload.encode()
+        request = Message(code=PUT, uri=targetURI, payload=payload1)
+
+        try:
+            response = await protocol.request(request).response
+        except Exception as e:
+            return e
+        else:
+            return response.payload
 
 
 def backgroundTask(loop,protocol):
 
     """This is where you would run background tasks, like motion detection or scheduling temperature checks"""
 
-    """packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications',protocol), loop).result()"""
+    """packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications',protocol,'0',), loop).result()"""
 
     while True:
         print("BACKGROUND THREAD: ",threading.current_thread())
