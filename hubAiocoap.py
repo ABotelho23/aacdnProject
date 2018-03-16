@@ -53,6 +53,9 @@ class CoapNode()
 
 
 class FlaskThread(threading.Thread):
+    def __init__(self, loop, protocol):
+        self.loop = loop
+        self.protocol = protocol
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
@@ -108,7 +111,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentTemp = coapTemp.main()
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',protocol), loop).result()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
@@ -162,11 +165,6 @@ def testThread(loop,protocol):
 
 def main():
 
-    print('DEBUG: STARTING FLASK THREAD...')
-    flaskServer = FlaskThread()
-    flaskServer.start()
-    print('DEBUG: FINISHED STARTING FLASK THREAD...')
-
     print('DEBUG: STARTING DISCVOERY THREAD...')
     discoverNodes = DiscoveryThread()
     discoveryNodes.start()
@@ -192,6 +190,11 @@ def main():
     discoverNodes.start()
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')"""
 
+    print('DEBUG: STARTING FLASK THREAD...')
+    flaskServer = FlaskThread(coap_loop,protocol)
+    flaskServer.start()
+    print('DEBUG: FINISHED STARTING FLASK THREAD...')
+    
     print('DEBUG: STARTING TEST THREAD...')
     testInstance = threading.Thread(target=testThread, args=(coap_loop,protocol,))
     testInstance.start()
