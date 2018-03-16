@@ -43,7 +43,7 @@ def checkBulb():
 
 @app.route("/bulbsetbackground_proc")
 def setBulb():
-    userPayload = request.args.get('CName', 0, type=string)
+    userPayload = request.args.get('CName')
     setBulb = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', userPayload, flaskProtocol), flaskLoop).result()
     print(setBulb)
     return jsonify(result2=setBulb)
