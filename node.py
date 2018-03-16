@@ -119,10 +119,12 @@ def main():
     root.add_resource(('picture'), TakePicture())
     root.add_resource(('video'), TakeVideo())
 
-    protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
+    asyncio.Task(aiocoap.Context.create_server_context(root))
+
+    """protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
 
     Backgroundmotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
-    Backgroundmotion.start()
+    Backgroundmotion.start()"""
 
     coap_loop.run_forever()
 
