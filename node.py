@@ -121,6 +121,10 @@ def main():
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
 
+    asyncio.Task(aiocoap.Context.create_server_context(root))
+
+    asyncio.get_event_loop().run_forever()
+
     """coap_loop = asyncio.get_event_loop()
 
     # Resource tree creation
