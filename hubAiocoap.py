@@ -57,6 +57,20 @@ class FlaskThread(threading.Thread):
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
+    app = Flask(__name__)
+
+    @app.route("/")
+    def index():
+        return render_template('index.html')
+    @app.route("/temperatureCheck/")
+    def tempstatus():
+        return render_template('temperature.html')
+
+    @app.route("/tempbackground_proc")
+    def checkTemp():
+        currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',self.protocol), self.loop).result()
+        print(currentTemp)
+        return jsonify(result=currentTemp)
 
 
 class CameraCapture(resource.Resource):
@@ -97,21 +111,6 @@ class TestResource(resource.Resource):
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
-
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    return render_template('index.html')
-@app.route("/temperatureCheck/")
-def tempstatus():
-    return render_template('temperature.html')
-
-@app.route("/tempbackground_proc")
-def checkTemp():
-    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskServer.protocol), flaskServer.loop).result()
-    print(currentTemp)
-    return jsonify(result=currentTemp)
 
 async def createRequest(request_type, node_address, node_resource,protocol):
     print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
