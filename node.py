@@ -97,17 +97,17 @@ def backgroundTask(loop,protocol):
 
     """This is where you would run background tasks, like motion detection or scheduling temperature checks"""
     while True:
-            motionState = picammotion.motion()
-            print(motionState)
-             if motionState:
-                 #DEFINE WHAT THE PAYLOAD IS
-                 payload = b"PAYLOAD CONTENT"
-                 request = Message(code=PUT, uri=targetURI, payload=payload)
-                 print('Sending payload')
-                 response = _await(ctx.request(request).response)
-                 print('Result: %s\n%r'%(response.code, response.payload))
-                 takeVideo(b'10')
-     
+        motionState = picammotion.motion()
+        print(motionState)
+        if motionState:
+            #DEFINE WHAT THE PAYLOAD IS
+            payload = b"PAYLOAD CONTENT"
+            request = Message(code=PUT, uri=targetURI, payload=payload)
+            print('Sending payload')
+            response = _await(ctx.request(request).response)
+            print('Result: %s\n%r'%(response.code, response.payload))
+            takeVideo(b'10')
+
          #async def render_put(self, request):
              #return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
 
