@@ -66,10 +66,10 @@ def backgroundTask(loop,protocol):
                  print('Result: %s\n%r'%(response.code, response.payload))
                  takeVideo(b'10')
      
-         async def render_put(self, request):
-             return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
+         #async def render_put(self, request):
+             #return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
 
-    """packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications',protocol,'0',), loop).result()"""
+    """packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications',protocol,'Motion Detected',), loop).result()"""
 
     while True:
         print("BACKGROUND THREAD: ",threading.current_thread())
@@ -85,7 +85,6 @@ def main():
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('camera','capture'), TakePicture())
     root.add_resource(('camera','captureVideo'), TakeVideo())
-    root.add_resource(('camera', 'motionToggle'), MotionThread())
 
     protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
 
