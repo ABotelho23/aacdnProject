@@ -109,7 +109,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',self.protocol), self.loop).result()
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',self.protocol), self.coap_loop).result()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
