@@ -10,6 +10,17 @@
         return false;
 	});
 });
+    $(function() {
+     $('a#send_colour').bind('click', function() {
+	  $.getJSON('/bulbsetbackground_proc', {
+         CName: $('input[name="colourname"]').val()
+      },
+        function(data) {
+            $("#result2").text(data.result);
+        });
+        return false;
+	});
+});
 </script>
 </head>
 <body>
@@ -19,9 +30,11 @@
 		<p id=result>...</p>
 	</div>
     <div class='SetBulb'>
-	    <h3>The Set Bulb Color: </h3>
-        <form action="/action_page.php">
-            Color: <input type="text" name="cname" value="color"><br>
-        <input type="submit" value="Send">
+	<h3>Set Light Bulb Color: </h3>
+        <form>
+            Colour:<br>
+            <a href=# id=send_colour><input type="text" name="colourname"><br>
+            <p id=result2>From CoAP Request</p>
+        </form>
     </div>
 </body>
