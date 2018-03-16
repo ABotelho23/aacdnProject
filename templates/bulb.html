@@ -1,0 +1,27 @@
+<head>
+<script src="../static/jquery.js"></script>
+<script type=text/javascript>
+    $(function() {
+     $('a#process_check').bind('click', function() {
+	  $.getJSON('/tempbackground_proc',
+        function(data) {
+            $("#result").text(data.result);
+        });
+        return false;
+	});
+});
+</script>
+</head>
+<body>
+    <div class='CheckBulb'>
+	<h3>The Current Bulb Status Is: </h3>
+		<a href=# id=process_check><button class='btn btn-default'>Check</button></a>
+		<p id=result>...</p>
+	</div>
+    <div class='container'>
+	<h3>The Set Bulb Color: </h3>
+        <form action="/action_page.php">
+            Color: <input type="text" name="cname" value="color"><br>
+        <input type="submit" value="Send">
+	</div>
+</body>
