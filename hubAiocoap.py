@@ -16,6 +16,19 @@ from flask import jsonify
 
 global app
 app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template('index.html')
+@app.route("/temperatureCheck/")
+def tempstatus():
+    return render_template('temperature.html')
+
+@app.route("/tempbackground_proc")
+def checkTemp():
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskProtocol), FlaskLoop).result()
+    print(currentTemp)
+    return jsonify(result=currentTemp)
+
 
 class DiscoveryThread(threading.Thread):
     def run(self):
@@ -55,25 +68,14 @@ class CoapNode():
 class FlaskThread(threading.Thread):
     def __init__(self, loop, protocol):
         threading.Thread.__init__(self)
-        self.loop = loop
-        self.protocol = protocol
+        global flaskLoop
+        global flaskProtocol
+        flaskLoop = loop
+        flaskProtocol = protocol
+        
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
-        
-    @app.route("/")
-    def index():
-        return render_template('index.html')
-    @app.route("/temperatureCheck/")
-    def tempstatus():
-        return render_template('temperature.html')
-
-    @app.route("/tempbackground_proc")
-    def checkTemp():
-        currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',self.protocol), self.loop).result()
-        print(currentTemp)
-        return jsonify(result=currentTemp)
-
 
 class CameraCapture(resource.Resource):
     """For receiving notifications from camera."""
