@@ -43,7 +43,7 @@ def backgroundTask(loop,protocol):
 
     """packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications',protocol), loop).result()"""
 
-    while true:
+    while True:
         print("BACKGROUND THREAD: ",threading.current_thread())
         sleep(3)
 
