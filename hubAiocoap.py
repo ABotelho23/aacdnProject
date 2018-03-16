@@ -38,7 +38,7 @@ def bulbstatus():
 def checkBulb():
     currentBulb = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',flaskProtocol), flaskLoop).result()
     print(currentBulb)
-    return jsonify(result=currenBulb)
+    return jsonify(result=currentBulb)
 
 
 class DiscoveryThread(threading.Thread):
