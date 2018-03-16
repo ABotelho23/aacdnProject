@@ -217,7 +217,7 @@ def main():
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
-    root.add_resource(('recNotification',), RecNotifications())
+    root.add_resource(('recNotifications',), RecNotifications())
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
