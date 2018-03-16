@@ -19,6 +19,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template('index.html')
+
 @app.route("/temperatureCheck/")
 def tempstatus():
     return render_template('temperature.html')
@@ -28,6 +29,16 @@ def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskProtocol), flaskLoop).result()
     print(currentTemp)
     return jsonify(result=currentTemp)
+
+@app.route("/bulbCheck/")
+def bulbstatus():
+    return render_template('bulb.html')
+
+@app.route("/bulbbackground_proc")
+def checkBulb():
+    currentBulb = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',flaskProtocol), flaskLoop).result()
+    print(currentBulb)
+    return jsonify(result=currenBulb)
 
 
 class DiscoveryThread(threading.Thread):
