@@ -46,7 +46,7 @@ def backgroundTask(loop,protocol):
 
     while True:
         print("BACKGROUND THREAD: ",threading.current_thread())
-        sleep(3)
+        time.sleep(3)
 
 def main():
 
