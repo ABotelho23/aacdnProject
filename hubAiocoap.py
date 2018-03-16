@@ -15,41 +15,41 @@ from flask import render_template
 from flask import jsonify
 
 class DiscoveryThread(threading.Thread):
-	def __init__(self):
-		Thread.__init__(self)
+    def __init__(self):
+	    Thread.__init__(self)
 
-	def run(self):
-		zeroconf = Zeroconf()
-		print("\n+++++Discovering services...+++++\n")
-		browser = ServiceBrowser(zeroconf, "_coap._udp.local.", handlers=[on_service_state_change])
+    def run(self):
+        zeroconf = Zeroconf()
+        print("\n+++++Discovering services...+++++\n")
+        browser = ServiceBrowser(zeroconf, "_coap._udp.local.", handlers=[on_service_state_change])
 
-		sleep(30)
-	    print("\n+++++Ending services discovery...+++++\n")
-	    zeroconf.close()
+        sleep(30)
+        print("\n+++++Ending services discovery...+++++\n")
+        zeroconf.close()
 
-	def on_service_state_change(zeroconf, service_type, name, state_change):
-	    print("Service %s of type %s state changed: %s" % (name, service_type, state_change))
+    def on_service_state_change(zeroconf, service_type, name, state_change):
+        print("Service %s of type %s state changed: %s" % (name, service_type, state_change))
 
-	    if state_change is ServiceStateChange.Added:
-	        info = zeroconf.get_service_info(service_type, name)
-	        if info:
-	            print("  Address: %s" % (socket.inet_ntoa(info.address)))
-	            print("  Hostname: %s" % (info.server,))
-	            if info.properties:
-	                print("  Properties are:")
-	                for key, value in info.properties.items():
-	                    print("    %s: %s" % (key, value))
-	            else:
-	                print("  No properties")
-	        else:
-	            print("  No info")
-	        print('\n')
+        if state_change is ServiceStateChange.Added:
+            info = zeroconf.get_service_info(service_type, name)
+            if info:
+                print("  Address: %s" % (socket.inet_ntoa(info.address)))
+                print("  Hostname: %s" % (info.server,))
+                if info.properties:
+                    print("  Properties are:")
+                    for key, value in info.properties.items():
+                        print("    %s: %s" % (key, value))
+                else:
+                    print("  No properties")
+            else:
+                print("  No info")
+            print('\n')
 
-class CoapNode()
-	def __init__(self, ip_address, hostname, device_type):
-		self.ip_address = ip_address
-		self.hostname = hostname
-		self.device_type = device_type
+class CoapNode():
+    def __init__(self, ip_address, hostname, device_type):
+        self.ip_address = ip_address
+        self.hostname = hostname
+        self.device_type = device_type
 
 
 class FlaskThread(threading.Thread):
