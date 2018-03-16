@@ -149,6 +149,11 @@ class TestResource(resource.Resource):
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
 
+    async def render_put(self, request):
+        print('\nTest content has be re-set: %s' % request.payload)
+        print('\n')
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Confirmed changed test content.')
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
