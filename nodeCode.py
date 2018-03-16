@@ -16,7 +16,7 @@ class MotionThread(resource.Resource):
             await asyncio.sleep(0)
             if self.toggleMotion:
                 #await aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Toggle on.')
-                print('sending payload')
+                print('Motion Not Detected')
                 motionState = picammotion.motion()
                 if motionState:
                     aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion Detected.')
