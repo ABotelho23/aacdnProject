@@ -127,8 +127,8 @@ def main():
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
-    root.add_resource(('picture'), TakePicture())
-    root.add_resource(('video'), TakeVideo())
+    #root.add_resource(('picture'), TakePicture())
+    #root.add_resource(('video'), TakeVideo())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
