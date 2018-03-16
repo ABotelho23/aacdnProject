@@ -26,7 +26,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskProtocol), flaskLoop).result()
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
@@ -36,9 +36,16 @@ def bulbstatus():
 
 @app.route("/bulbbackground_proc")
 def checkBulb():
-    currentBulb = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',flaskProtocol), flaskLoop).result()
+    currentBulb = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours','0', flaskProtocol), flaskLoop).result()
     print(currentBulb)
     return jsonify(result=currentBulb)
+
+@app.route("/bulbsetbackground_proc")
+def setBulb():
+    userPayload = request.args.get('CName', 0, type=string)
+    setBulb = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', userPayload, flaskProtocol), flaskLoop).result()
+    print(setBulb)
+    return jsonify(result2=setBulb)
 
 
 class DiscoveryThread(threading.Thread):
@@ -127,20 +134,32 @@ class TestResource(resource.Resource):
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
-async def createRequest(request_type, node_address, node_resource,protocol):
-    print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
-    targetURI = 'coap://' + node_address + node_resource
+async def createRequest(request_type, node_address, node_resource, userPayload, protocol):
+    if (request_type == 'GET'):
+        print("COAP THREAD DEBUG, SENDING GET REQUEST START: ",threading.current_thread())
+        targetURI = 'coap://' + node_address + node_resource
 
-    request = Message(code=GET, uri=targetURI)
+        request = Message(code=GET, uri=targetURI)
 
-    """We don't technically care if the GUI thread blocks, only that the coap thread does"""
-    try:
-        response = await protocol.request(request).response
-    except Exception as e:
-        return e
+        """We don't technically care if the GUI thread blocks, only that the coap thread does"""
+        try:
+            response = await protocol.request(request).response
+        except Exception as e:
+            return e
+        else:
+            return response.payload
     else:
-        return response.payload
+        print("COAP THREAD DEBUG, SENDING PUT REQUEST START: ",threading.current_thread())
+        targetURI = 'coap://' + node_address + node_resource
+        payload1 = userPayload.encode()
+        request = Message(code=PUT, uri=targetURI, payload=payload1)
 
+        try:
+            response = await protocol.request(request).response
+        except Exception as e:
+            return e
+        else:
+            return response.payload
 
 def aiocoapThread(loop):
 
@@ -164,7 +183,7 @@ def testThread(loop,protocol):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
-    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
+    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours','0', protocol), loop).result()
 
     print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
 
