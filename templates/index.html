@@ -60,6 +60,17 @@
         });
     });
     </script>
+    <script type=text/javascript>
+        $(function() {
+         $('a#tempUpdate').bind('click',function() {
+          $.getJSON('/tempbackground_proc',
+            function(data) {
+                $("#CurrentTemp").text(data.result);
+            });
+            return false;
+        });
+    });
+    </script>
     <style>
     #view-source {
       position: fixed;
