@@ -50,9 +50,9 @@ class CoapNode():
 
 
 class FlaskThread(threading.Thread):
-    def __init__(self, loop, protocol):
+    def __init__(self, coap_loop, protocol):
         threading.Thread.__init__(self)
-        self.loop = loop
+        self.coap_loop = coap_loop
         self.protocol = protocol
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
@@ -109,7 +109,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',protocol), loop).result()
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',self.protocol), self.loop).result()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
@@ -150,15 +150,11 @@ def testThread(loop,protocol):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
-    counter = 0
-    while True:
-        counter += 1
-        time.sleep(1)
-        packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
+    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
 
-        print("\n\n!==========REPONSE #",counter," FROM NODE: ",packet,"==========!\n\n")
+    print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
 
-        print("COAP THREAD DEBUG #3: ",threading.current_thread())
+    print("COAP THREAD DEBUG #3: ",threading.current_thread())
 
 
 def main():
