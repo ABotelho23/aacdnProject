@@ -7,6 +7,9 @@ import aiocoap.resource as resource
 import aiocoap
 import threading
 import time
+import capturePicture
+import captureVideo
+import picammotion
 
 
 """Please keep this resource for testing purposes"""
