@@ -113,7 +113,7 @@ def backgroundTask(loop,protocol):
 
 def main():
 
-    coap_loop = asyncio.get_event_loop()
+    #coap_loop = asyncio.get_event_loop()
 
     # Resource tree creation
     root = resource.Site()
@@ -130,7 +130,9 @@ def main():
     Backgroundmotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
     Backgroundmotion.start()"""
 
-    coap_loop.run_forever()
+    asyncio.Task(aiocoap.Context.create_server_context(root))
+
+    asyncio.get_event_loop().run_forever()
 
 if __name__ == "__main__":
     main()
