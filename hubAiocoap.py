@@ -167,7 +167,7 @@ def main():
     flaskServer.start()
     print('DEBUG: FINISHED STARTING FLASK THREAD...')
 
-	print('DEBUG: STARTING DISCVOERY THREAD...')
+    print('DEBUG: STARTING DISCVOERY THREAD...')
     discoverNodes = DiscoveryThread()
     discoveryNodes.start()
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...')
