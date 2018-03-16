@@ -130,6 +130,12 @@ class RecNotifications(resource.Resource):
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
 
+    async def render_put(self, request):
+        print('\nReceived notification from a camera: %s' % request.payload)
+        print('\n')
+        self.set_content(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
+
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
     def __init__(self):
