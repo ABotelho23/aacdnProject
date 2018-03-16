@@ -14,10 +14,23 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 
-class DiscoveryThread(threading.Thread):
-    def __init__(self):
-	    Thread.__init__(self)
+global app
+app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template('index.html')
+@app.route("/temperatureCheck/")
+def tempstatus():
+    return render_template('temperature.html')
 
+@app.route("/tempbackground_proc")
+def checkTemp():
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskProtocol), flaskLoop).result()
+    print(currentTemp)
+    return jsonify(result=currentTemp)
+
+
+class DiscoveryThread(threading.Thread):
     def run(self):
         zeroconf = Zeroconf()
         print("\n+++++Discovering services...+++++\n")
@@ -54,12 +67,15 @@ class CoapNode():
 
 class FlaskThread(threading.Thread):
     def __init__(self, loop, protocol):
-        self.loop = loop
-        self.protocol = protocol
+        threading.Thread.__init__(self)
+        global flaskLoop
+        global flaskProtocol
+        flaskLoop = loop
+        flaskProtocol = protocol
+        
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
-
 
 class CameraCapture(resource.Resource):
     """For receiving notifications from camera."""
@@ -100,21 +116,6 @@ class TestResource(resource.Resource):
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    return render_template('index.html')
-@app.route("/temperatureCheck/")
-def tempstatus():
-    return render_template('temperature.html')
-
-@app.route("/tempbackground_proc")
-def checkTemp():
-    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',protocol), loop).result()
-    print(currentTemp)
-    return jsonify(result=currentTemp)
-
 async def createRequest(request_type, node_address, node_resource,protocol):
     print("COAP THREAD DEBUG, SENDING REQUEST START: ",threading.current_thread())
     targetURI = 'coap://' + node_address + node_resource
@@ -152,22 +153,18 @@ def testThread(loop,protocol):
     """This thread emulates what would be the GUI in the final product"""
     print("TEST THREAD DEBUG #1: ",threading.current_thread())
 
-    counter = 0
-    while True:
-        counter += 1
-        time.sleep(1)
-        packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
+    packet = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours',protocol), loop).result()
 
-        print("\n\n!==========REPONSE #",counter," FROM NODE: ",packet,"==========!\n\n")
+    print("\n\n!==========REPONSE FROM NODE: ",packet,"==========!\n\n")
 
-        print("COAP THREAD DEBUG #3: ",threading.current_thread())
+    print("COAP THREAD DEBUG #3: ",threading.current_thread())
 
 
 def main():
 
     print('DEBUG: STARTING DISCVOERY THREAD...')
     discoverNodes = DiscoveryThread()
-    discoveryNodes.start()
+    discoverNodes.start()
     print('DEBUG: FINISHED STARTING DISCOVERY THREAD...')
 
     coap_loop = asyncio.get_event_loop()
