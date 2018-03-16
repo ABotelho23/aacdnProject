@@ -3,7 +3,7 @@
 <script type=text/javascript>
     $(function() {
      $('a#process_check').bind('click', function() {
-	  $.getJSON('/tempbackground_proc',
+	  $.getJSON('/bulbbackground_proc',
         function(data) {
             $("#result").text(data.result);
         });
