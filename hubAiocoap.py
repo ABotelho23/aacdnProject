@@ -117,7 +117,7 @@ class CameraCapture(resource.Resource):
         self.set_content(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
 
-class RecNotifications(resource.Resource):
+class Notifications(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
     def __init__(self):
         super().__init__()
@@ -223,7 +223,7 @@ def main():
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
-    root.add_resource(('recNotifications',), RecNotifications())
+    root.add_resource(('notifications',), RecNotifications())
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
