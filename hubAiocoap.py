@@ -91,7 +91,7 @@ class FlaskThread(threading.Thread):
         global flaskProtocol
         flaskLoop = loop
         flaskProtocol = protocol
-        
+
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
         app.run()
@@ -117,6 +117,18 @@ class CameraCapture(resource.Resource):
         self.set_content(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Notification received.')
 
+class Notifications(resource.Resource):
+    """This is our first resource defined from scratch to test functionality."""
+    def __init__(self):
+        super().__init__()
+        self.set_content(b"No notifications.")
+
+    def set_content(self, content):
+        self.content = content
+
+    #this is the render for a GET. This returns the payload.
+    async def render_get(self, request):
+        return aiocoap.Message(payload=self.content)
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -205,6 +217,7 @@ def main():
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
+    root.add_resource(('notifications',), Notifications())
 
     print('DEBUG: STARTING AIOCOAP THREAD...')
     aiocoapWorker = threading.Thread(target=aiocoapThread, args=(coap_loop,))
@@ -222,7 +235,7 @@ def main():
     flaskServer = FlaskThread(coap_loop,protocol)
     flaskServer.start()
     print('DEBUG: FINISHED STARTING FLASK THREAD...')
-    
+
     print('DEBUG: STARTING TEST THREAD...')
     testInstance = threading.Thread(target=testThread, args=(coap_loop,protocol,))
     testInstance.start()
