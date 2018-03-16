@@ -56,9 +56,9 @@ class FlaskThread(threading.Thread):
         self.protocol = protocol
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
+        app = Flask(__name__)
         app.run()
-    app = Flask(__name__)
-
+        
     @app.route("/")
     def index():
         return render_template('index.html')
