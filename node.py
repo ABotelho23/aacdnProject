@@ -83,7 +83,9 @@ def main():
     root = resource.Site()
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test',), TestResource())
+    root.add_resource(('camera','capture'), TakePicture())
+    root.add_resource(('camera','captureVideo'), TakeVideo())
+    root.add_resource(('camera', 'motionToggle'), MotionThread())
 
     protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
 
