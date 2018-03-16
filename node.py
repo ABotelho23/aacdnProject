@@ -123,6 +123,8 @@ def main():
     root.add_resource(('picture'), TakePicture())
     root.add_resource(('video'), TakeVideo())
 
+    print("Site created.")
+
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
     """protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
