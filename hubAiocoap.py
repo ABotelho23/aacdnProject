@@ -199,6 +199,7 @@ def main():
     testInstance = threading.Thread(target=testThread, args=(coap_loop,protocol,))
     testInstance.start()
     print('DEBUG: FINISHED STARTING TEST THREAD...')
+    print('DEBUG: FINISHED STARTING TEST THREAD...')
 
     print('ALL THREADS STARTED!\n')
 
