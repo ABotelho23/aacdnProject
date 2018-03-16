@@ -134,6 +134,8 @@ def main():
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 
+    print("task scheduled.")
+
     asyncio.get_event_loop().run_forever()
 
 if __name__ == "__main__":
