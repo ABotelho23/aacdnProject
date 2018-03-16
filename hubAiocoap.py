@@ -14,6 +14,9 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 
+global app
+app = Flask(__name__)
+
 class DiscoveryThread(threading.Thread):
     def run(self):
         zeroconf = Zeroconf()
@@ -56,7 +59,6 @@ class FlaskThread(threading.Thread):
         self.protocol = protocol
     def run(self):
         print("FLASK THREAD DEBUG #1: ",threading.current_thread())
-        app = Flask(__name__)
         app.run()
         
     @app.route("/")
