@@ -25,7 +25,7 @@ def tempstatus():
 
 @app.route("/tempbackground_proc")
 def checkTemp():
-    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskProtocol), FlaskLoop).result()
+    currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp',flaskProtocol), flaskLoop).result()
     print(currentTemp)
     return jsonify(result=currentTemp)
 
