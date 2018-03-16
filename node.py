@@ -5,6 +5,7 @@ import asyncio
 
 import aiocoap.resource as resource
 import aiocoap
+import threading
 
 
 """Please keep this resource for testing purposes"""
