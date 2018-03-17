@@ -28,7 +28,6 @@ def tempstatus():
 @app.route("/tempbackground_proc")
 def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()
-    print(currentTemp)
     return jsonify(result=currentTemp)
 
 @app.route("/bulbCheck/")
@@ -38,16 +37,28 @@ def bulbstatus():
 @app.route("/bulbbackground_proc")
 def checkBulb():
     currentBulb = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.101', '/bulb/colours','0', flaskProtocol), flaskLoop).result()
-    print(currentBulb)
     return jsonify(result=currentBulb)
 
 @app.route("/bulbsetbackground_proc")
 def setBulb():
     userPayload = request.args.get('CName')
     setBulb = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', userPayload, flaskProtocol), flaskLoop).result()
-    print(setBulb)
     return jsonify(result2=setBulb)
 
+@app.route("/blindCheck/")
+def blindstatus():
+    return render_template('blind.html')
+
+@app.route("/blindbackground_proc")
+def checkBlind():
+    currentBlind = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.104', '/blinds/move','0', flaskProtocol), flaskLoop).result()
+    return jsonify(result=currentBlind)
+
+@app.route("/blindsetbackground_proc")
+def setBlind():
+    userPayload = request.args.get('Move')
+    setBlind = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.104', '/blinds/move', userPayload, flaskProtocol), flaskLoop).result()
+    return jsonify(result2=setBlind)
 
 class DiscoveryThread(threading.Thread):
     def run(self):
