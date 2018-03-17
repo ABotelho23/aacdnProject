@@ -1,0 +1,39 @@
+<head>
+<script src="../static/jquery.js"></script>
+<script type=text/javascript>
+    $(function() {
+     $('a#process_check').bind('click', function() {
+	  $.getJSON('/blindbackground_proc',
+        function(data) {
+            $("#result").text(data.result);
+        });
+        return false;
+	});
+});
+    $(function() {
+     $('a#send_blind').bind('click', function() {
+	  $.getJSON('/blindsetbackground_proc', {
+         Move: $('input[name="movement"]').val()
+      },
+        function(data) {
+            $("#result2").text(data.result);
+        });
+        return false;
+	});
+});
+</script>
+</head>
+<body>
+    <div class='CheckBulb'>
+	<h3>The Current Blind Status Is: </h3>
+		<a href=# id=process_check><button class='btn btn-default'>Check</button></a>
+		<p id=result>...</p>
+	</div>
+    <div class='SetBulb'>
+	<h3>Set Light Bulb Color: </h3>
+        <form>
+            <a href=# id=send_blind><input type="text" name="movement"><br>
+            <p id=result2>Submit</p>
+        </form>
+    </div>
+</body>
