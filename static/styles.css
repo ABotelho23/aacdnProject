@@ -180,6 +180,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   min-height: 200px;
   background-image: url('images/thermometer.png');
   background-position: 90% 100%;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -187,6 +188,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   min-height: 200px;
   background-image: url('images/camera.png');
   background-position: 90% 100%;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -194,6 +196,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   min-height: 200px;
   background-image: url('images/blinds.png');
   background-position: 90% 100%;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -201,6 +204,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   min-height: 200px;
   background-image: url('images/bulb.png');
   background-position: 90% 100%;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
