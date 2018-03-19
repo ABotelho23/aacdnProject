@@ -82,6 +82,18 @@
         });
     });
     </script>
+     </script>
+	<script type=text/javascript>
+        $(function() {
+         $('a#CurrentLight').ready(function() {
+          $.getJSON('/bulbbackground_proc',
+            function(data) {
+                $("#CurrentLight").text(data.result);
+            });
+            return false;
+        });
+    });
+    </script>
     <style>
     #view-source {
       position: fixed;
@@ -178,7 +190,7 @@
                 <h2 class="mdl-card__title-text">Lights</h2>
               </div>
               <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                Current Status: 
+                Current Status: <a class="mdl-card__supporting-text mdl-color-text--grey-600" id=CurrentLight></a>
 	      </div>
               <div class="mdl-card__actions mdl-card--border">
                 <a href="#" class="mdl-button mdl-button--raised">Settings</a>
