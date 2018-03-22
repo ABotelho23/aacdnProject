@@ -50,7 +50,8 @@ class TakePicture(resource.Resource):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
         #Call Take picture function
-        takePicture(request.payload)
+        capturePicture.main(request.payload)
+        #takePicture(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Picture captured.')
 
 
