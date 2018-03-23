@@ -41,9 +41,16 @@ def checkBulb():
 
 @app.route("/bulbsetbackground_proc")
 def setBulb():
-    userPayload = request.args.get('CName')
-    setBulb = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', userPayload, flaskProtocol), flaskLoop).result()
-    return jsonify(result2=setBulb)
+    onoff = request.args.get('onoffVal')
+    colour = request.args.get('colourVal')
+    print(onoff)
+    print(colour)
+    if(onoff == 'off'):
+        asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', 'off', flaskProtocol), flaskLoop)
+    else:
+        asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', colour, flaskProtocol), flaskLoop)
+
+    return jsonify('done')
 
 @app.route("/blindCheck/")
 def blindstatus():
