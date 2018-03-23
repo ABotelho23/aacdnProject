@@ -127,7 +127,7 @@ def main():
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
     root.add_resource(('picture'), TakePicture())
-    #root.add_resource(('video'), TakeVideo())
+    root.add_resource(('video'), TakeVideo())
 
     protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
 
