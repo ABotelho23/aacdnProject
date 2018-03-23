@@ -31,8 +31,6 @@ class TestResource(resource.Resource):
 
 
 class TakePicture(resource.Resource):
-    """This is our first resource defined from scratch to test functionality."""
-
     def __init__(self):
         super().__init__()
         self.set_content(b"If you perform a PUT on this URI, camera will take a picture.")
@@ -110,7 +108,6 @@ def backgroundTask(loop,protocol):
     while True:
         motionState = picammotion.motion()
         if motionState == False:
-            print("No motion yet.")
             print("BACKGROUND THREAD, no motion: ",threading.current_thread())
         else:
             packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
@@ -126,8 +123,8 @@ def main():
     root.add_resource(('.well-known', 'core'),
         resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('test',), TestResource())
-    root.add_resource(('picture'), TakePicture())
-    root.add_resource(('video'), TakeVideo())
+    root.add_resource(('picture',), TakePicture())
+    root.add_resource(('video',), TakeVideo())
 
     protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
 
