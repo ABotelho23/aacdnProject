@@ -119,8 +119,9 @@ def backgroundTask(loop,protocol):
 
 def main():
 
+    coap_loop = asyncio.get_event_loop()
 
-        # Resource tree creation
+    # Resource tree creation
     root = resource.Site()
 
     root.add_resource(('.well-known', 'core'),
@@ -129,34 +130,13 @@ def main():
     root.add_resource(('picture'), TakePicture())
     #root.add_resource(('video'), TakeVideo())
 
-    asyncio.Task(aiocoap.Context.create_server_context(root))
-
-    asyncio.get_event_loop().run_forever()
-
-    """coap_loop = asyncio.get_event_loop()
-
-    # Resource tree creation
-    root = resource.Site()
-    root.add_resource(('.well-known', 'core'),
-        resource.WKCResource(root.get_resources_as_linkheader))
-    root.add_resource(('test'), TestResource())
-    root.add_resource(('picture'), TakePicture())
-    root.add_resource(('video'), TakeVideo())
-
-    print("Site created.")
-
-    asyncio.Task(aiocoap.Context.create_server_context(root))
-
     protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
 
     Backgroundmotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
     Backgroundmotion.start()
 
-    asyncio.Task(aiocoap.Context.create_server_context(root))
+    asyncio.get_event_loop().run_forever()
 
-    print("task scheduled.")
-
-    asyncio.get_event_loop().run_forever()"""
 
 if __name__ == "__main__":
     main()
