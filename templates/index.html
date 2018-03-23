@@ -250,7 +250,7 @@
                 Current Status: <a class="mdl-card__supporting-text mdl-color-text--grey-600" id=CurrentBlind></a>
               </div>
               <div class="mdl-card__actions mdl-card--border">
-                <a href="#" id="myBtn" class="mdl-button mdl-button--raised">Settings</a>
+                <a href="#" id="myBtn2" class="mdl-button mdl-button--raised">Settings</a>
               </div>
 		</div>
 		<!-- Lights Card -->
@@ -263,7 +263,7 @@
 	      </div>
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
-                <a href="#" id="myBtn" class="mdl-button mdl-button--raised">Settings</a>
+                <a href="#" id="myBtn1" class="mdl-button mdl-button--raised">Settings</a>
               </div>
 		</div>
 		<!-- End Of Cards -->
@@ -272,7 +272,7 @@
       </div>
 <!-- Modal Section -->
 <!-- LightBulb Modal -->
-<div id="myModal" class="modal">
+<div id="myModal1" class="modal">
     <!-- Modal content -->
     <div class="modal-content mdl-card">
       <div class="modal-header">
@@ -304,7 +304,7 @@
     </div>
 <!-- End of Lightbulb Modal -->
 <!-- Blinds Modal -->
-<div id="myModal" class="modal">
+<div id="myModal2" class="modal">
     <!-- Modal content -->
     <div class="modal-content mdl-card">
       <div class="modal-header">
@@ -324,12 +324,12 @@
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
 
-    <!--- MODAL SCRIPTS --->
+    <!--- MODAL for Bulb SCRIPTS --->
     <script>
     // Get the modal
-    var modal = document.getElementById('myModal');
+    var modal = document.getElementById('myModal1');
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("myBtn1");
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
     // When the user clicks the button, open the modal
@@ -348,6 +348,29 @@
       return false;
   });
 });
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<!--- MODAL for Blind SCRIPTS --->
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal2');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn2");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
