@@ -1,6 +1,5 @@
 import datetime
 import logging
-
 import asyncio
 from aiocoap import *
 import aiocoap.resource as resource
@@ -73,7 +72,7 @@ class TakeVideo(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
-        takeVideo(request.payload)
+        captureVideo.main(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Video captured.')
 # logging setup
 
