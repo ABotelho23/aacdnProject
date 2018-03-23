@@ -112,6 +112,7 @@ def backgroundTask(loop,protocol):
         else:
             packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
             print("BACKGROUND THREAD, motion: ",threading.current_thread())
+            capturePicture.main(1)
 
 def main():
 
