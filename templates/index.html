@@ -37,7 +37,7 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="#">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
@@ -104,7 +104,13 @@
     <!--- Simple Function for Slider Display --->
     <script type=text/javascript>
     function outputUpdate(vol) {
-	       document.querySelector('#blindSliderLabel').value = vol;
+        if(vol == '0'){
+            document.querySelector('#blindSliderLabel').value = 'Fully Open';
+        } else if (vol == '10'){
+            document.querySelector('#blindSliderLabel').value = 'Fully Closed';
+        } else {
+            document.querySelector('#blindSliderLabel').value = '% ' + vol * 10;
+        }
     }
     </script>
     <style>
@@ -139,7 +145,7 @@
         margin: 15% auto; /* 15% from the top and centered */
         padding: 10px;
         border: 1px solid #888;
-        width: 60%; /* Could be more or less, depending on screen size */
+        width: 55%; /* Could be more or less, depending on screen size */
         font-family: 'Roboto', 'Helvetica', sans-serif;
         text-align: center;
     }
@@ -201,7 +207,7 @@
       </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--white">
         <header class="demo-drawer-header">
-          <img src="images/favicon.png" class="demo-avatar">
+          <img src="" class="demo-avatar">
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-900">
           <a class="mdl-navigation__link" href="/index.html"><i class="mdl-color-text--white material-icons" role="presentation">home</i><span class="mdl-color-text--white"> Dashboard</span></a>
@@ -230,7 +236,7 @@
                 <h2 class="mdl-card__title-text">Camera</h2>
               </div>
               <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                Last Picture Taken
+                Last Picture Taken: <a class="mdl-card__supporting-text mdl-color-text--grey-600" id=LastCamera></a>
               </div>
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
@@ -305,7 +311,7 @@
           <!-- Slider with Starting Value -->
           <label for='Bslider'></label>
           <input id="Bslider" name="blindValue" class="mdl-slider mdl-js-slider" type="range" min="0" max="10" value="5" step=1 tabindex="0" oninput="outputUpdate(value)">
-          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">5</ouput>
+          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">% 50</ouput>
             </div>
     <div class="modal-footer">
      <a href="#" id="blindSlider" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Submit</a>
