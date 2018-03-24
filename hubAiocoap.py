@@ -21,18 +21,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route("/temperatureCheck/")
-def tempstatus():
-    return render_template('temperature.html')
-
 @app.route("/tempbackground_proc")
 def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()
     return jsonify(result=currentTemp)
-
-@app.route("/bulbCheck/")
-def bulbstatus():
-    return render_template('bulb.html')
 
 @app.route("/bulbbackground_proc")
 def checkBulb():
@@ -51,10 +43,6 @@ def setBulb():
         asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', colour, flaskProtocol), flaskLoop)
 
     return jsonify('done')
-
-@app.route("/blindCheck/")
-def blindstatus():
-    return render_template('blind.html')
 
 @app.route("/blindbackground_proc")
 def checkBlind():

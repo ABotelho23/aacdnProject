@@ -139,7 +139,7 @@
         margin: 15% auto; /* 15% from the top and centered */
         padding: 10px;
         border: 1px solid #888;
-        width: 50%; /* Could be more or less, depending on screen size */
+        width: 60%; /* Could be more or less, depending on screen size */
         font-family: 'Roboto', 'Helvetica', sans-serif;
         text-align: center;
     }
@@ -189,15 +189,6 @@
         <div class="mdl-layout__header-row">
 			<span class="mdl-layout-title">Dashboard</span>
           <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
-            </div>
-          </div>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
@@ -214,12 +205,8 @@
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-900">
           <a class="mdl-navigation__link" href="/index.html"><i class="mdl-color-text--white material-icons" role="presentation">home</i><span class="mdl-color-text--white"> Dashboard</span></a>
-          <a class="mdl-navigation__link" href="/temperatureCheck/"><i class="mdl-color-text--white material-icons" role="presentation">done</i><span class="mdl-color-text--white"> Thermometer</span></a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">done</i><span class="mdl-color-text--white"> Camera</span></a>
-          <a class="mdl-navigation__link" href="/blindCheck/"><i class="mdl-color-text--white material-icons" role="presentation">done</i><span class="mdl-color-text--white"> Blinds</span></a>
-		  <a class="mdl-navigation__link" href="/bulbCheck/"><i class="mdl-color-text--white material-icons" role="presentation">done</i><span class="mdl-color-text--white"> Light Bulb</span></a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">done_all</i><span class="mdl-color-text--white"> Multi-Device</span></a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">report</i><span class="mdl-color-text--white"> Hub</span></a>
+          <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">done_all</i><span class="mdl-color-text--white"> Multi-Device</span></a>
+          <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">camera_enhance</i><span class="mdl-color-text--white"> Gallery</span></a>
           <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">flag</i><span class="mdl-color-text--white"> Updates</span></a>
         </nav>
       </div>
@@ -320,10 +307,45 @@
           <input id="Bslider" name="blindValue" class="mdl-slider mdl-js-slider" type="range" min="0" max="10" value="5" step=1 tabindex="0" oninput="outputUpdate(value)">
           <output for='Bslider' mdl-textfield__label id="blindSliderLabel">5</ouput>
             </div>
-     <a href="#" id="blindSlider" class="mdl-button mdl-button--raised">Submit</a>
+    <div class="modal-footer">
+     <a href="#" id="blindSlider" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Submit</a>
     </div>
-    </div>
+  </div>
+</div>
 <!-- End of Blinds Modal -->
+<!-- Camera Modal -->
+<div id="myModal3" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content mdl-card">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h4>Camera Settings</h4>
+      </div>
+      <div class="modal-body">
+          <!-- Numeric Textfield with Floating Label -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="picture">
+            <label class="mdl-textfield__label" for="picture">Number Of Pictures...</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="video">
+            <label class="mdl-textfield__label" for="video">Video Length (sec)...</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <br><button id="pSend" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Capture Pictures</button>
+        <br><br><button id="vSend" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Record Video</button>
+        <br><br><a href="#" id="gallery" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">View Gallery</a>
+      </div>
+    </div>
+</div>
+<!-- End of Camera Modal -->
 
     <a href="https://github.com/ABotelho23/aacdnProject" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -334,18 +356,24 @@
     // Get the modal
     var modal = document.getElementById('myModal');
     var modal2 = document.getElementById('myModal2');
+    var modal3 = document.getElementById('myModal3');
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
     var btn2 = document.getElementById("myBtn2");
+    var btn3 = document.getElementById("myBtn3");
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
     var span2 = document.getElementsByClassName("close")[1];
+    var span3 = document.getElementsByClassName("close")[2];
     // When the user clicks the button, open the modal
     btn.onclick = function() {
         modal.style.display = "block";
     }
     btn2.onclick = function() {
         modal2.style.display = "block";
+    }
+    btn3.onclick = function() {
+        modal3.style.display = "block";
     }
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
@@ -354,11 +382,15 @@
     span2.onclick = function() {
         modal2.style.display = "none";
     }
+    span3.onclick = function() {
+        modal3.style.display = "none";
+    }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target == modal || event.target == modal2) {
+        if (event.target == modal || event.target == modal2 || event.target == modal3) {
             modal.style.display = "none";
             modal2.style.display = "none";
+            modal3.style.display = "none";
         }
     }
     //Function for bulb control with buttons
@@ -399,6 +431,7 @@
       return false;
  });
 });
+    //Function for camera control
 </script>
 </body>
 </html>
