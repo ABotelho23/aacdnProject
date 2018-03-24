@@ -99,6 +99,13 @@
             return false;
         });
     });
+
+    </script>
+    <!--- Simple Function for Slider Display --->
+    <script type=text/javascript>
+    function outputUpdate(vol) {
+	       document.querySelector('#blindSliderLabel').value = vol;
+    }
     </script>
     <style>
     #view-source {
@@ -309,9 +316,11 @@
       <div class="modal-body">
           <h5>Adjust Blinds</h5>
           <!-- Slider with Starting Value -->
-          <input class="mdl-slider mdl-js-slider" type="range" min="0" max="10" value="5" step=1 tabindex="0">
+          <label for='Bslider'></label>
+          <input id="Bslider" name="blindValue" class="mdl-slider mdl-js-slider" type="range" min="0" max="10" value="5" step=1 tabindex="0" oninput="outputUpdate(value)">
+          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">5</ouput>
             </div>
-     <a href="#" id="SubmitC" class="mdl-button mdl-button--raised">Submit</a>
+     <a href="#" id="blindSlider" class="mdl-button mdl-button--raised">Submit</a>
     </div>
     </div>
 <!-- End of Blinds Modal -->
@@ -379,7 +388,17 @@
  });
 });
     //Function for blind control slider
-
+    $(function() {
+    $('a#blindSlider').on('click', function() {
+    $.getJSON('/blindsetbackground_proc', {
+        blindVal: $('input[name="blindValue"]').val(),
+      },
+      function(data) {
+          $("#result2").text(data.result);
+      });
+      return false;
+ });
+});
 </script>
 </body>
 </html>

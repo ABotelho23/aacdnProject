@@ -63,7 +63,7 @@ def checkBlind():
 
 @app.route("/blindsetbackground_proc")
 def setBlind():
-    userPayload = request.args.get('Move')
+    userPayload = request.args.get('blindVal')
     setBlind = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.104', '/blinds/move', userPayload, flaskProtocol), flaskLoop).result()
     return jsonify(result2=setBlind)
 
