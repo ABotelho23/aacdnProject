@@ -76,7 +76,7 @@
         });
     });
     </script>
-    <!-- Update blind on page load-->
+    <!-- Update blind on page load/refresh button-->
 	<script type=text/javascript>
         $(function() {
          $('a#CurrentBlind').ready(function() {
@@ -87,8 +87,17 @@
             return false;
         });
     });
+        $(function() {
+         $('a#blindUpdate').bind('click', function() {
+          $.getJSON('/blindbackground_proc',
+            function(data) {
+                $("#CurrentBlind").text(data.result);
+            });
+            return false;
+        });
+    });
     </script>
-    <!-- Update bulb on page load-->
+    <!-- Update bulb on page load/refresh button-->
 	<script type=text/javascript>
         $(function() {
          $('a#CurrentLight').ready(function() {
@@ -99,7 +108,15 @@
             return false;
         });
     });
-
+        $(function() {
+         $('a#lightUpdate').bind('click', function() {
+          $.getJSON('/bulbbackground_proc',
+            function(data) {
+                $("#CurrentLight").text(data.result);
+            });
+            return false;
+        });
+    });
     </script>
     <!--- Simple Function for Slider Display --->
     <script type=text/javascript>
@@ -109,11 +126,12 @@
         } else if (vol == '10'){
             document.querySelector('#blindSliderLabel').value = 'Fully Closed';
         } else {
-            document.querySelector('#blindSliderLabel').value = '% ' + vol * 10;
+            document.querySelector('#blindSliderLabel').value = '% ' + vol * 10 + ' Closed';
         }
     }
     </script>
     <style>
+    /* Removing view source button
     #view-source {
       position: fixed;
       display: block;
@@ -122,7 +140,7 @@
       margin-right: 40px;
       margin-bottom: 40px;
       z-index: 900;
-    }
+    } */
     /* The Modal (background) */
     .modal {
         display: none; /* Hidden by default */
@@ -199,9 +217,9 @@
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">Contact</li>
-            <li class="mdl-menu__item">Legal information</li>
+            <li class="mdl-menu__item"><a href="https://github.com/ABotelho23/aacdnProject" target="_blank">Source Code</a></li>
+            <li class="mdl-menu__item"><a href="mailto:aacdn.seniorproject@gmail.com" target="_blank">Contact</a></li>
+            <li class="mdl-menu__item"><a href="https://github.com/ABotelho23/aacdnProject/blob/hubCode-server-functionality/LICENSE" target="_blank">Legal information</a></li>
           </ul>
         </div>
       </header>
@@ -213,7 +231,6 @@
           <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--white material-icons" role="presentation">home</i><span class="mdl-color-text--white"> Dashboard</span></a>
           <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">done_all</i><span class="mdl-color-text--white"> Multi-Device</span></a>
           <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">camera_enhance</i><span class="mdl-color-text--white"> Gallery</span></a>
-          <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">flag</i><span class="mdl-color-text--white"> Updates</span></a>
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
@@ -254,6 +271,7 @@
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
                 <a href="#" id="myBtn2" class="mdl-button mdl-button--raised">Settings</a>
+                <a href="#" id="blindUpdate" class="mdl-button mdl-button--raised">Refresh</a>
               </div>
 		</div>
 		<!-- Lights Card -->
@@ -267,6 +285,7 @@
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
                 <a href="#" id="myBtn" class="mdl-button mdl-button--raised">Settings</a>
+                <a href="#" id="lightUpdate" class="mdl-button mdl-button--raised">Refresh</a>
               </div>
 		</div>
 		<!-- End Of Cards -->
@@ -311,7 +330,7 @@
           <!-- Slider with Starting Value -->
           <label for='Bslider'></label>
           <input id="Bslider" name="blindValue" class="mdl-slider mdl-js-slider" type="range" min="0" max="10" value="5" step=1 tabindex="0" oninput="outputUpdate(value)">
-          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">% 50</ouput>
+          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">% 50 Closed</ouput>
             </div>
     <div class="modal-footer">
      <a href="#" id="blindSlider" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Submit</a>
@@ -353,7 +372,7 @@
 </div>
 <!-- End of Camera Modal -->
 
-    <a href="https://github.com/ABotelho23/aacdnProject" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
+    <!-- <a href="https://github.com/ABotelho23/aacdnProject" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> --->
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
 
