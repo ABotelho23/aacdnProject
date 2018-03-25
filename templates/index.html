@@ -126,7 +126,7 @@
         } else if (vol == '10'){
             document.querySelector('#blindSliderLabel').value = 'Fully Closed';
         } else {
-            document.querySelector('#blindSliderLabel').value = '% ' + vol * 10 + ' Closed';
+            document.querySelector('#blindSliderLabel').value = vol + '0% Closed';
         }
     }
     </script>
@@ -244,7 +244,7 @@
 				Current Temperature: <a class="mdl-card__supporting-text mdl-color-text--grey-600" id=CurrentTemp></a>
               </div>
               <div class="mdl-card__actions mdl-card--border">
-                <a href="#" id="tempUpdate" class="mdl-button mdl-button--raised">Refresh</a>
+                <a href="#" id="tempUpdate" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Refresh</a>
               </div>
 		</div>
 		<!-- Camera Card -->
@@ -257,7 +257,7 @@
               </div>
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
-                <a href="#" id="myBtn3" class="mdl-button mdl-button--raised">Settings</a>
+                <a href="#" id="myBtn3" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Settings</a>
               </div>
 		</div>
 		<!-- Blinds Card -->
@@ -270,8 +270,8 @@
               </div>
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
-                <a href="#" id="myBtn2" class="mdl-button mdl-button--raised">Settings</a>
-                <a href="#" id="blindUpdate" class="mdl-button mdl-button--raised">Refresh</a>
+                <a href="#" id="myBtn2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Settings</a>
+                <a href="#" id="blindUpdate" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Refresh</a>
               </div>
 		</div>
 		<!-- Lights Card -->
@@ -284,8 +284,8 @@
 	      </div>
               <div class="mdl-card__actions mdl-card--border">
                   <!-- Trigger/Open The Modal -->
-                <a href="#" id="myBtn" class="mdl-button mdl-button--raised">Settings</a>
-                <a href="#" id="lightUpdate" class="mdl-button mdl-button--raised">Refresh</a>
+                <a href="#" id="myBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Settings</a>
+                <a href="#" id="lightUpdate" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Refresh</a>
               </div>
 		</div>
 		<!-- End Of Cards -->
@@ -330,7 +330,7 @@
           <!-- Slider with Starting Value -->
           <label for='Bslider'></label>
           <input id="Bslider" name="blindValue" class="mdl-slider mdl-js-slider" type="range" min="0" max="10" value="5" step=1 tabindex="0" oninput="outputUpdate(value)">
-          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">% 50 Closed</ouput>
+          <output for='Bslider' mdl-textfield__label id="blindSliderLabel">50% Closed</ouput>
             </div>
     <div class="modal-footer">
      <a href="#" id="blindSlider" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Submit</a>

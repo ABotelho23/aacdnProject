@@ -47,15 +47,16 @@ def setBulb():
 @app.route("/blindbackground_proc")
 def checkBlind():
     currentBlind = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.104', '/blinds/move','0', flaskProtocol), flaskLoop).result()
+    currentBlindstr = currentBlind.decode();
 
-    if(currentBlind == '0'):
-        currentBlind = 'Fully Open'
-    elif(currentBlind == '10'):
-        currentBlind = 'Fully Closed'
+    if(currentBlindstr == '0'):
+        currentBlindstr = 'Fully Open'
+    elif(currentBlindstr == '10'):
+        currentBlindstr = 'Fully Closed'
     else:
-        currentBlind = '% ' + currentBlind + '0' + ' Closed'
+        currentBlindstr += '0% Closed'
 
-    return jsonify(result=currentBlind)
+    return jsonify(result=currentBlindstr)
 
 @app.route("/blindsetbackground_proc")
 def setBlind():
