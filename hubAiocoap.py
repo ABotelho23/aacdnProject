@@ -14,6 +14,7 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 from flask import request
+import os
 
 global app
 app = Flask(__name__)
@@ -23,7 +24,8 @@ def index():
 
 @app.route("/gallery/")
 def galleryPage():
-    return render_template('gallery.html')
+    pics = os.listdir('static/images/')
+    return render_template('gallery.html', pics=pics)
 
 @app.route("/tempbackground_proc")
 def checkTemp():

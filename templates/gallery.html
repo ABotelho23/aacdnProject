@@ -52,7 +52,7 @@
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     <script src="../static/mdl-ext.min.js"></script>
-    
+
 <style>
   .carousel-demo {
     box-sizing: border-box;
@@ -214,12 +214,13 @@
         <!-- PICTURE CAROUSEL -->
         <artichle class="carousel-demo">
         <h4>Camera Pictures</h4>
+        <!-- Default Image to Display -->
           <section id="carousel-imgviewer">
             <figure>
-              <img src="../static/images/bulb.png" alt="" title=""/>
+              <img src="" alt="" title=""/>
             </figure>
           </section>
-
+          <!-- End of Default Image to Display -->
           <footer id="carousel-footer">
             <div id="carousel-viewer-title" class="mdl-card__supporting-text"></div>
             <nav>
@@ -249,22 +250,17 @@
 
           <section id="carousel-container">
             <ul id="mdlext-carousel-demo2" class="mdlext-carousel mdlext-js-carousel mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events">
-              <li class="mdlext-carousel__slide" aria-selected >
-                <a href="../static/images/bulb.png">
-                  <figure>
-                    <img src="../static/images/bulb.png" title="Bulb"/>
-                    <figcaption>Bulb</figcaption>
+
+             {% for pic in pics %}
+                <li class="mdlext-carousel__slide">
+                  <a href="../static/images/{{pic}}">
+                   <figure>
+                   <img src='../static/images/{{pic}}' title="{{pic}}"/>
+                   <figcaption>{{pic}}</figure>
                   </figure>
-                </a>
-              </li>
-              <li class="mdlext-carousel__slide">
-                <a href="../static/images/blinds.png">
-                  <figure>
-                    <img src="../static/images/blinds.png" title="Blinds"/>
-                    <figcaption>blind</figcaption>
-                  </figure>
-                </a>
-              </li>
+                 </a>
+               </li>
+            {% endfor %}
               <!-- THIS NEED TO BE AUTO GENERATED FOR EACH IMAGE
               <li class="mdlext-carousel__slide">
                 <a href="../static/images/blinds.png">
