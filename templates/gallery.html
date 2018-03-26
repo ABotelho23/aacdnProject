@@ -43,52 +43,364 @@
     <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/mdl-ext-eqjs.min.css"/>
     <script src="../static/jquery.js"></script>
-
-    <style>
-
-
-   </style>
-  </head>
-  <body>
-    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
-			<span class="mdl-layout-title">Dashboard</span>
-          <div class="mdl-layout-spacer"></div>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item"><a href="https://github.com/ABotelho23/aacdnProject" target="_blank">Source Code</a></li>
-            <li class="mdl-menu__item"><a href="mailto:aacdn.seniorproject@gmail.com" target="_blank">Contact</a></li>
-            <li class="mdl-menu__item"><a href="https://github.com/ABotelho23/aacdnProject/blob/hubCode-server-functionality/LICENSE" target="_blank">Legal information</a></li>
-          </ul>
-        </div>
-      </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--white">
-        <header class="demo-drawer-header">
-          <img src="" class="demo-avatar">
-        </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-900">
-          <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--white material-icons" role="presentation">home</i><span class="mdl-color-text--white"> Dashboard</span></a>
-          <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">done_all</i><span class="mdl-color-text--white"> Multi-Device</span></a>
-          <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">camera_enhance</i><span class="mdl-color-text--white"> Gallery</span></a>
-        </nav>
-      </div>
-      <main class="mdl-layout__content mdl-color--grey-100">
-          
-
-
-      </main>
-      </div>
-
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <script src="../static/mdl-ext.min.js"></script>
+    
+<style>
+  .carousel-demo {
+    box-sizing: border-box;
+    display: block;
+    padding: 4px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  .carousel-demo * {
+    box-sizing: border-box;
+  }
+  #carousel-imgviewer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  #carousel-imgviewer figure {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  #carousel-imgviewer figure img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border: 0;
+    outline: 0;
+    -webkit-animation: fade-in-element 0.25s ease-out;
+    -moz-animation: fade-in-element 0.25s ease-out;
+    -o-animation: fade-in-element 025s ease-out;
+    animation: fade-in-element 0.25s ease-out;
+  }
+  #carousel-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  #carousel-footer .mdl-card__supporting-text {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0;
+    width: 100%;
+  }
+  #carousel-footer nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .carousel-button {
+  }
+  .carousel-button__icon {
+    font-size: 24px;
+  }
+  #carousel-container {
+  }
+  @media (max-width: 479px) {
+    #carousel-imgviewer {
+      height: 260px;
+    }
+    .carousel-button {
+      width: 28px;
+      min-width: 28px;
+      height: 28px;
+    }
+    .carousel-button__icon {
+      font-size: 20px;
+    }
+    #carousel-container {
+      height: 60px;
+      margin-top: 4px;
+    }
+  }
+  @media (min-width: 480px) and (max-width: 839px) {
+    #carousel-imgviewer {
+      height: 360px;
+    }
+    #carousel-container {
+      height: 90px;
+    }
+  }
+  @media (min-width: 840px) {
+    #carousel-imgviewer {
+      height: 500px;
+    }
+    #carousel-container {
+      height: 110px;
+    }
+  }
+  @-webkit-keyframes fade-in-element {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @-moz-keyframes fade-in-element {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @-o-keyframes fade-in-element {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes fade-in-element {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+  <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+      <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Gallery</span>
+        <div class="mdl-layout-spacer"></div>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+          <li class="mdl-menu__item"><a href="https://github.com/ABotelho23/aacdnProject" target="_blank">Source Code</a></li>
+          <li class="mdl-menu__item"><a href="mailto:aacdn.seniorproject@gmail.com" target="_blank">Contact</a></li>
+          <li class="mdl-menu__item"><a href="https://github.com/ABotelho23/aacdnProject/blob/hubCode-server-functionality/LICENSE" target="_blank">Legal information</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--white">
+      <header class="demo-drawer-header">
+        <img src="" class="demo-avatar">
+      </header>
+      <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-900">
+        <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--white material-icons" role="presentation">home</i><span class="mdl-color-text--white"> Dashboard</span></a>
+        <a class="mdl-navigation__link" href="#"><i class="mdl-color-text--white material-icons" role="presentation">done_all</i><span class="mdl-color-text--white"> Multi-Device</span></a>
+        <a class="mdl-navigation__link" href="/gallery/"><i class="mdl-color-text--white material-icons" role="presentation">camera_enhance</i><span class="mdl-color-text--white"> Gallery</span></a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <!-- PICTURE CAROUSEL -->
+        <artichle class="carousel-demo">
+        <h4>Camera Pictures</h4>
+          <section id="carousel-imgviewer">
+            <figure>
+              <img src="../static/images/bulb.png" alt="" title=""/>
+            </figure>
+          </section>
+
+          <footer id="carousel-footer">
+            <div id="carousel-viewer-title" class="mdl-card__supporting-text"></div>
+            <nav>
+              <button id="carousel-btn-first" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll First">
+                <i class="material-icons carousel-button__icon">first_page</i>
+              </button>
+              <button id="carousel-btn-scroll-prev" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll Previous">
+                <i class="material-icons carousel-button__icon">fast_rewind</i>
+              </button>
+              <button id="carousel-btn-prev" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Previous">
+                <i class="material-icons carousel-button__icon">navigate_before</i>
+              </button>
+              <button id="carousel-btn-play-pause" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Play">
+                <i class="material-icons carousel-button__icon">play_circle_outline</i>
+              </button>
+              <button id="carousel-btn-next" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Next">
+                <i class="material-icons carousel-button__icon">navigate_next</i>
+              </button>
+              <button id="carousel-btn-scroll-next" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll Next">
+                <i class="material-icons carousel-button__icon">fast_forward</i>
+              </button>
+              <button id="carousel-btn-last" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll Last">
+                <i class="material-icons carousel-button__icon">last_page</i>
+              </button>
+            </nav>
+          </footer>
+
+          <section id="carousel-container">
+            <ul id="mdlext-carousel-demo2" class="mdlext-carousel mdlext-js-carousel mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events">
+              <li class="mdlext-carousel__slide" aria-selected >
+                <a href="../static/images/bulb.png">
+                  <figure>
+                    <img src="../static/images/bulb.png" title="Bulb"/>
+                    <figcaption>Bulb</figcaption>
+                  </figure>
+                </a>
+              </li>
+              <li class="mdlext-carousel__slide">
+                <a href="../static/images/blinds.png">
+                  <figure>
+                    <img src="../static/images/blinds.png" title="Blinds"/>
+                    <figcaption>blind</figcaption>
+                  </figure>
+                </a>
+              </li>
+              <!-- THIS NEED TO BE AUTO GENERATED FOR EACH IMAGE
+              <li class="mdlext-carousel__slide">
+                <a href="../static/images/blinds.png">
+                  <figure>
+                    <img src="../static/images/blinds.png" title="Blinds"/>
+                    <figcaption>blind</figcaption>
+                  </figure>
+                </a>
+              </li>
+                  -->
+
+            </ul>
+          </section>
+        </artichle>
+        <!-- VIDEO CAROUSEL -->
+        <br>
+        <artichle class="carousel-demo">
+            <h4>Camera Videos</h4>
+          <section id="carousel-imgviewer">
+            <figure>
+              <img src="../static/images/bulb.png" alt="" title=""/>
+            </figure>
+          </section>
+
+          <footer id="carousel-footer">
+            <div id="carousel-viewer-title" class="mdl-card__supporting-text"></div>
+            <nav>
+              <button id="carousel-btn-first" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll First">
+                <i class="material-icons carousel-button__icon">first_page</i>
+              </button>
+              <button id="carousel-btn-scroll-prev" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll Previous">
+                <i class="material-icons carousel-button__icon">fast_rewind</i>
+              </button>
+              <button id="carousel-btn-prev" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Previous">
+                <i class="material-icons carousel-button__icon">navigate_before</i>
+              </button>
+              <button id="carousel-btn-play-pause" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Play">
+                <i class="material-icons carousel-button__icon">play_circle_outline</i>
+              </button>
+              <button id="carousel-btn-next" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Next">
+                <i class="material-icons carousel-button__icon">navigate_next</i>
+              </button>
+              <button id="carousel-btn-scroll-next" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll Next">
+                <i class="material-icons carousel-button__icon">fast_forward</i>
+              </button>
+              <button id="carousel-btn-last" class="mdl-button mdl-button--icon mdl-js-button carousel-button" title="Scroll Last">
+                <i class="material-icons carousel-button__icon">last_page</i>
+              </button>
+            </nav>
+          </footer>
+
+          <section id="carousel-container">
+            <ul id="mdlext-carousel-demo2" class="mdlext-carousel mdlext-js-carousel mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events">
+              <li class="mdlext-carousel__slide" aria-selected >
+                <a href="../static/images/bulb.png">
+                  <figure>
+                    <img src="../static/images/bulb.png" title="Bulb"/>
+                    <figcaption>Bulb</figcaption>
+                  </figure>
+                </a>
+              </li>
+              <li class="mdlext-carousel__slide">
+                <a href="../static/images/blinds.png">
+                  <figure>
+                    <img src="../static/images/blinds.png" title="Blinds"/>
+                    <figcaption>blind</figcaption>
+                  </figure>
+                </a>
+              </li>
+
+
+            </ul>
+          </section>
+        </artichle>
+    </main>
+    </div>
 </body>
-</html>
+
+<script>
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      document.querySelector('#carousel-btn-first').addEventListener('click', function (e) {
+        var ev = new CustomEvent('command', {detail: {action: 'first'}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#carousel-btn-scroll-prev').addEventListener('click', function (e) {
+        var ev = new CustomEvent('command', {detail: {action: 'scroll-prev'}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#carousel-btn-prev').addEventListener('click', function (e) {
+        var ev = new CustomEvent('command', {detail: {action: 'prev'}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#carousel-btn-next').addEventListener('click', function (e) {
+        var ev = new CustomEvent('command', {detail: {action: 'next'}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#carousel-btn-scroll-next').addEventListener('click', function (e) {
+        var ev = new CustomEvent('command', {detail: {action: 'scroll-next'}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#carousel-btn-last').addEventListener('click', function (e) {
+        var ev = new CustomEvent('command', {detail: {action: 'last'}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#carousel-btn-play-pause').addEventListener('click', function (e) {
+        // Toggle play icon
+        var i = this.querySelector('i');
+        var action = i.innerText === 'play_circle_outline' ? 'play' : 'pause';
+        i.textContent = action === 'play' ? 'pause_circle_outline' : 'play_circle_outline';
+        var ev = new CustomEvent('command', {detail: {action: action, interval: 3000}});
+        document.querySelector('#mdlext-carousel-demo2').dispatchEvent(ev);
+      });
+      document.querySelector('#mdlext-carousel-demo2').addEventListener('select', function (e) {
+        if ('pause' === e.detail.command) {
+          // Set play icon
+          var i = document.querySelector('#carousel-btn-play-pause i');
+          i.textContent = 'play_circle_outline';
+        }
+        else {
+          var oldImage = document.querySelector('#carousel-imgviewer img');
+          var selectImage = e.detail.source.querySelector('img');
+          var selectImageSrc = selectImage.src;
+          if (e.detail.source.querySelector('a')) {
+            selectImageSrc = e.detail.source.querySelector('a').href;
+          }
+          if (selectImageSrc !== oldImage.src) {
+            var newImage = oldImage.cloneNode(true);
+            newImage.src = selectImageSrc;
+            oldImage.parentNode.replaceChild(newImage, oldImage);
+            var title = document.querySelector('#carousel-viewer-title');
+            title.textContent = selectImage.title;
+          }
+        }
+      });
+    });
+  }());
+</script>
