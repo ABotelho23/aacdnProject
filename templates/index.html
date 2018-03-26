@@ -456,7 +456,30 @@
       return false;
  });
 });
-    //Function for camera control
+    //Function for picture control
+    $(function() {
+    $('#pSend').on('click', function() {
+    $.getJSON('/picturebackground_proc', {
+        picVal: $('input[id="picture"]').val(),
+      },
+      function(data) {
+          $("#result2").text(data.result);
+      });
+      return false;
+ });
+});
+//Function for video control
+    $(function() {
+    $('#vSend').on('click', function() {
+    $.getJSON('/videobackground_proc', {
+        vidVal: $('input[id="video"]').val(),
+      },
+      function(data) {
+          $("#result2").text(data.result);
+      });
+      return false;
+ });
+});
 </script>
 </body>
 </html>

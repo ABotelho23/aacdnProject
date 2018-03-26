@@ -68,6 +68,18 @@ def setBlind():
     setBlind = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.104', '/blinds/move', userPayload, flaskProtocol), flaskLoop).result()
     return jsonify(result2=setBlind)
 
+@app.route("/picturebackground_proc")
+def setPicture():
+    userPayload = request.args.get('picVal')
+    setPic = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.102', '/picture', userPayload, flaskProtocol), flaskLoop).result()
+    return jsonify(result2=setPic)
+
+@app.route("/videobackground_proc")
+def setVideo():
+    userPayload = request.args.get('vidVal')
+    setVid = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.102', '/video', userPayload, flaskProtocol), flaskLoop).result()
+    return jsonify(result2=setVid)
+
 class DiscoveryThread(threading.Thread):
     def run(self):
         zeroconf = Zeroconf()
