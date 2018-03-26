@@ -21,6 +21,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route("/gallery/")
+def galleryPage():
+    return render_template('gallery.html')
+
 @app.route("/tempbackground_proc")
 def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()
