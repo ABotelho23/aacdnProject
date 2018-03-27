@@ -18,8 +18,8 @@ html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 .demo-avatar {
-  width: 60px;
-  height: 60px;
+  width: 90%;
+  height: 90%;
   border-radius: 30px;
 }
 .demo-layout .mdl-layout__header .mdl-layout__drawer-button {
@@ -58,8 +58,8 @@ html, body {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 16px;
-  height: 151px;
+  padding: 15px;
+  height: 100px;
 }
 .demo-avatar-dropdown {
   display: -webkit-flex;
