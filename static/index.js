@@ -138,3 +138,14 @@ $.getJSON('/videobackground_proc', {
   return false;
 });
 });
+
+// <!-- Update camera pic on page load-->
+    $(function() {
+     $('a#LastCamera').ready(function() {
+      $.getJSON('/lastpicbackground_proc',
+        function(data) {
+            $("#LastCamera").text(data.result);
+        });
+        return false;
+    });
+});

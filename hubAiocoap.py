@@ -15,6 +15,7 @@ from flask import render_template
 from flask import jsonify
 from flask import request
 import os
+import glob
 
 global app
 app = Flask(__name__)
@@ -88,6 +89,13 @@ def setVideo():
     userPayload = request.args.get('vidVal')
     setVid = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.102', '/video', userPayload, flaskProtocol), flaskLoop).result()
     return jsonify(result2=setVid)
+
+@app.route("/lastpicbackground_proc")
+def checkPic():
+    listPic = glob.glob('/static/images/camera/pictures/*.jpg')
+    lastPic = max(listPic,key=os.path.getctime)
+
+    return jsonify(result=lastPic)
 
 class DiscoveryThread(threading.Thread):
     def run(self):
