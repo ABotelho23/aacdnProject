@@ -10,7 +10,7 @@ from picamera import Color
 
 def main(fromServer):
     # File path
-    filePath = "/mnt/captures/"
+    filePath = "/mnt/captures/pictures/"
     picTotal = fromServer
     intpicTotal = int(picTotal)
     picCount = 0
