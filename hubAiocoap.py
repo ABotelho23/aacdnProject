@@ -14,7 +14,7 @@ from flask import Flask
 from flask import render_template
 from flask import jsonify
 from flask import request
-import os import *
+from os import *
 import os
 
 global app
