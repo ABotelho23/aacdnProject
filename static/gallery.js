@@ -105,8 +105,8 @@
           i.textContent = 'play_circle_outline';
         }
         else {
-          var oldImage = document.querySelector('#carousel-imgviewer2 img');
-          var selectImage = e.detail.source.querySelector('img');
+          var oldImage = document.querySelector('#carousel-imgviewer2 video');
+          var selectImage = e.detail.source.querySelector('video');
           var selectImageSrc = selectImage.src;
           if (e.detail.source.querySelector('a')) {
             selectImageSrc = e.detail.source.querySelector('a').href;
