@@ -174,14 +174,17 @@
               </button>
             </nav>
           </footer>
-
+          <!-- VIDEO LIST CAROUSEL -->
           <section id="carousel-container2">
             <ul id="mdlext-carousel-demo3" class="mdlext-carousel mdlext-js-carousel mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events">
                 {% for vid in vids %}
                    <li class="mdlext-carousel__slide">
                      <a href="../static/images/camera/videos/{{vid}}">
                       <figure>
-                      <video src='../static/images/camera/videos/{{vid}}' title="{{vid}}"/>
+                        <video width="320" height="240" controls>
+                          <source src='../static/images/camera/videos/{{vid}}' type="video/mp4" title="{{vid}}">
+                              Unsupported
+                        </video>
                       <figcaption>{{vid}}</figure>
                      </figure>
                     </a>
