@@ -1,0 +1,13 @@
+[Unit]
+Description=Service for AADCDNProject
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/aacdnProject/hubCode.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+
