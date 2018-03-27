@@ -93,7 +93,7 @@ def setVideo():
 @app.route("/lastpicbackground_proc")
 def checkPic():
     listPic = glob.glob('/static/images/camera/pictures/*.jpg')
-    lastPic = max(listPic,key=os.path.getctime)
+    lastPic = max(listPic, key=os.path.getctime)
 
     return jsonify(result=lastPic)
 
