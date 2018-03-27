@@ -177,24 +177,16 @@
 
           <section id="carousel-container2">
             <ul id="mdlext-carousel-demo3" class="mdlext-carousel mdlext-js-carousel mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events">
-              <li class="mdlext-carousel__slide" aria-selected >
-                <a href="../static/images/bulb.png">
-                  <figure>
-                    <img src="../static/images/bulb.png" title="Bulb"/>
-                    <figcaption>Bulb</figcaption>
-                  </figure>
-                </a>
-              </li>
-              <li class="mdlext-carousel__slide">
-                <a href="../static/images/blinds.png">
-                  <figure>
-                    <img src="../static/images/blinds.png" title="Blinds"/>
-                    <figcaption>blind</figcaption>
-                  </figure>
-                </a>
-              </li>
-
-
+                {% for vid in vids %}
+                   <li class="mdlext-carousel__slide">
+                     <a href="../static/images/camera/videos/{{vid}}">
+                      <figure>
+                      <img src='../static/images/camera/videos/{{vid}}' title="{{vid}}"/>
+                      <figcaption>{{vid}}</figure>
+                     </figure>
+                    </a>
+                  </li>
+               {% endfor %}
             </ul>
           </section>
         </artichle>

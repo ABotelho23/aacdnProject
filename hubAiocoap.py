@@ -25,7 +25,10 @@ def index():
 @app.route("/gallery/")
 def galleryPage():
     pics = os.listdir('static/images/camera/pictures')
-    return render_template('gallery.html', pics=pics)
+    picSort = sorted(pics, reverse=True)
+    vids = os.listdir('static/images/camera/videos')
+    vidSort = sorted(pics, reverse=True)
+    return render_template('gallery.html', pics=picSort, vids=vidSort)
 
 @app.route("/multidevice/")
 def multiPage():
