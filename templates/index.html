@@ -47,91 +47,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="static/styles.css">
-    <script src="../static/jquery.js"></script>
-    <script>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script type=text/javascript src="../static/jquery.js"></script>
+    <script type=text/javascript src="../static/index.js"></script>
 
-    </script>
-    <!-- Update temp on page load-->
-    <script type=text/javascript>
-        $(function() {
-         $('a#CurrentTemp').ready(function() {
-          $.getJSON('/tempbackground_proc',
-            function(data) {
-                $("#CurrentTemp").text(data.result);
-            });
-            return false;
-        });
-    });
-    </script>
-    <!-- Update temp on refresh button-->
-    <script type=text/javascript>
-        $(function() {
-         $('a#tempUpdate').bind('click',function() {
-          $.getJSON('/tempbackground_proc',
-            function(data) {
-                $("#CurrentTemp").text(data.result);
-            });
-            return false;
-        });
-    });
-    </script>
-    <!-- Update blind on page load/refresh button-->
-	<script type=text/javascript>
-        $(function() {
-         $('a#CurrentBlind').ready(function() {
-          $.getJSON('/blindbackground_proc',
-            function(data) {
-                $("#CurrentBlind").text(data.result);
-            });
-            return false;
-        });
-    });
-        $(function() {
-         $('a#blindUpdate').bind('click', function() {
-          $.getJSON('/blindbackground_proc',
-            function(data) {
-                $("#CurrentBlind").text(data.result);
-            });
-            return false;
-        });
-    });
-    </script>
-    <!-- Update bulb on page load/refresh button-->
-	<script type=text/javascript>
-        $(function() {
-         $('a#CurrentLight').ready(function() {
-          $.getJSON('/bulbbackground_proc',
-            function(data) {
-                $("#CurrentLight").text(data.result);
-            });
-            return false;
-        });
-    });
-        $(function() {
-         $('a#lightUpdate').bind('click', function() {
-          $.getJSON('/bulbbackground_proc',
-            function(data) {
-                $("#CurrentLight").text(data.result);
-            });
-            return false;
-        });
-    });
-    </script>
-    <!--- Simple Function for Slider Display --->
-    <script type=text/javascript>
-    function outputUpdate(vol) {
-        if(vol == '0'){
-            document.querySelector('#blindSliderLabel').value = 'Fully Open';
-        } else if (vol == '10'){
-            document.querySelector('#blindSliderLabel').value = 'Fully Closed';
-        } else {
-            document.querySelector('#blindSliderLabel').value = vol + '0% Closed';
-        }
-    }
-    </script>
-    <style>
-    /* Removing view source button
+    <!-- Removing view source button
     #view-source {
       position: fixed;
       display: block;
@@ -141,71 +62,7 @@
       margin-bottom: 40px;
       z-index: 900;
     } */
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        /* overflow: auto; /* Enable scroll if needed (caused some weirdness so I disabled) */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        font-family: 'Roboto', 'Helvetica', sans-serif;
-
-    }
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 10px;
-        border: 1px solid #888;
-        width: 55%; /* Could be more or less, depending on screen size */
-        font-family: 'Roboto', 'Helvetica', sans-serif;
-        text-align: center;
-    }
-    .modal-header {
-        margin: auto; /* 15% from the top and centered */
-        width: 90%; /* Could be more or less, depending on screen size */
-        font-family: 'Roboto', 'Helvetica', sans-serif;
-    }
-    .modal-body {
-        margin: auto; /* 15% from the top and centered */
-        width: 90%; /* Could be more or less, depending on screen size */
-        font-family: 'Roboto', 'Helvetica', sans-serif;
-    }
-    .modal-footer {
-        margin: auto; /* 15% from the top and centered */
-        width: 90%; /* Could be more or less, depending on screen size */
-        font-family: 'Roboto', 'Helvetica', sans-serif;
-    }
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    /* Animation */
-    @-webkit-keyframes fadeIn {
-        from {opacity: 0}
-        to {opacity: 1}
-    }
-
-    @keyframes fadeIn {
-        from {opacity: 0}
-        to {opacity: 1}
-    }
-   </style>
+    -->
   </head>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -373,8 +230,6 @@
 <!-- End of Camera Modal -->
 
     <!-- <a href="https://github.com/ABotelho23/aacdnProject" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> --->
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
 
     <!--- MODAL SCRIPTS --->
     <script type=text/javascript>
@@ -418,68 +273,6 @@
             modal3.style.display = "none";
         }
     }
-    //Function for bulb control with buttons
-    $(function() {
-    $('.ButtonTest').on('click', function() {
-    $.getJSON('/bulbsetbackground_proc', {
-        colourVal: $(this).attr('value'),
-        onoffVal: ('on')
-      },
-      function(data) {
-          $("#result2").text(data.result);
-      });
-      return false;
-  });
-});
-    //Function for bulb control off button
-    $(function() {
-    $('#Coff').on('click', function() {
-    $.getJSON('/bulbsetbackground_proc', {
-        colourVal: $('button[name="changeColour"]').val(),
-        onoffVal: $('button[name="onoffValue"]').val()
-      },
-      function(data) {
-          $("#result2").text(data.result);
-      });
-      return false;
- });
-});
-    //Function for blind control slider
-    $(function() {
-    $('a#blindSlider').on('click', function() {
-    $.getJSON('/blindsetbackground_proc', {
-        blindVal: $('input[name="blindValue"]').val(),
-      },
-      function(data) {
-          $("#result2").text(data.result);
-      });
-      return false;
- });
-});
-    //Function for picture control
-    $(function() {
-    $('#pSend').on('click', function() {
-    $.getJSON('/picturebackground_proc', {
-        picVal: $('input[id="picture"]').val(),
-      },
-      function(data) {
-          $("#result2").text(data.result);
-      });
-      return false;
- });
-});
-//Function for video control
-    $(function() {
-    $('#vSend').on('click', function() {
-    $.getJSON('/videobackground_proc', {
-        vidVal: $('input[id="video"]').val(),
-      },
-      function(data) {
-          $("#result2").text(data.result);
-      });
-      return false;
- });
-});
 </script>
 </body>
 </html>
