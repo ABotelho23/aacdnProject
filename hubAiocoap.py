@@ -93,7 +93,7 @@ def setVideo():
 @app.route("/lastpicbackground_proc")
 def checkPic():
     listPic = os.listdir('static/images/camera/pictures/')
-    paths = [os.path.join(path, basename) for basename in listPic]
+    paths = [os.path.join(paths, basename) for basename in listPic]
 
     lastPic = max(paths, key=os.path.getctime)
 
