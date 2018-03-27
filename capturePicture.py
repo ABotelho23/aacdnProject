@@ -43,6 +43,6 @@ def main(fromServer):
             print("picture taken.")
 
             picCount += 1
-            time.sleep(2)
+            sleep(2)
 
 
