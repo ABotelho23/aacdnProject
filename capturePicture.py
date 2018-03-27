@@ -19,10 +19,10 @@ def main(fromServer):
     cTime = datetime.now()
     dTime = cTime + timedelta(seconds=intpicTotal)
     
-    while cTime < dTime:
+    while picCount < intpicTotal:
 
         cTime = datetime.now()
-        picT = cTime.strftime("%Y-%m-%d %H:%M:%S")
+        picT = cTime.strftime("%Y-%m-%d %H-%M-%S")
         # picName = cTime + '.jpg'
         picName = picT + '.jpg'
         FilePathPic = filePath + picName
@@ -43,6 +43,6 @@ def main(fromServer):
             print("picture taken.")
 
             picCount += 1
-            sleep(3)
+            sleep(2)
 
 
