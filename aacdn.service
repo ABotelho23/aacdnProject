@@ -5,9 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=pi
-ExecStart=/usr/bin/python3 /home/pi/aacdnProject/hubCode.py
+ExecStart=/usr/bin/python3 /home/pi/aacdnProject/nodeCode.py
 Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target
-
