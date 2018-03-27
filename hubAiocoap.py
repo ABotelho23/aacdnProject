@@ -93,12 +93,11 @@ def setVideo():
 @app.route("/lastpicbackground_proc")
 def checkPic():
     listPic = os.listdir('static/images/camera/pictures/')
-
     paths = [os.path.join('static/images/camera/pictures/', basename) for basename in listPic]
-
     lastPic = max(paths, key=os.path.getctime)
+    lastPic.split('static/images/camera/pictures/')
 
-    return jsonify(result=lastPic)
+    return jsonify(result=lastPic[1])
 
 class DiscoveryThread(threading.Thread):
     def run(self):
