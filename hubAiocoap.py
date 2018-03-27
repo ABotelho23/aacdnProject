@@ -27,6 +27,10 @@ def galleryPage():
     pics = os.listdir('static/images/')
     return render_template('gallery.html', pics=pics)
 
+@app.route("/multidevice/")
+def multiPage():
+    return render_template('multidevice.html')
+
 @app.route("/tempbackground_proc")
 def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()

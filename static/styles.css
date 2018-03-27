@@ -159,7 +159,27 @@ html, body {
   background-size: 200px 200px;
   background-repeat: no-repeat;
 }
-
+.demo-updatesGN .mdl-card__title {
+  min-height: 200px;
+  background-image: url('images/moon.png');
+  background-position: right bottom;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+}
+.demo-updatesGM .mdl-card__title {
+  min-height: 200px;
+  background-image: url('images/sun.png');
+  background-position: right bottom;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+}
+.demo-updatesPM .mdl-card__title {
+  min-height: 200px;
+  background-image: url('images/discoball.png');
+  background-position: right bottom;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+}
 
 .demo-cards .mdl-card__actions a {
   color: #00BCD4;
