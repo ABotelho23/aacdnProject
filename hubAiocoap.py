@@ -15,7 +15,6 @@ from flask import render_template
 from flask import jsonify
 from flask import request
 import os
-import glob
 
 global app
 app = Flask(__name__)
@@ -92,7 +91,7 @@ def setVideo():
 
 @app.route("/lastpicbackground_proc")
 def checkPic():
-    listPic = glob.glob('/static/images/camera/pictures/*.jpg')
+    listPic = os.listdir('static/images/camera/pictures/')
     lastPic = max(listPic, key=os.path.getctime)
 
     return jsonify(result=lastPic)
