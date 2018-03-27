@@ -24,7 +24,7 @@ def index():
 
 @app.route("/gallery/")
 def galleryPage():
-    pics = os.listdir('static/images/')
+    pics = os.listdir('static/images/camera/pictures')
     return render_template('gallery.html', pics=pics)
 
 @app.route("/multidevice/")
