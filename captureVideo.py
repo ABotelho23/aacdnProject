@@ -9,7 +9,7 @@ import subprocess
 
 def main(fromServer):
 	#File path
-	filePath = "/mnt/captures/"
+	filePath = "/mnt/captures/videos/"
 	#fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
 	#fileWithExtension = fileName
 	#fileWithExtension += '.h264'
