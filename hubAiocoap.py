@@ -38,8 +38,9 @@ def multiPage():
 @app.route("/tempbackground_proc")
 def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()
-    currentTemp = currentTemp/1000
-    return jsonify(result=currentTemp)
+    intcurrentTemp = int(currentTemp)
+    intcurrentTemp = intcurrentTemp/1000
+    return jsonify(result=intcurrentTemp)
 
 @app.route("/bulbbackground_proc")
 def checkBulb():
