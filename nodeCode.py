@@ -27,11 +27,11 @@ class TestResource(resource.Resource):
 
     def set_content(self, content):
         self.content = content
-           
+
     #this is the render for a GET. This returns the payload.
     async def render_get(self, request):
         return aiocoap.Message(payload=self.content)
-    
+
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
@@ -45,36 +45,36 @@ logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 # 1 = off, 0 = on
 def turnOnLight(onOrOff):
-    
+
     print(onOrOff)
     onOrOffstr = onOrOff.decode()
-  
-    if (onOrOffstr == 'on'):
+
+    if (onOrOffstr == 'On'):
         turnOn.lightOn()
-    elif (onOrOffstr == 'off'):
+    elif (onOrOffstr == 'Off'):
         turnOff.lightOff()
-    elif (onOrOffstr == 'red'):
+    elif (onOrOffstr == 'Red'):
         RED.redOn()
-    elif (onOrOffstr == 'green'):
+    elif (onOrOffstr == 'Green'):
         GREEN.greenOn()
-    elif (onOrOffstr == 'blue'):
+    elif (onOrOffstr == 'Blue'):
         BLUE.blueOn()
-    elif (onOrOffstr == 'yellow'):
+    elif (onOrOffstr == 'Yellow'):
         YELLOW.yellowOn()
-    elif (onOrOffstr == 'cyan'):
+    elif (onOrOffstr == 'Cyan'):
         CYAN.cyanOn()
-    elif (onOrOffstr == 'magenta'):
+    elif (onOrOffstr == 'Magenta'):
         MAGENTA.magentaOn()
-    elif (onOrOffstr == 'white'):
+    elif (onOrOffstr == 'White'):
         WHITE.whiteOn()
     else:
         print("nothing")
-        
+
   #  if (onOrOffstr == '1'):
    #     GPIO.output(RED,1)
     #    GPIO.output(GREEN,1)
      #   GPIO.output(BLUE,1)
-    
+
     #else:
      #   GPIO.output(RED,0)
       #  GPIO.output(GREEN,0)
