@@ -2,7 +2,7 @@
 $(function() {
 $('#goodNight').on('click', function() {
 $.getJSON('/bulbsetbackground_proc', {
-    onoffVal: ('off')
+    onoffVal: ('Off')
   },
   function(data) {
       $("#result2").text(data.result);
@@ -21,8 +21,8 @@ $.getJSON('/blindsetbackground_proc', {
 $(function() {
 $('#goodMorning').on('click', function() {
 $.getJSON('/bulbsetbackground_proc', {
-    colourVal: ('white'),
-    onoffVal: ('on')
+    colourVal: ('White'),
+    onoffVal: ('On')
   },
   function(data) {
       $("#result2").text(data.result);
@@ -38,7 +38,7 @@ $.getJSON('/blindsetbackground_proc', {
 });
 
 
-var colours = ["red", "green", "blue", "magenta", "yellow", "cyan", "white"];
+var colours = ["Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White"];
 function setNightmare(){
     var x = Math.floor((Math.random()*7) + 0);
     var y = Math.floor((Math.random()*11) + 0);
@@ -46,7 +46,7 @@ function setNightmare(){
         //Sets Bulb random colour
         $.getJSON('/bulbsetbackground_proc', {
             colourVal: (colours[x]),
-            onoffVal: ('on')
+            onoffVal: ('On')
           },
           function(data) {
               $("#result2").text(data.result);
