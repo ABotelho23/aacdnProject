@@ -53,8 +53,8 @@ def setBulb():
     colour = request.args.get('colourVal')
     print(onoff)
     print(colour)
-    if(onoff == 'off'):
-        asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', 'off', flaskProtocol), flaskLoop)
+    if(onoff == 'Off'):
+        asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', 'Off', flaskProtocol), flaskLoop)
     else:
         asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.101', '/bulb/colours', colour, flaskProtocol), flaskLoop)
 
