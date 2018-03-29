@@ -8,7 +8,7 @@ import threading
 import aiocoap.resource as resource
 from aiocoap import *
 import aiocoap
-import zeroconfDiscover
+#import zeroconfDiscover
 import flask
 from flask import Flask
 from flask import render_template
