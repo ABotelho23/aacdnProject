@@ -27,6 +27,7 @@ class Temperature(resource.Resource):
         x = payloadtemp.partition('t=')
         #will be broken into 3 sections. take last section (x[])
         y = x[2]
+        print(y)
         z = int(y)
         print(z)
         #encode to string for payload
