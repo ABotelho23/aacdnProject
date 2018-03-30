@@ -40,4 +40,4 @@ def main(fromServer):
 		except subprocess.CalledProcessError as e:
 			print('FAIL:\ncmd:{}\noutput:{}'.format(e.cmd, e.output))
 			print("Video converted.")
-            		os.remove('/mnt/captures/videos/*.h264')
+			os.remove('/mnt/captures/videos/*.h264')
