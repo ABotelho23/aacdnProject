@@ -39,5 +39,7 @@ def main(fromServer):
 			output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
 		except subprocess.CalledProcessError as e:
 			print('FAIL:\ncmd:{}\noutput:{}'.format(e.cmd, e.output))
+		else:
 			print("Video converted.")
+		finally:
 			os.remove('/mnt/captures/videos/*.h264')
