@@ -30,10 +30,10 @@ class Temperature(resource.Resource):
         z = int(y)
         z = z/1000
         print(z)
-        a = str(z)
-        print(a)
+        z = str(z)
+        print(z)
         #encode to string for payload
-        tempvalue = a.encode
+        tempvalue = z.encode()
         self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
 
