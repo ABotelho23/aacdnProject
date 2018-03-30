@@ -30,7 +30,7 @@ class Temperature(resource.Resource):
         #covert the byte value to int, divide by 1000 then convert to string
         stringvalue = str(int(bytevalue)/1000)
         #encode to string for payload
-        tempvalue = stringvlaue.encode()
+        tempvalue = stringvalue.encode()
         self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
 
