@@ -30,6 +30,7 @@ class Temperature(resource.Resource):
         z = int(y)
         z = z/1000
         print(z)
+        str(z)
         #encode to string for payload
         tempvalue = z.encode
         self.set_content(tempvalue)
