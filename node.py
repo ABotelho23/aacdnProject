@@ -29,7 +29,7 @@ class TestResource(resource.Resource):
         self.set_content(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Test put set.')
 
-
+# TEST
 class TakePicture(resource.Resource):
     def __init__(self):
         super().__init__()
