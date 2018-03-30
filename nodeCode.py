@@ -26,8 +26,8 @@ class Temperature(resource.Resource):
         #partition on t= in line from payloadtemp
         x = payloadtemp.partition('t=')
         #will be broken into 3 sections. take last section (x[])
-        y = x[2]
-        z = str(int(y)/1000)
+        bytevalue = x[2]
+        stringvalue = str(int(bytevalue)/1000)
         #encode to string for payload
         tempvalue = z.encode()
         self.set_content(tempvalue)
