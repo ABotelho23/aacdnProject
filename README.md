@@ -1,5 +1,5 @@
 # aacdnProject
-## Open-source & Mostly Local-only IoT/Smart Home Implementation in Python 3
+## Open-source & Mostly Local-only IoT/Smart Home Implementation Written in Python 3
 
 ![Logo Image](/static/images/LogoBigBack.png)
 
