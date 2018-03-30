@@ -15,7 +15,7 @@ async def main():
 
     targetURI = 'coap://' + addressIn + resourceIn
 
-    request = Message(code=PUT, uri=targetURI, payload=payloadIn)
+    request = Message(code=PUT, uri=targetURI, payload=payloadIn.encode())
 
     response = await protocol.request(request).response
 
