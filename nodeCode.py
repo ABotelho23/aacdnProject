@@ -28,7 +28,6 @@ class Temperature(resource.Resource):
         #will be broken into 3 sections. take last section (x[])
         y = x[2]
         z = int(y)
-        z = z/1000
         print(z)
         #encode to string for payload
         tempvalue = z.encode()
