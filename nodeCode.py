@@ -27,11 +27,8 @@ class MovementResource(resource.Resource):
 
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
-        print('PUT payload: %s' % request.payload)
-        await: 
-            self.set_content(request.payload)
-            activateMotor(request.payload)
-            return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        activateMotor(request.payload)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 
 #logging setup
 logging.basicConfig(level=logging.INFO)
