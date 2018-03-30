@@ -29,7 +29,8 @@ class Temperature(resource.Resource):
         y = x[2]
         #encode to string for payload
         tempvalue = y.encode()
-        self.set_content(tempvalue/1000)
+        tempvalue = tempvalue/1000
+        self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
 
     #this is the render for a PUT. This sets what the resource value is.
