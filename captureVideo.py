@@ -20,7 +20,7 @@ def main(fromServer):
 	cTime = dt.datetime.now()
 	dTime = cTime + timedelta(seconds=10)  # constant time for motion detection to stay on
 	#while cTime < dTime:
-		
+
 	cTime = dt.datetime.now()
 	fileName = os.path.join(filePath, dt.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
 	#motionState = picammotion.motion()
@@ -40,8 +40,4 @@ def main(fromServer):
 		except subprocess.CalledProcessError as e:
 			print('FAIL:\ncmd:{}\noutput:{}'.format(e.cmd, e.output))
 			print("Video converted.")
-
-
-
-
-
+            os.remove('/mnt/captures/videos/*.h264')
