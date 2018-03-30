@@ -27,11 +27,12 @@ class Temperature(resource.Resource):
         x = payloadtemp.partition('t=')
         #will be broken into 3 sections. take last section (x[])
         y = x[2]
-        print(y)
         z = int(y)
+        z = z/1000
+        z.encode()
         print(z)
         #encode to string for payload
-        tempvalue = z
+        tempvalue = z.encode
         self.set_content(tempvalue)
         return aiocoap.Message(payload=self.content)
 
