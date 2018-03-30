@@ -29,7 +29,7 @@ class MovementResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
-        aiocoap.protocol.Responder.send_empty_ack(request.payload,'Moving Blinds...')
+        aiocoap.protocol.Responder.send_empty_ack(request.payload,_reason='Moving Blinds...')
         activateMotor(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 
