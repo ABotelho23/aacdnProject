@@ -29,7 +29,7 @@ class MovementResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
-        activateMotor(request.payload)
+        await activateMotor(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
 
 #logging setup
@@ -37,7 +37,7 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)
 
 #Activate Motor
-def activateMotor(hubRequest):
+async def activateMotor(hubRequest):
 
     print(hubRequest)
     hubRequeststr = hubRequest.decode()
