@@ -6,10 +6,15 @@
 This is the repository of our 4th year project for Bachelor of Information Technology in Network Technology at Carleton University.
 
 Our team members are:
+
 Alexandre Botelho,
+
 Aschalew Zelelew,
+
 Connor Moss,
+
 Dan Kidd, and
+
 Nathan Thanakone
 
 Our group plans to achieve a set of smart/IoT devices that share a common discovery protocol and framework. It will be a ‘hub and spoke’ topology where each node communicates with a centralized, more powerful hub. This hub will be the control centre that dictates each node based upon the user's input.
