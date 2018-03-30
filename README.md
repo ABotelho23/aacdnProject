@@ -3,7 +3,7 @@
 
 ![Logo Image](/static/images/LogoBigBack.png)
 
-This is the repository of our 4th year project for Bachelor of Information Technology in Network Technology at Carleton University.
+### This is the repository of our 4th year project for Bachelor of Information Technology in Network Technology at Carleton University.
 
 ### Team Members:
 
