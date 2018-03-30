@@ -42,4 +42,4 @@ def main(fromServer):
 		else:
 			print("Video converted.")
 		finally:
-			os.remove('/mnt/captures/videos/*.h264')
+			os.remove('/mnt/captures/videos/'fileName'.h264')
