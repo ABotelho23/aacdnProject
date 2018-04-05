@@ -18,7 +18,7 @@ def main(fromServer):
     #Current time
     cTime = datetime.now()
     dTime = cTime + timedelta(seconds=intpicTotal)
-    
+
     while picCount < intpicTotal:
 
         cTime = datetime.now()
@@ -26,7 +26,7 @@ def main(fromServer):
         # picName = cTime + '.jpg'
         picName = picT + '.jpg'
         FilePathPic = filePath + picName
-        
+
         #motionState = picammotion.motion()
         #print(motionState)
         #if motionState:
@@ -42,7 +42,4 @@ def main(fromServer):
             camera.capture(FilePathPic)
             print("picture taken.")
 
-            picCount += 1
-            sleep(2)
-
-
+        picCount += 1
