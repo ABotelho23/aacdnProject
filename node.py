@@ -100,50 +100,8 @@ async def createRequest(request_type, node_address, node_resource, userPayload, 
         else:
             return response.payload
 
-class MotionThread(resource.Resource):
 
-    async def motionLoop(self):
-        while True:
-            await asyncio.sleep(0)
-            motionState = picammotion.motion()
-            if motionState == False:
-                print("BACKGROUND THREAD, no motion: ",threading.current_thread())
-            else:
-                packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
-                print("BACKGROUND THREAD, motion: ",threading.current_thread())
-                capturePicture.main(1)
-
-    def __init__(self):
-
-        super().__init__()
-        self.set_content(b"If you perform a PUT on this URI, motion detection will be toggled.")
-        self.toggleMotion = False
-        self.mode = b'0'
-        self.loop = asyncio.get_event_loop()
-        self.motionTask = asyncio.ensure_future(self.motionLoop())
-        #self.loop.run_until_complete(self.motionTask)
-        #self.loop.close()
-
-    def set_content(self, content):
-        self.content = content
-
-    #this is the render for a GET. This returns the payload.
-    async def render_get(self, request):
-        return aiocoap.Message(payload=self.content)
-
-    #this is the render for a PUT. This sets what the resource value is.
-    async def render_put(self, request):
-        """print('PUT payload: %s' % request.payload)
-        self.set_content(request.payload)"""
-        #Call Take picture function
-        self.mode = request.payload
-        if len(request.payload) > 0:
-            self.toggleMotion = not self.toggleMotion
-        #if self.toggleMotion:
-        #    self.loop.run_until_complete(self.motionTask)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Motion detection toggled')
-
-'''def backgroundTask(loop,protocol):
+def backgroundTask(loop,protocol):
 
     """This is where you would run background tasks, like motion detection or scheduling temperature checks"""
     while True:
@@ -153,7 +111,7 @@ class MotionThread(resource.Resource):
         else:
             packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
             print("BACKGROUND THREAD, motion: ",threading.current_thread())
-            capturePicture.main(1)'''
+            capturePicture.main(1)
 
 def main():
 
@@ -167,12 +125,11 @@ def main():
     root.add_resource(('test',), TestResource())
     root.add_resource(('picture',), TakePicture())
     root.add_resource(('video',), TakeVideo())
-    root.add_resource(('motion'), MotionThread())
 
     protocol = coap_loop.run_until_complete(aiocoap.Context.create_server_context(root))
-    asyncio.Task(aiocoap.Context.create_server_context(root))
-    #Backgroundmotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
-    #Backgroundmotion.start()
+
+    Backgroundmotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
+    Backgroundmotion.start()
 
     asyncio.get_event_loop().run_forever()
 
