@@ -114,8 +114,9 @@ async def motion(loop,protocol):
 def backgroundTask(loop,protocol):
         #self.toggleMotion = False
         #self.mode = b'0'
-        while True:
-            motion(loop,protocol)
+    sleep(5)
+    while True:
+            asyncio.Task(motion(loop,protocol))
 
 def main():
 
