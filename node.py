@@ -103,20 +103,21 @@ async def createRequest(request_type, node_address, node_resource, userPayload, 
 async def motion(loop,protocol):
         await asyncio.sleep(0)
         motionState = picammotion.motion()
-        if motionState == False:
-            print("BACKGROUND THREAD, no motion: ",threading.current_thread())
-        else:
-            #packet = await createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol)
-            packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
-            print("BACKGROUND THREAD, motion: ",threading.current_thread())
-            capturePicture.main(1)
+        return motionState
 
 def backgroundTask(loop,protocol):
         #self.toggleMotion = False
         #self.mode = b'0'
     time.sleep(5)
     while True:
-            asyncio.run_coroutine_threadsafe(motion(loop,protocol), loop)
+            motionYesOrNo = asyncio.run_coroutine_threadsafe(motion(loop,protocol), loop).result()
+            if motionYesOrNo == False:
+                print("BACKGROUND THREAD, no motion: ",threading.current_thread())
+            else:
+            #packet = await createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol)
+                packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
+                print("BACKGROUND THREAD, motion: ",threading.current_thread())
+                capturePicture.main(1)
 
 def main():
 
