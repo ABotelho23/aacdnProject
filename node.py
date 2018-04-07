@@ -110,7 +110,6 @@ async def motion(self,protocol,loop):
             packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
             print("BACKGROUND THREAD, motion: ",threading.current_thread())
             capturePicture.main(1)
-    return
 
 def backgroundTask(loop,protocol):
         #self.toggleMotion = False
