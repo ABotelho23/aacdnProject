@@ -100,7 +100,7 @@ async def createRequest(request_type, node_address, node_resource, userPayload, 
         else:
             return response.payload
 
-async def motion(self,loop,protocol):
+async def motion(loop,protocol):
         await asyncio.sleep(0)
         motionState = picammotion.motion()
         if motionState == False:
