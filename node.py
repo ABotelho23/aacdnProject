@@ -116,7 +116,7 @@ def backgroundTask(loop,protocol):
         #self.mode = b'0'
     time.sleep(5)
     while True:
-            asyncio.Task(motion(loop,protocol))
+            asyncio.run_coroutine_threadsafe(motion(loop,protocol),loop))
 
 def main():
 
