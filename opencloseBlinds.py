@@ -13,7 +13,7 @@ Motor1E = 22
 GPIO.setup(Motor1A,GPIO.OUT)
 GPIO.setup(Motor1B,GPIO.OUT)
 GPIO.setup(Motor1E,GPIO.OUT)
-pwmtest = GPIO.PWM(Motor1E,1000)
+#pwmtest = GPIO.PWM(Motor1E,1000)
 
 def openStart(time):
 
@@ -22,7 +22,7 @@ def openStart(time):
   GPIO.output(Motor1B,GPIO.HIGH)
   GPIO.output(Motor1E,GPIO.HIGH)
 
-  pwmtest.start(100)
+  #pwmtest.start(100)
 
   sleep(time)
 
@@ -37,7 +37,7 @@ def closeStart(time):
   GPIO.output(Motor1B,GPIO.LOW)
   GPIO.output(Motor1E,GPIO.HIGH)
 
-  pwmtest.start(100)
+  #pwmtest.start(100)
 
   sleep(time)
 
