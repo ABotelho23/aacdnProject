@@ -29,7 +29,7 @@ We plan on using Raspberry Pis for each node’s computing aspect, along with di
 Our final demonstration of all the devices will be a scaled down house that will highlight each IoT devices key capabilities and the method used to achieve this functionality.
 
 ### Network Layout:
-![Layout Image](/static/images/networkDiagram.png)
+![Layout Image](/static/images/NetworkDiagram.png)
 
 
 ### Credits:
