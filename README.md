@@ -42,3 +42,5 @@ We will also be implementing avahi for device advertising purposes. Please see t
 We will be implementing python-zeroconf for device discovery purpose. Please see the python-zeroconf repository here: https://github.com/jstasiak/python-zeroconf
 
 We have implemented flask to generate our frontend on the hub. Please see the flask repository here: https://github.com/pallets/flask
+
+For the smart camera, we are using code from a script by brainflakes, improved by pageauc, peewee2 and Kesthal. See the original forum post here: www.raspberrypi.org/phpBB3/viewtopic.php?f=43&t=45235
