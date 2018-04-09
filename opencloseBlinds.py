@@ -89,7 +89,7 @@ def main(fromServer):
   hubRequeststr = int(hubRequeststr)
 
   #Convert request into intervals of 0.5
-  hubRequestTime = (hubRequeststr * 0.5)
+  hubRequestTime = (hubRequeststr * 1)
 
   if (currentStatus == hubRequeststr):
     #If current status = whats requested form hub, no movement nessecary
@@ -97,7 +97,7 @@ def main(fromServer):
 
   elif (currentStatus < hubRequeststr):
     #If current status less than whats requested from hub, close appropraitely
-    adjustBlinds = (currentStatus * 0.5)
+    adjustBlinds = (currentStatus * 1)
     adjustBlindsTime = (hubRequestTime - adjustBlinds)
     #Debugging
     print("Closing blinds for ")
@@ -110,7 +110,7 @@ def main(fromServer):
 
   elif (currentStatus > hubRequeststr):
     #If current status greater than whats requested from hub, move appropraitely
-    adjustBlinds = (currentStatus * 0.5)
+    adjustBlinds = (currentStatus * 1)
     adjustBlindsTime = (adjustBlinds - hubRequestTime)
     #Debugging
     print("Openning blinds for ")
