@@ -22,7 +22,7 @@ def openStart(time):
   GPIO.output(Motor1B,GPIO.HIGH)
   GPIO.output(Motor1E,GPIO.HIGH)
 
-  pwmtest.start(50)
+  pwmtest.start(100)
 
   sleep(time)
 
@@ -37,7 +37,7 @@ def closeStart(time):
   GPIO.output(Motor1B,GPIO.LOW)
   GPIO.output(Motor1E,GPIO.HIGH)
 
-  pwmtest.start(50)
+  pwmtest.start(100)
 
   sleep(time)
 
