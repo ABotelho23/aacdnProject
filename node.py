@@ -108,7 +108,7 @@ async def motion(loop,protocol):
 def backgroundTask(loop,protocol):
         #self.toggleMotion = False
         #self.mode = b'0'
-    time.sleep(5)
+    time.sleep(1)
     while True:
             motionYesOrNo = asyncio.run_coroutine_threadsafe(motion(loop,protocol), loop).result()
             if motionYesOrNo == False:
