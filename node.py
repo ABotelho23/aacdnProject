@@ -12,6 +12,7 @@ import picammotion
 import multiprocessing
 from multiprocessing import Process
 
+logging.basicConfig(level=logging.DEBUG)
 
 """Please keep this resource for testing purposes"""
 class TestResource(resource.Resource):
