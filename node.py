@@ -139,8 +139,8 @@ def main():
     #detectMotion = backgroundTask(args=(protocol,coap_loop))
     #detectMotion.start()
 
-    detectMotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
-    detectMotion.start()
+    #detectMotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
+    #detectMotion.start()
 
     coap_loop.run_forever()
 
