@@ -43,41 +43,43 @@ def closeStart(time):
   GPIO.output(Motor1E,GPIO.LOW)
   GPIO.cleanup()
 
-def main(fromServer):
-  # Step incrememter
-  # 0 = fully open
-  # 10 = full closed
+def main():
+    while 1:
+      # Step incrememter
+      # 0 = fully open
+      # 10 = full closed
+      GPIO.setmode(GPIO.BOARD)
+      Motor1A = 16
+      Motor1B = 18
+      Motor1E = 22
+      GPIO.setup(Motor1A,GPIO.OUT)
+      GPIO.setup(Motor1B,GPIO.OUT)
+      GPIO.setup(Motor1E,GPIO.OUT)
+      #Amount of time to fully open/close = 5 Seconds
+      fullTime = 5
+      pwmtest = GPIO.PWM(Motor1E,100)
 
-  GPIO.setmode(GPIO.BOARD)
+      function = input("Open(o) or Close(c)?")
+      value = input("What Amount?")
 
-  Motor1A = 16
-  Motor1B = 18
-  Motor1E = 22
+      #Convert to int
+      value = int(value)
 
-  GPIO.setup(Motor1A,GPIO.OUT)
-  GPIO.setup(Motor1B,GPIO.OUT)
-  GPIO.setup(Motor1E,GPIO.OUT)
-
-  #Amount of time to fully open/close = 5 Seconds
-  fullTime = 5
-
-  pwmtest = GPIO.PWM(Motor1E,100)
-
-  #Check what is the argument
-  hubRequeststr = fromServer
-  print("Request from Server:")
-  print(hubRequeststr)
-
-  hubRequeststr = int(hubRequeststr)
-
-  #Convert request into intervals of 0.5
-  hubRequestTime = (hubRequeststr * 1)
-
-  print("Openning blinds for ")
-  print(hubRequestTime)
-  print("Seconds")
-  #Open Blinds
-  openStart(hubRequestTime)
+      #Convert request into intervals of 0.5
+      if(function == 'o'):
+          print("Openning blinds for ")
+          print(value)
+          print("Seconds")
+          #Open Blinds
+          openStart(value)
+      elif(function == 'c'):
+          print("Closing blinds for ")
+          print(value)
+          print("Seconds")
+          #Open Blinds
+          closeStart(value)
+      else:
+          print("Invalid Option")
 
 if __name__ == "__main__":
     main()
