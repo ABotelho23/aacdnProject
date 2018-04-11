@@ -35,7 +35,7 @@ Our final demonstration of all the devices will be a scaled down house that will
 ### Credits:
 We are implementing chrysn's solid CoAP Python 3 library as our CoAP implementation, called aiocoap. Please see the repository here: https://github.com/chrysn/aiocoap
 
-Thank you as well to chrysn in helping us solve a major issue we were having with implementing asyncio and threading together!
+Thank you as well to Christian Amsüss (aka chrysn) in helping us solve a major issue we were having with implementing asyncio and threading together!
 
 We will also be implementing avahi for device advertising purposes. Please see the avahi repository here: https://github.com/lathiat/avahi
 
