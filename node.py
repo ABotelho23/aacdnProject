@@ -101,9 +101,9 @@ async def createRequest(request_type, node_address, node_resource, userPayload, 
         else:
             return response.payload
 
-async def motion(loop,protocol):
+'''async def motion(loop,protocol):
         await asyncio.sleep(0)
-        #motionState = picammotion.motion()
+        motionState = picammotion.motion()
         return motionState
 
 def backgroundTask(loop,protocol):
@@ -119,7 +119,7 @@ def backgroundTask(loop,protocol):
                 packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
                 print("BACKGROUND THREAD, motion: ",threading.current_thread())
                 capturePicture.main(1)
-                time.sleep(5)
+                time.sleep(5)'''
 
 def main():
 
