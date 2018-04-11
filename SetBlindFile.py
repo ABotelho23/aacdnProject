@@ -6,7 +6,7 @@ import blindStatus
 def main():
 
     setBlind = input("Enter Value...")
-    writeStatus(str(setBlind))
+    blindStatus.writeStatus(str(setBlind))
 
 if __name__ == "__main__":
     main()
