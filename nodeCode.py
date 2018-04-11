@@ -36,10 +36,14 @@ class TestResource(resource.Resource):
     #this is the render for a PUT. This sets what the resource value is.
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
-        self.set_content(request.payload)
-        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting Rainbow!')
+        if (request.payload == b'Rainbow'):
+            self.set_content(b'White')
+        else:
+            self.set_content(request.payload)
+
+        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting!')
         turnOnLight(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Finished Rainbow!')
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Finished!')
 # logging setup
 
 logging.basicConfig(level=logging.INFO)
