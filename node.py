@@ -114,7 +114,7 @@ def backgroundTask(loop,protocol):
     while True:
             motionYesOrNo = asyncio.run_coroutine_threadsafe(motion(loop,protocol), loop).result()
             if motionYesOrNo == False:
-                print("BACKGROUND THREAD, no motion: ",multiprocessing.current_process()
+                print("BACKGROUND THREAD, no motion: ",multiprocessing.current_process())
             else:
             #packet = await createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol)
                 packet = asyncio.run_coroutine_threadsafe(createRequest('PUT', '10.0.0.100', '/notifications','Motion Detected',protocol), loop).result()
