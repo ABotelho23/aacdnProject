@@ -69,9 +69,6 @@ def main(fromServer):
   GPIO.setup(Motor1B,GPIO.OUT)
   GPIO.setup(Motor1E,GPIO.OUT)
 
-  #Amount of time to fully open/close = 5 Seconds
-  fullTime = 5
-
   pwmtest = GPIO.PWM(Motor1E,100)
 
   #Check what is the argument
@@ -88,7 +85,7 @@ def main(fromServer):
   currentStatus = int(currentStatus)
   hubRequeststr = int(hubRequeststr)
 
-  #Convert request into intervals of 0.5
+  #Convert request into intervals of 1
   hubRequestTime = (hubRequeststr * 1)
 
   if (currentStatus == hubRequeststr):

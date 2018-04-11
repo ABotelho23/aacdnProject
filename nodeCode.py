@@ -29,8 +29,9 @@ class MovementResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
+        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting Blinds!')
         activateMotor(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Blinds Finished')
 
 #logging setup
 logging.basicConfig(level=logging.INFO)
