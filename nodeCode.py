@@ -17,6 +17,7 @@ import YELLOW
 import CYAN
 import MAGENTA
 import WHITE
+import RAINBOW
 
 class TestResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
@@ -67,6 +68,8 @@ def turnOnLight(onOrOff):
         MAGENTA.magentaOn()
     elif (onOrOffstr == 'White'):
         WHITE.whiteOn()
+    elif (onOrOffstr == 'Rainbow'):
+        RAINBOW.rainbowOn()
     else:
         print("nothing")
 
