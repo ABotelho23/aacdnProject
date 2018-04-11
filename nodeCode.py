@@ -70,8 +70,6 @@ def turnOnLight(onOrOff):
         WHITE.whiteOn()
     elif (onOrOffstr == 'Rainbow'):
         RAINBOW.rainbowOn()
-        RAINBOW.rainbowOn()
-        RAINBOW.rainbowOn()
     else:
         print("nothing")
 
