@@ -276,3 +276,11 @@ html, body {
     from {opacity: 0}
     to {opacity: 1}
 }
+.credits {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 90%; /* Could be more or less, depending on screen size */
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    text-align: center;
+}
