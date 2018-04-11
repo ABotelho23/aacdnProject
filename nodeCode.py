@@ -37,8 +37,9 @@ class TestResource(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
+        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting Rainbow!')
         turnOnLight(request.payload)
-        return aiocoap.Message(code=aiocoap.CHANGED, payload=self.content)
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Finished Rainbow!')
 # logging setup
 
 logging.basicConfig(level=logging.INFO)
