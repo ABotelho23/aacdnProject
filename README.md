@@ -1,5 +1,5 @@
 # aacdnProject
-## Open-source & Mostly Local-only IoT/Smart Home Implementation Written in Python 3
+## Open-source & Mostly Local IoT/Smart Home Implementation Written in Python 3
 
 ![Logo Image](/static/images/LogoBigBack.png)
 
@@ -44,3 +44,5 @@ We will be implementing python-zeroconf for device discovery purpose. Please see
 We have implemented flask to generate our frontend on the hub. Please see the flask repository here: https://github.com/pallets/flask
 
 For the smart camera, we are using code from a script by brainflakes, improved by pageauc, peewee2 and Kesthal. See the original forum post here: www.raspberrypi.org/phpBB3/viewtopic.php?f=43&t=45235
+
+Special thanks to Charles Edwardson for the great idea of making a mock-up house!
