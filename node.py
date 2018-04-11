@@ -9,6 +9,8 @@ import time
 import capturePicture
 import captureVideo
 import picammotion
+import multiprocessing
+from multiprocessing import Process
 
 
 """Please keep this resource for testing purposes"""
@@ -138,7 +140,7 @@ def main():
     #detectMotion = backgroundTask(args=(protocol,coap_loop))
     #detectMotion.start()
 
-    detectMotion = threading.Thread(target=backgroundTask, args=(coap_loop,protocol,))
+    detectMotion = Process(target=backgroundTask, args=(coap_loop,protocol,))
     detectMotion.start()
 
     coap_loop.run_forever()
