@@ -103,7 +103,7 @@ async def createRequest(request_type, node_address, node_resource, userPayload, 
 
 async def motion(loop,protocol):
         await asyncio.sleep(0)
-        motionState = picammotion.motion()
+        #motionState = picammotion.motion()
         return motionState
 
 def backgroundTask(loop,protocol):
