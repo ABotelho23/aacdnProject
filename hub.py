@@ -35,6 +35,10 @@ def galleryPage():
 def multiPage():
     return render_template('multidevice.html')
 
+@app.route("/credit/")
+def creditPage():
+    return render_template('credits.html')
+
 @app.route("/tempbackground_proc")
 def checkTemp():
     currentTemp = asyncio.run_coroutine_threadsafe(createRequest('GET', '10.0.0.103', '/thermo/temp','0', flaskProtocol), flaskLoop).result()
