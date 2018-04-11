@@ -10,6 +10,7 @@ import capturePicture
 import captureVideo
 import picammotion
 
+logging.basicConfig(level=logging.DEBUG)
 
 """Please keep this resource for testing purposes"""
 class TestResource(resource.Resource):
