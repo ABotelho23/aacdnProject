@@ -41,7 +41,7 @@ class BulbResource(resource.Resource):
         else:
             self.set_content(request.payload)
 
-        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting!')
+        await asyncio.sleep(0)
         turnOnLight(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Finished!')
 # logging setup
