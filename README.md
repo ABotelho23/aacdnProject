@@ -32,22 +32,35 @@ Our final demonstration of all the devices will be a scaled down house that will
 ![Layout Image](/static/images/NetworkDiagram.png)
 
 ### Images of the Final GUI:
-GUI #0                                     |  GUI #1
-:-----------------------------------------:|:------------------------------------------------:
-![](/static/images/final_images/GUI_0.png) | ![GUI_1](/static/images/final_images/GUI_1.png)
-![GUI_2](/static/images/final_images/GUI_2.png)
-![GUI_3](/static/images/final_images/GUI_3.png)
-![GUI_4](/static/images/final_images/GUI_4.png)
-![GUI_5](/static/images/final_images/GUI_5.png)
-![GUI_6](/static/images/final_images/GUI_6.png)
+GUI #0                                     | GUI #1
+:-----------------------------------------:|:------------------------------------------:
+![](/static/images/final_images/GUI_0.png) | ![](/static/images/final_images/GUI_1.png)
+:-----------------------------------------:|:------------------------------------------:
+GUI #2                                     | GUI #3
+:-----------------------------------------:|:------------------------------------------:
+![](/static/images/final_images/GUI_2.png) | ![](/static/images/final_images/GUI_3.png)
+:-----------------------------------------:|:------------------------------------------:
+GUI #4                                     | GUI #5
+:-----------------------------------------:|:------------------------------------------:
+![](/static/images/final_images/GUI_4.png) | ![](/static/images/final_images/GUI_5.png)
+:-----------------------------------------:|:------------------------------------------:
+GUI #6                                     |
+:-----------------------------------------:|:------------------------------------------:
+![](/static/images/final_images/GUI_6.png) |
+:-----------------------------------------:|:------------------------------------------:
 
 ### Images of the Final Mock-up:
-![Mock-up_1](/static/images/final_images/Mock-up_1.jpg)
-![Mock-up_2](/static/images/final_images/Mock-up_2.jpg)
-![Mock-up_3](/static/images/final_images/Mock-up_3.jpg)
-![Mock-up_4](/static/images/final_images/Mock-up_4.jpg)
+Mock-up #1                                     | Mock-up #2
+:---------------------------------------------:|:----------------------------------------------:
+![](/static/images/final_images/Mock-up_1.jpg) | ![](/static/images/final_images/Mock-up_2.jpg)
+:---------------------------------------------:|:----------------------------------------------:
+Mock-up #3                                     | Mock-up #4
+:---------------------------------------------:|:----------------------------------------------:
+![](/static/images/final_images/Mock-up_3.jpg) | ![](/static/images/final_images/Mock-up_4.jpg)
+:---------------------------------------------:|:----------------------------------------------:
 
-### Images of our Final Fair Display:
+
+### Image of our Final Fair Display:
 ![Display_1](/static/images/final_images/Display_1.jpg)
 
 
@@ -62,6 +75,6 @@ We have implemented python-zeroconf for device discovery purpose. Please see the
 
 We have implemented flask to generate our frontend on the hub. Please see the flask repository here: https://github.com/pallets/flask
 
-For the smart camera, we are using code from a script by brainflakes, improved by pageauc, peewee2 and Kesthal. See the original forum post here: www.raspberrypi.org/phpBB3/viewtopic.php?f=43&t=45235
+For the smart camera, we are using code from a script by brainflakes, improved by pageauc, peewee2 and Kesthal. See the original forum post here: https://www.raspberrypi.org/phpBB3/viewtopic.php?f=43&t=45235
 
 Special thanks to Charles Edwardson for the great idea of making a mock-up house!
