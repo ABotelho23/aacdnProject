@@ -32,8 +32,7 @@ Our final demonstration of all the devices will be a scaled down house that will
 ![Layout Image](/static/images/NetworkDiagram.png)
 
 ### Images of the Final GUI:
-![GUI_0](/static/images/final_images/GUI_0.png)
-![GUI_1](/static/images/final_images/GUI_1.png)
+![GUI_0](/static/images/final_images/GUI_0.png)![GUI_1](/static/images/final_images/GUI_1.png)
 ![GUI_2](/static/images/final_images/GUI_2.png)
 ![GUI_3](/static/images/final_images/GUI_3.png)
 ![GUI_4](/static/images/final_images/GUI_4.png)
