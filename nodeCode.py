@@ -19,7 +19,7 @@ import MAGENTA
 import WHITE
 import RAINBOW
 
-class TestResource(resource.Resource):
+class BulbResource(resource.Resource):
     """This is our first resource defined from scratch to test functionality."""
 
     def __init__(self):
@@ -95,7 +95,7 @@ def main():
 
         root.add_resource(('.well-known', 'core'),
                 resource.WKCResource(root.get_resources_as_linkheader))
-        root.add_resource(('bulb','colours'), TestResource())
+        root.add_resource(('bulb','colours'), BulbResource())
 
         asyncio.Task(aiocoap.Context.create_server_context(root))
 
