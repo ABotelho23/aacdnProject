@@ -47,6 +47,7 @@ class TakePicture(resource.Resource):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
         #Call Take picture function
+        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting!')
         capturePicture.main(request.payload)
         #takePicture(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Picture captured.')
@@ -70,6 +71,7 @@ class TakeVideo(resource.Resource):
     async def render_put(self, request):
         print('PUT payload: %s' % request.payload)
         self.set_content(request.payload)
+        aiocoap.Message(code=aiocoap.EMPTY, payload=b'Starting!')
         captureVideo.main(request.payload)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=b'Video captured.')
 # logging setup
