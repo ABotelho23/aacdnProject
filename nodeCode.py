@@ -24,7 +24,7 @@ class BulbResource(resource.Resource):
 
     def __init__(self):
         super().__init__()
-        self.set_content(b"This is the default TEST content.")
+        self.set_content(b"Off")
 
     def set_content(self, content):
         self.content = content
