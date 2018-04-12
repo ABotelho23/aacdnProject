@@ -16,7 +16,6 @@ from flask import jsonify
 from flask import request
 from os import *
 import os
-import zeroconfDiscover
 
 global app
 app = Flask(__name__)
@@ -104,7 +103,7 @@ def checkPic():
 
     return jsonify(result=newLP)
 
-class DiscoveryThread(threading.Thread):
+"""class DiscoveryThread(threading.Thread):
     def run(self):
         zeroconf = Zeroconf()
         print("\n+++++Discovering services...+++++\n")
@@ -130,7 +129,7 @@ class DiscoveryThread(threading.Thread):
                     print("  No properties")
             else:
                 print("  No info")
-            print('\n')
+            print('\n')"""
 
 class CoapNode():
     def __init__(self, ip_address, hostname, device_type):
@@ -270,10 +269,10 @@ def testThread(loop,protocol):
 
 def main():
 
-    print('DEBUG: STARTING DISCVOERY THREAD...')
+    """print('DEBUG: STARTING DISCVOERY THREAD...')
     discoverNodes = DiscoveryThread()
     discoverNodes.start()
-    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...')
+    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...')"""
 
     coap_loop = asyncio.get_event_loop()
     #coap_loop.set_debug()
@@ -291,10 +290,10 @@ def main():
 
     protocol = asyncio.run_coroutine_threadsafe(aiocoap.Context.create_server_context(root),coap_loop).result()
 
-    """print('DEBUG: STARTING DISCOVERY THREAD...')
+    print('DEBUG: STARTING DISCOVERY THREAD...')
     discoverNodes = threading.Thread(target=discoveryThread)
     discoverNodes.start()
-    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')"""
+    print('DEBUG: FINISHED STARTING DISCOVERY THREAD...\n')
 
     print('DEBUG: STARTING FLASK THREAD...')
     flaskServer = FlaskThread(coap_loop,protocol)
