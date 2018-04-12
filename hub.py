@@ -16,6 +16,7 @@ from flask import jsonify
 from flask import request
 from os import *
 import os
+import zeroconfDiscover
 
 global app
 app = Flask(__name__)
