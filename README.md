@@ -31,6 +31,24 @@ Our final demonstration of all the devices will be a scaled down house that will
 ### Network Layout:
 ![Layout Image](/static/images/NetworkDiagram.png)
 
+### Images of the Final GUI:
+![GUI_0](/static/images/final_images/GUI_0.png)
+![GUI_1](/static/images/final_images/GUI_1.png)
+![GUI_2](/static/images/final_images/GUI_2.png)
+![GUI_3](/static/images/final_images/GUI_3.png)
+![GUI_4](/static/images/final_images/GUI_4.png)
+![GUI_5](/static/images/final_images/GUI_5.png)
+![GUI_6](/static/images/final_images/GUI_6.png)
+
+### Images of the Final Mock-up:
+![Mock-up_1](/static/images/final_images/Mock-up_1.jpg)
+![Mock-up_2](/static/images/final_images/Mock-up_2.jpg)
+![Mock-up_3](/static/images/final_images/Mock-up_3.jpg)
+![Mock-up_4](/static/images/final_images/Mock-up_4.jpg)
+
+### Images of our Final Fair Display:
+![Display_1](/static/images/final_images/Display_1.jpg)
+
 
 ### Credits:
 We have implemented chrysn's solid CoAP Python 3 library as our CoAP implementation, called aiocoap. Please see the repository here: https://github.com/chrysn/aiocoap
