@@ -50,8 +50,8 @@ Mock-up #3                                     | Mock-up #4
 ![](/static/images/final_images/Mock-up_3.jpg) | ![](/static/images/final_images/Mock-up_4.jpg)
 
 ### Demoes/Animations:
-:--------------------------------------------------:|:-----------------------------------------------:
 ![](/static/images/final_animations/bulb.gif)       | ![](/static/images/final_animations/camera.gif)
+:--------------------------------------------------:|:-----------------------------------------------:
 ![](/static/images/final_animations/thermometer.gif)| ![](/static/images/final_animations/blinds.gif)
 
 
