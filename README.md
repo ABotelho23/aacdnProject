@@ -49,6 +49,11 @@ Mock-up #1                                     | Mock-up #2
 Mock-up #3                                     | Mock-up #4
 ![](/static/images/final_images/Mock-up_3.jpg) | ![](/static/images/final_images/Mock-up_4.jpg)
 
+### Demoes/Animations:
+:--------------------------------------------------:|:-----------------------------------------------:
+![](/static/images/final_animations/bulb.gif)       | ![](/static/images/final_animations/camera.gif)
+![](/static/images/final_animations/thermometer.gif)| ![](/static/images/final_animations/blinds.gif)
+
 
 ### Image of our Final Fair Display:
 ![Display_1](/static/images/final_images/Display_1.jpg)
