@@ -1,4 +1,4 @@
-# aacdnProject
+# AutoCoAP a.k.a. aacdnProject
 ## Open-source & Mostly Local IoT/Smart Home Implementation Written in Python 3
 
 ![Logo Image](/static/images/LogoBigBack.png)
