@@ -1,6 +1,8 @@
 # AutoCoAP a.k.a. aacdnProject
 ## Open-source & Mostly Local IoT/Smart Home Implementation Written in Python 3
 
+## This repository has been archived on GitHub.com. Please see the project on GitLab: https://gitlab.com/ABotelho23/aacdnProject
+
 ![Logo Image](/static/images/LogoBigBack.png)
 
 ### This is the repository of our 4th year project for Bachelor of Information Technology in Network Technology at Carleton University.
